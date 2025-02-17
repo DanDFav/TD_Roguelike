@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://by00q8ekwymdn"]
+
+[ext_resource type="Script" path="res://Map-Building/Blocks/block.gd" id="1_ihcgh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ks4fk"]
+albedo_color = Color(0.87, 0.27492, 0.2436, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ravnd"]
+material = SubResource("StandardMaterial3D_ks4fk")
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ted3s"]
+
+[node name="ranged_block" type="StaticBody3D"]
+script = ExtResource("1_ihcgh")
+colour = Color(0.870588, 0.27451, 0.243137, 1)
+height = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ravnd")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0156444, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("BoxShape3D_ted3s")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

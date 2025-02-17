@@ -7,7 +7,7 @@ albedo_color = Color(0.238, 0.5383, 0.7, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_32ysm"]
 material = SubResource("StandardMaterial3D_ufvnn")
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p75x8"]
 
@@ -19,9 +19,6 @@ script = ExtResource("1_dvfas")
 mesh = SubResource("BoxMesh_32ysm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_p75x8")
 disabled = true
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.15026, 0, 0, 0, 1, 0, 0, 0)

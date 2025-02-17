@@ -9,6 +9,7 @@ var spawn_ready = false
 var spawn_info
  
 var path_info
+var grid_index
 
 var enemy_resource = preload("res://enemy.tscn")
 
@@ -24,24 +25,35 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if path_ready == true and spawn_ready == true: 
+	if spawn_ready == true: 
 		time += 1
+		print(time)
+		
 		for i in spawn_info: 
-			if time == (i[1] * 100): 
+			print(i[1] * 100)
+			if time == int(i[1] * 100): 
 				spawn_enemy(i[0], i[1])
 
-func recieve_spawn_info(enemy_spawns):
-	print(enemy_spawns)
+func recieve_spawn_info(grid_data, spawns, path_one):
 	spawn_ready = true
-	spawn_info = enemy_spawns
+	spawn_info = spawns
+	grid_index = grid_data
+	path_info = translate_path(path_one)
 
-func recieve_path_info(path_nodes):
-	print(path_nodes)
-	path_ready = true
-	path_info = path_nodes
+func translate_path(path_one): 
+	var path = []
+	
+	
+	
+	for i in path_one: 
+		var idx: int 
+		idx = i.x * 10 + i.y
+		path.append(grid_index[idx])
+	
+	return path
+
 	
 func spawn_enemy(enemy_type, time): 
-	print("spawning ", enemy_type, "|| Time:  ", time)
 	if enemy_type == 0.0: 
 		var enemy = enemy_resource.instantiate()
 		enemy.position.y = 0.5

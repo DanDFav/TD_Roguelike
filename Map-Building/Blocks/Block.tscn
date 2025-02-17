@@ -23,4 +23,5 @@ shape = SubResource("BoxShape3D_yidm4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yidm4")
 
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

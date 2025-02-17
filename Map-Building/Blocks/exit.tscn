@@ -19,7 +19,6 @@ material = SubResource("StandardMaterial3D_tfwds")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(0.500505, 0, 0, 0, 0.500505, 0, 0, 0, 0.500505, 0, 0, 0)
 mesh = SubResource("BoxMesh_vkubd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -30,7 +29,7 @@ disabled = true
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
-transform = Transform3D(0.455, 0, 0, 0, 0.313051, 0, 0, 0, 0.42, 0, 0, 0)
+transform = Transform3D(0.836306, 0, 0, 0, 0.569741, 0, 0, 0, 0.835718, 0, -1.19209e-07, 0)
 mesh = SubResource("CylinderMesh_lpiap")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
