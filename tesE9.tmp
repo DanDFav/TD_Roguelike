@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy8y6ilvqt7lt"]
+
+[ext_resource type="Material" uid="uid://bgl26lgy0bi8v" path="res://Map-Building/Blocks/Materials/ranged.tres" id="2_c61wi"]
+[ext_resource type="Script" path="res://generic_stage_scrp.gd" id="3_2vu3n"]
+[ext_resource type="Script" path="res://test_stage_scrp.gd" id="4_xpv8q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ysapx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3m0ao"]
+material = ExtResource("2_c61wi")
+
+[node name="Stage" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ysapx")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_3m0ao")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.5105e-05, -0.000186613, 0.000186297, 0.462848, 0.886438, 4.63904e-05, -0.886438, 0.462848, 0.279754, 3, 1.46068)
+projection = 1
+fov = 79.1964
+size = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.454706, 0.890642, 0, -0.890642, 0.454706, 0, 6.22326, 3.62413)
+light_energy = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 2.019
+
+[node name="Generic_stage_scrp" type="Node3D" parent="."]
+script = ExtResource("3_2vu3n")
+
+[node name="Specific_stage_scrp" type="Node3D" parent="Generic_stage_scrp"]
+script = ExtResource("4_xpv8q")

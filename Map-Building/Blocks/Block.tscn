@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://rvggtbtkm3m6"]
+
+[ext_resource type="Script" path="res://Map-Building/Blocks/block.gd" id="1_dq8id"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aurc2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5k8i4"]
+material = SubResource("StandardMaterial3D_aurc2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yidm4"]
+
+[node name="Block_SB" type="StaticBody3D" groups=["Block"]]
+script = ExtResource("1_dq8id")
+
+[node name="Block_Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5k8i4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_yidm4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yidm4")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

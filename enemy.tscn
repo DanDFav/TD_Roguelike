@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmqx5f5jjqd2p"]
+
+[ext_resource type="Script" path="res://enemy_test.gd" id="1_pcwjt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyyi7"]
+albedo_color = Color(0.966472, 0.354094, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_32ysm"]
+material = SubResource("StandardMaterial3D_xyyi7")
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p75x8"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_pcwjt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_32ysm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_p75x8")
+disabled = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

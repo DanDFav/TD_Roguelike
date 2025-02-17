@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy8y6ilvqt7lt"]
+
+[ext_resource type="Script" path="res://Map-Building/Mapping-Tool.gd" id="1_f3f23"]
+[ext_resource type="Material" uid="uid://bgl26lgy0bi8v" path="res://Map-Building/Blocks/Materials/ranged.tres" id="2_cqxdl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ysapx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3m0ao"]
+material = ExtResource("2_cqxdl")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_f3f23")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ysapx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_3m0ao")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0.279754, 3, 2.79957)
+projection = 1
+fov = 79.1964
+size = 5.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.301954, 0.953323, 0, -0.953323, 0.301954, 1, 2.1763, 0.981697)
+spot_range = 4.90449
