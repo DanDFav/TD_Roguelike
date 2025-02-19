@@ -1,13 +1,12 @@
 extends Node3D
 
-@onready var child = get_child(0)
+@onready var child = get_child(2)
 @onready var map 
 @onready var path
 
 var path_nodes = []
 
 var block_resource = preload("res://Map-Building/Blocks/Block.tscn")
-var unit = preload("res://player.tscn")
 var spawner_resource = preload("res://Map-Building/Blocks/spawner.tscn")
 var exit_resource = preload("res://Map-Building/Blocks/exit.tscn")
 
@@ -19,7 +18,6 @@ const BLOCK_SIZE := 1
 var x_pos_base := BLOCK_SIZE - 0.1 + 0.5
 var z_pos_base := BLOCK_SIZE + 0.1 + 0.5
 
-
 var grid_index = {}
 
 # Called when the node enters the scene tree for the first time.
@@ -30,14 +28,8 @@ func _ready() -> void:
 	create_map()
 	child.start_stage(grid_index)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func create_map(): 
 	var center_block = find_center_block()
-	add_child(unit.instantiate())
 	for x in range(len(map)):
 		var new_row = Node3D.new()
 		add_child(new_row)
@@ -64,11 +56,13 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 		special = spawner_resource.instantiate()
 	elif y == 3: 
 		special = exit_resource.instantiate()
+		grid_index[x*10 + z] = special
 	
 	var centering_val_x = length.y / 2
 	var centering_val_z = length.x / 2
 	
 	special.position = Vector3(x - centering_val_x, 0, z - centering_val_z)
+	
 	
 	add_child(special)
 	

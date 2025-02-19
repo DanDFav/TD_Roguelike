@@ -7,30 +7,28 @@ var col: int
 
 @onready var mesh = $MeshInstance3D
 
-var unit_resource = preload("res://unit.tscn")
+var occupied = false 
+var unit_on_tile 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+@onready var root = get_tree().root.get_child(0)
+@onready var unit_controller = root.get_child(3)
 
-	
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func place_unit(): 
-	print("Placed Unit at", Vector2(row, col))
-	var unit = unit_resource.instantiate()
-	unit.position.y = height 
-	add_child(unit)
+	var unit = unit_controller.selected_unit
+	if not occupied and unit != null: 
+		if unit.can_place(self):
+			print("Placed Unit at", Vector2(row, col))
+			occupied = true 
+			unit_on_tile = unit
+	else: 
+		print("This tile is occupied")
 
 
 func _on_area_3d_mouse_entered() -> void:
-	var on_hover_mat = StandardMaterial3D.new()
-	on_hover_mat.albedo_color = Color("e8af7e")
-	mesh.material_override = on_hover_mat
+	if not occupied: 
+		var on_hover_mat = StandardMaterial3D.new()
+		on_hover_mat.albedo_color = Color("e8af7e")
+		mesh.material_override = on_hover_mat
 
 
 func _on_area_3d_mouse_exited() -> void:

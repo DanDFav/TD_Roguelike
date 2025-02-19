@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxlv811s6q5fp"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_test.gd" id="1_tjkxn"]
+[ext_resource type="Script" path="res://Enemies/Scripts/health_hulk.gd" id="2_juave"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_hulk_stats.gd" id="3_ey5xn"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_attack.gd" id="4_7o1dy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxlbc"]
+albedo_color = Color(0.96, 0.83232, 0.7584, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pwiyb"]
+material = SubResource("StandardMaterial3D_sxlbc")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p75x8"]
+
+[node name="enemy_hulk" type="CharacterBody3D" groups=["enemy"]]
+input_ray_pickable = false
+script = ExtResource("1_tjkxn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_pwiyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_p75x8")
+
+[node name="health" type="Node3D" parent="."]
+script = ExtResource("2_juave")
+
+[node name="Timer" type="Timer" parent="health"]
+wait_time = 0.15
+one_shot = true
+
+[node name="stats" type="Node3D" parent="."]
+script = ExtResource("3_ey5xn")
+
+[node name="attack" type="Node3D" parent="."]
+script = ExtResource("4_7o1dy")
+
+[node name="Timer" type="Timer" parent="attack"]
+one_shot = true
+
+[connection signal="timeout" from="health/Timer" to="health" method="_on_timer_timeout"]
+[connection signal="timeout" from="attack/Timer" to="attack" method="_on_timer_timeout"]

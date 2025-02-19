@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://rfotrs8n2bu8"]
+
+[ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_mbd18"]
+[ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_42kbo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejads"]
+albedo_color = Color(0.24, 0.683333, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5n06o"]
+material = SubResource("StandardMaterial3D_ejads")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8m6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqb5u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8its"]
+albedo_color = Color(0.86, 0.535637, 0.2322, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_loa3a"]
+material = SubResource("StandardMaterial3D_g8its")
+size = Vector3(0.2, 1, 0.1)
+
+[node name="Unit" type="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_mbd18")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_5n06o")
+
+[node name="mesh_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_j8m6v")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+input_ray_pickable = false
+
+[node name="enemy_collision" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+shape = SubResource("BoxShape3D_sqb5u")
+disabled = true
+
+[node name="Range" type="Node3D" parent="."]
+script = ExtResource("2_42kbo")
+
+[node name="Area3D" type="Area3D" parent="Range"]
+input_ray_pickable = false
+
+[node name="direct_indicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)
+mesh = SubResource("PrismMesh_loa3a")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Range/Area3D" to="." method="body_entered_attack_range"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=3 uid="uid://ds5asbx52regm"]
+
+[ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_d1k4j"]
+[ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_eolyn"]
+[ext_resource type="Script" path="res://Units/Scripts/ranged_attack.gd" id="3_4djmc"]
+[ext_resource type="Script" path="res://Units/Scripts/Ranged_unit_stats.gd" id="4_g1rtt"]
+[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="4_osnob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riujv"]
+albedo_color = Color(1, 0.21, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vlggf"]
+material = SubResource("StandardMaterial3D_riujv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8m6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqb5u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8its"]
+albedo_color = Color(0.86, 0.535637, 0.2322, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_loa3a"]
+material = SubResource("StandardMaterial3D_g8its")
+size = Vector3(0.2, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4rt24"]
+
+[node name="Ranged_unit" type="Node3D"]
+
+[node name="Unit" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+input_ray_pickable = false
+script = ExtResource("1_d1k4j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Unit"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_vlggf")
+
+[node name="mesh_collision" type="CollisionShape3D" parent="Unit"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_j8m6v")
+
+[node name="Area3D" type="Area3D" parent="Unit" groups=["friendly_unit"]]
+input_ray_pickable = false
+
+[node name="enemy_collision" type="CollisionShape3D" parent="Unit/Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_sqb5u")
+
+[node name="direct_indicator" type="MeshInstance3D" parent="Unit"]
+transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)
+mesh = SubResource("PrismMesh_loa3a")
+
+[node name="range" type="Node3D" parent="Unit"]
+script = ExtResource("2_eolyn")
+
+[node name="Area3D" type="Area3D" parent="Unit/range"]
+input_ray_pickable = false
+
+[node name="range_collision" type="CollisionShape3D" parent="Unit/range/Area3D"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 0)
+shape = SubResource("BoxShape3D_4rt24")
+
+[node name="attack" type="Node3D" parent="Unit"]
+script = ExtResource("3_4djmc")
+
+[node name="Timer" type="Timer" parent="Unit/attack"]
+one_shot = true
+
+[node name="health" type="Node3D" parent="Unit"]
+script = ExtResource("4_osnob")
+
+[node name="Stats" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("4_g1rtt")
+
+[connection signal="body_entered" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_entered"]
+[connection signal="area_entered" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]
+[connection signal="body_exited" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Unit/attack/Timer" to="Unit/attack" method="_on_timer_timeout"]

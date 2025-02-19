@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Map-Building/Blocks/block.gd" id="1_ut4kq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b51x"]
-albedo_color = Color(0.604429, 0.313121, 0.878581, 1)
+albedo_color = Color(0.71, 0.71, 0.71, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ycvgp"]
 material = SubResource("StandardMaterial3D_0b51x")
@@ -12,9 +12,9 @@ material = SubResource("StandardMaterial3D_0b51x")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e0rw4"]
 
-[node name="ground_block" type="StaticBody3D"]
+[node name="ground_block" type="StaticBody3D" groups=["Block", "ground_block"]]
 script = ExtResource("1_ut4kq")
-colour = Color(0.603922, 0.313726, 0.878431, 1)
+colour = Color(0.709804, 0.709804, 0.709804, 1)
 height = 0.75
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
