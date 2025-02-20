@@ -20,9 +20,9 @@ func unit_selected(unit):
 	deselect_unit()
 	
 	if unit == "one":
-		selected_unit = ranged_unit_resource.instantiate()
-	elif unit == "two": 
 		selected_unit = ground_unit_resource.instantiate()
+	elif unit == "two": 
+		selected_unit = ranged_unit_resource.instantiate()
 	elif unit == "three":
 		selected_unit = healer_unit_resource.instantiate()
 	get_tree().root.add_child(selected_unit)

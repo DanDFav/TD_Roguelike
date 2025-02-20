@@ -11,6 +11,7 @@ extends StaticBody3D
 @onready var stats = $"../Stats"
 @onready var health_node = $health
 
+
 var can_be_placed 
 var block_count
 var currently_blocking = 0
@@ -30,6 +31,7 @@ var augments = {}
 func _ready() -> void:
 	await get_tree().process_frame  # Ensures nodes are ready
 	if stats:
+		health_node.visible = false
 		block_count = stats.block_count
 		can_be_placed = stats.can_be_placed
 		
@@ -46,18 +48,27 @@ func _process(delta: float) -> void:
 func check_enemies_for_block(): 
 	for body in $Area3D.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
-			currently_blocking += 1 
-			blocked_enemies.append(body)
-			body.get_blocker(self)
+			block_enemy(body)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy") and currently_blocking < block_count: 
-		currently_blocking += 1
-		blocked_enemies.append(body)
-		body.get_blocker(self)
+		block_enemy(body)
 
 	elif body.is_in_group("enemy") and currently_blocking >= block_count: 
 		blocked_queue.append(body)
+
+
+#func block_enemy(enemy): 
+	#if enemy.blocked == false: 
+		#currently_blocking += 1
+		#blocked_enemies.append(enemy)
+		#enemy.get_blocker(self)
+
+func block_enemy(enemy): 
+	if enemy.blocked == false: 
+		if enemy.get_blocker(self) == true: 
+			blocked_enemies.append(enemy)
+			currently_blocking += enemy.block_required
 
 
 
@@ -80,6 +91,7 @@ func place_unit(block):
 	global_position.x = block.global_position.x 
 	global_position.z = block.global_position.z 
 
+
 func _input(event) -> void: 
 	if not placed: 
 		if event is InputEventMouseButton: 
@@ -91,7 +103,7 @@ func _input(event) -> void:
 func notify_death(enemy):
 	if enemy in blocked_enemies:
 		blocked_enemies.erase(enemy)
-		currently_blocking -= 1
+		currently_blocking -= enemy.block_required
 	if enemy in blocked_queue: 
 		blocked_queue.erase(enemy)
 
@@ -122,5 +134,11 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func on_hit(damage): 
 	health_node.take_damage(damage)
 
-#func on_hit(): 
-	
+
+#var blocked = false 
+#var blocked_by
+func on_death():
+	for enemy in blocked_enemies: 
+		enemy.unblock()
+		pass
+	get_parent().queue_free()

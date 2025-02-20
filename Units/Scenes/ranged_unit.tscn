@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ds5asbx52regm"]
+[gd_scene load_steps=15 format=3 uid="uid://ds5asbx52regm"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_d1k4j"]
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_eolyn"]
@@ -24,6 +24,12 @@ material = SubResource("StandardMaterial3D_g8its")
 size = Vector3(0.2, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4rt24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjb30"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f8ko0"]
+viewport_path = NodePath("Unit/health/SubViewport")
 
 [node name="Ranged_unit" type="Node3D"]
 
@@ -70,6 +76,36 @@ one_shot = true
 [node name="health" type="Node3D" parent="Unit"]
 script = ExtResource("4_osnob")
 
+[node name="SubViewport" type="SubViewport" parent="Unit/health"]
+disable_3d = true
+transparent_bg = true
+
+[node name="health_bar" type="ProgressBar" parent="Unit/health/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = -13.5
+offset_right = 108.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_jjb30")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Unit/health"]
+transform = Transform3D(-1.6995e-08, 0, -1, 0, 0.315, 0, 0.3888, 0, -4.37114e-08, 0, 0.36594, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_f8ko0")
+
+[node name="heal_colour" type="Timer" parent="Unit/health"]
+wait_time = 0.3
+one_shot = true
+
 [node name="Stats" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("4_g1rtt")
@@ -79,3 +115,4 @@ script = ExtResource("4_g1rtt")
 [connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]
 [connection signal="body_exited" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="Unit/attack/Timer" to="Unit/attack" method="_on_timer_timeout"]
+[connection signal="timeout" from="Unit/health/heal_colour" to="Unit/health" method="_on_heal_colour_timeout"]

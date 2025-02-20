@@ -35,16 +35,34 @@ func _process(delta: float) -> void:
 		attack_node.attack(blocked_by)
 
 
+#func get_blocker(blocker): 
+	#var blocker_block_count = blocker.block_count
+	#var blocker_current_block = blocker.currently_blocking
+	#blocked_by = blocker
+	#
+	#
+	#if blocker_current_block <= blocker_block_count: 
+		#blocked = true 
+
 func get_blocker(blocker): 
 	var blocker_block_count = blocker.block_count
 	var blocker_current_block = blocker.currently_blocking
 	blocked_by = blocker
-	if blocker_current_block <= blocker_block_count: 
+	
+	var block_taken = blocker_current_block + block_required
+	if block_taken <= blocker_block_count: 
 		blocked = true 
+		return true
+	else: 
+		return false
 
 func hit(damage):
 	health_node.on_hit(damage)
-	
+
+
+func unblock(): 
+	blocked = false 
+	blocked_by = null 
 
 func on_death(): 
 	if blocked_by: 
