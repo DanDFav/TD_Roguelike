@@ -6,6 +6,8 @@ var healer_unit_resource = preload("res://Units/Scenes/healer_unit.tscn")
 var mirror_unit_resource = preload("res://Units/Scenes/mirror.tscn")
 var selected_unit 
 
+var summon_units = []
+var summon_placing = false
 
 func _input(event):
 	if Input.is_action_just_pressed("one"):
@@ -28,15 +30,25 @@ func unit_selected(unit):
 		selected_unit = ranged_unit_resource.instantiate()
 	elif unit == "three":
 		selected_unit = healer_unit_resource.instantiate()
-	elif unit == "four": 
-		selected_unit = mirror_unit_resource.instantiate()
+	elif unit == "four" and len(summon_units) > 0: 
+		selected_unit = summon_units[0][0].instantiate()
 	
-	get_tree().root.add_child(selected_unit)
-	selected_unit = selected_unit.get_child(0)
+	if selected_unit != null: 
+		get_tree().root.add_child(selected_unit)
+		selected_unit = selected_unit.get_child(0)
+		
+		if unit == "four" and len(summon_units) > 0:
+			selected_unit.parent_summon = summon_units[0][1]
+	
 
 func deselect_unit() -> void: 
 	if selected_unit == null: 
 		return
+	# TODO: Bugged -> place 3, press 4, press RMB 
 	if not selected_unit.placed:
 		get_tree().root.remove_child(selected_unit.get_parent())
 		selected_unit = null
+
+
+func add_summon(summon, unit):
+	summon_units.append([summon, unit]) 

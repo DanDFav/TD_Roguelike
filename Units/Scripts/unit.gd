@@ -4,14 +4,11 @@ extends StaticBody3D
 @onready var unit_controller = root.get_child(3)
 
 
-@onready var mesh_collision   = $mesh_collision
-@onready var enemey_collision = $Area3D/enemy_collision
-@onready var range_collision  = $range/Area3D/range_collision
-@onready var direction_indicator = $direct_indicator
-@onready var stats = $"../Stats"
-@onready var health_node = $health
-@onready var clickable = $area_body_shape/CollisionShape3D
-#var mirror = preload("res://Units/Scenes/mirror.tscn")
+## block_collision: The area3D that checks to see if enemies should be blocked by this unit
+@onready var block_collision = $enemy_collision_a3D 
+@onready var stats = $"../stats_n3D"
+@onready var health_node = $health_n3D
+@onready var clickable = $ability_collision_a3D/ability_collision_cb
 
 
 var can_be_placed 
@@ -19,14 +16,15 @@ var block_count
 var currently_blocking = 0
 var blocked_enemies = []
 var blocked_queue = []
-
 var fixed_y: float = 1.5
-
 var placed = false 
 var placed_on 
-
-
+var selected = false
 var augments = {}
+var on_place_skills = []
+
+# For Summoned units only
+var parent_summon 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,7 +46,7 @@ func _process(delta: float) -> void:
 
 
 func check_enemies_for_block(): 
-	for body in $Area3D.get_overlapping_bodies():
+	for body in block_collision.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
 			block_enemy(body)
 
@@ -58,16 +56,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 	elif body.is_in_group("enemy") and currently_blocking >= block_count: 
 		blocked_queue.append(body)
-
-
-#func block_enemy(enemy): 
-	#if enemy.blocked == false: 
-		#currently_blocking += 1
-		#blocked_enemies.append(enemy)
-		#enemy.get_blocker(self)
+		
+		
 
 func block_enemy(enemy): 
-	if enemy.blocked == false: 
+	if enemy.blocked == false and placed: 
 		if enemy.get_blocker(self) == true: 
 			blocked_enemies.append(enemy)
 			currently_blocking += enemy.block_required
@@ -94,6 +87,9 @@ func place_unit(block):
 	global_position.x = block.global_position.x 
 	global_position.z = block.global_position.z 
 	clickable.disabled = false
+	
+	for skill in on_place_skills: 
+		skill.call()
 
 
 func _input(event) -> void: 
@@ -149,4 +145,11 @@ func on_death():
 func on_click(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("Ground Unit")
+			selected = true
+
+
+func add_on_placed_skill(skill): 
+	on_place_skills.append(skill)
+	
+func test():
+	print("Test")

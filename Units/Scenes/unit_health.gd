@@ -3,7 +3,6 @@ extends Node3D
 
 @onready var max_health = 2000
 @onready var health = max_health
-
 @onready var health_bar_node = $SubViewport/health_bar
 @onready var timer = $heal_colour
 

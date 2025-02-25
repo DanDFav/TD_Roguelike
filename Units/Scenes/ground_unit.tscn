@@ -36,67 +36,67 @@ bg_color = Color(1, 0, 0, 1)
 border_color = Color(0.0810101, 0.139033, 0.194037, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0vdfi"]
-viewport_path = NodePath("Unit/health/SubViewport")
+viewport_path = NodePath("unit_sb/health_n3D/SubViewport")
 
 [node name="ground_unit" type="Node3D" groups=["friendly_unit"]]
 
-[node name="Unit" type="StaticBody3D" parent="." groups=["friendly_unit"]]
+[node name="unit_sb" type="StaticBody3D" parent="." groups=["friendly_unit"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 input_ray_pickable = false
 script = ExtResource("1_r7gbj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Unit"]
+[node name="unit_shape_m" type="MeshInstance3D" parent="unit_sb"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_5n06o")
 
-[node name="mesh_collision" type="CollisionShape3D" parent="Unit" groups=["friendly_unit"]]
+[node name="useless_cb" type="CollisionShape3D" parent="unit_sb" groups=["friendly_unit"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_j8m6v")
 
-[node name="area_body_shape" type="Area3D" parent="Unit"]
+[node name="ability_collision_a3D" type="Area3D" parent="unit_sb"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Unit/area_body_shape"]
+[node name="ability_collision_cb" type="CollisionShape3D" parent="unit_sb/ability_collision_a3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_bl4ea")
 disabled = true
 
-[node name="Area3D" type="Area3D" parent="Unit" groups=["friendly_unit"]]
+[node name="enemy_collision_a3D" type="Area3D" parent="unit_sb" groups=["friendly_unit"]]
 input_ray_pickable = false
 
-[node name="enemy_collision" type="CollisionShape3D" parent="Unit/Area3D"]
+[node name="enemy_collision_cb" type="CollisionShape3D" parent="unit_sb/enemy_collision_a3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_sqb5u")
 
-[node name="direct_indicator" type="MeshInstance3D" parent="Unit"]
+[node name="direct_indicator_m" type="MeshInstance3D" parent="unit_sb"]
 transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)
 mesh = SubResource("PrismMesh_loa3a")
 
-[node name="range" type="Node3D" parent="Unit"]
+[node name="range_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("2_7blx5")
 
-[node name="Area3D" type="Area3D" parent="Unit/range"]
+[node name="range_a3D" type="Area3D" parent="unit_sb/range_n3D"]
 input_ray_pickable = false
 
-[node name="range_collision" type="CollisionShape3D" parent="Unit/range/Area3D"]
+[node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
 transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0.261899, 0, 1.04077e-08)
 shape = SubResource("BoxShape3D_02b3u")
 
-[node name="attack" type="Node3D" parent="Unit"]
+[node name="attack_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("3_e6pdo")
 
-[node name="Timer" type="Timer" parent="Unit/attack"]
+[node name="Timer" type="Timer" parent="unit_sb/attack_n3D"]
 one_shot = true
 
-[node name="health" type="Node3D" parent="Unit"]
+[node name="health_n3D" type="Node3D" parent="unit_sb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000712633, 0.0060215, 1.23978e-05)
 visible = false
 script = ExtResource("4_t8n8v")
 
-[node name="SubViewport" type="SubViewport" parent="Unit/health"]
+[node name="SubViewport" type="SubViewport" parent="unit_sb/health_n3D"]
 disable_3d = true
 transparent_bg = true
 
-[node name="health_bar" type="ProgressBar" parent="Unit/health/SubViewport"]
+[node name="health_bar" type="ProgressBar" parent="unit_sb/health_n3D/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -114,22 +114,22 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="Sprite3D" type="Sprite3D" parent="Unit/health"]
+[node name="Sprite3D" type="Sprite3D" parent="unit_sb/health_n3D"]
 transform = Transform3D(-1.6995e-08, 0, -1, 0, 0.315, 0, 0.3888, 0, -4.37114e-08, 0, 0.36594, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_0vdfi")
 
-[node name="heal_colour" type="Timer" parent="Unit/health"]
+[node name="heal_colour" type="Timer" parent="unit_sb/health_n3D"]
 wait_time = 0.35
 one_shot = true
 
-[node name="Stats" type="Node3D" parent="."]
+[node name="stats_n3D" type="Node3D" parent="."]
 script = ExtResource("3_fnxa7")
 
-[connection signal="input_event" from="Unit/area_body_shape" to="Unit" method="on_click"]
-[connection signal="body_entered" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]
-[connection signal="body_exited" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="Unit/attack/Timer" to="Unit/attack" method="_on_timer_timeout"]
-[connection signal="timeout" from="Unit/health/heal_colour" to="Unit/health" method="_on_heal_colour_timeout"]
+[connection signal="input_event" from="unit_sb/ability_collision_a3D" to="unit_sb" method="on_click"]
+[connection signal="body_entered" from="unit_sb/enemy_collision_a3D" to="unit_sb" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="unit_sb/enemy_collision_a3D" to="unit_sb" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="body_entered_attack_range"]
+[connection signal="body_exited" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="unit_sb/attack_n3D/Timer" to="unit_sb/attack_n3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="unit_sb/health_n3D/heal_colour" to="unit_sb/health_n3D" method="_on_heal_colour_timeout"]

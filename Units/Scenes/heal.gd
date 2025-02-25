@@ -1,9 +1,9 @@
 extends Node3D
 
 
-@onready var range = $"../range"
+@onready var range = $"../range_n3D"
 @onready var timer = $Timer
-@onready var stats = $"../../Stats"
+@onready var stats = $"../../stats_n3D"
 
 var friendlies_in_range = []
 var can_heal = false 
@@ -47,7 +47,7 @@ func get_friend_with_least_health():
 
 func update_friendlies_in_range(friends): 
 	for friend in friends: 
-		var friend_h_node = friend.get_parent().get_node("health")
+		var friend_h_node = friend.get_parent().get_node("health_n3D")
 		
 		if friend_h_node not in friendlies_in_range: 
 			friendlies_in_range.append(friend_h_node)

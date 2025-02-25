@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ds5asbx52regm"]
+[gd_scene load_steps=17 format=3 uid="uid://ds5asbx52regm"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_d1k4j"]
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_eolyn"]
 [ext_resource type="Script" path="res://Units/Scripts/ranged_attack.gd" id="3_4djmc"]
 [ext_resource type="Script" path="res://Units/Scripts/Ranged_unit_stats.gd" id="4_g1rtt"]
 [ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="4_osnob"]
+[ext_resource type="Script" path="res://Units/Scenes/ranged_abilities.gd" id="5_o4qeg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riujv"]
 albedo_color = Color(1, 0.21, 0.21, 1)
@@ -31,66 +32,66 @@ size = Vector3(0.2, 1, 0.1)
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_f8ko0"]
-viewport_path = NodePath("Unit/health/SubViewport")
+viewport_path = NodePath("unit_sb/health_n3D/SubViewport")
 
 [node name="Ranged_unit" type="Node3D"]
 
-[node name="Unit" type="StaticBody3D" parent="."]
+[node name="unit_sb" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 input_ray_pickable = false
 script = ExtResource("1_d1k4j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Unit"]
+[node name="unit_shape_m" type="MeshInstance3D" parent="unit_sb"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_vlggf")
 
-[node name="mesh_collision" type="CollisionShape3D" parent="Unit"]
+[node name="useless_cb" type="CollisionShape3D" parent="unit_sb"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_j8m6v")
 
-[node name="area_body_shape" type="Area3D" parent="Unit"]
+[node name="ability_collision_a3D" type="Area3D" parent="unit_sb"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Unit/area_body_shape"]
+[node name="ability_collision_cb" type="CollisionShape3D" parent="unit_sb/ability_collision_a3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_7klqg")
 disabled = true
 
-[node name="Area3D" type="Area3D" parent="Unit" groups=["friendly_unit"]]
+[node name="enemy_collision_a3D" type="Area3D" parent="unit_sb" groups=["friendly_unit"]]
 input_ray_pickable = false
 
-[node name="enemy_collision" type="CollisionShape3D" parent="Unit/Area3D"]
+[node name="enemy_collision_cb" type="CollisionShape3D" parent="unit_sb/enemy_collision_a3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_sqb5u")
 disabled = true
 
-[node name="direct_indicator" type="MeshInstance3D" parent="Unit"]
+[node name="direct_indicator_m" type="MeshInstance3D" parent="unit_sb"]
 transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)
 mesh = SubResource("PrismMesh_loa3a")
 
-[node name="range" type="Node3D" parent="Unit"]
+[node name="range_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("2_eolyn")
 
-[node name="Area3D" type="Area3D" parent="Unit/range"]
+[node name="range_a3D" type="Area3D" parent="unit_sb/range_n3D"]
 input_ray_pickable = false
 
-[node name="range_collision" type="CollisionShape3D" parent="Unit/range/Area3D"]
+[node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 0)
 shape = SubResource("BoxShape3D_4rt24")
 
-[node name="attack" type="Node3D" parent="Unit"]
+[node name="attack_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("3_4djmc")
 
-[node name="Timer" type="Timer" parent="Unit/attack"]
+[node name="Timer" type="Timer" parent="unit_sb/attack_n3D"]
 one_shot = true
 
-[node name="health" type="Node3D" parent="Unit"]
+[node name="health_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("4_osnob")
 
-[node name="SubViewport" type="SubViewport" parent="Unit/health"]
+[node name="SubViewport" type="SubViewport" parent="unit_sb/health_n3D"]
 disable_3d = true
 transparent_bg = true
 
-[node name="health_bar" type="ProgressBar" parent="Unit/health/SubViewport"]
+[node name="health_bar" type="ProgressBar" parent="unit_sb/health_n3D/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -107,23 +108,28 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="Sprite3D" type="Sprite3D" parent="Unit/health"]
+[node name="Sprite3D" type="Sprite3D" parent="unit_sb/health_n3D"]
 transform = Transform3D(-1.6995e-08, 0, -1, 0, 0.315, 0, 0.3888, 0, -4.37114e-08, 0, 0.36594, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_f8ko0")
 
-[node name="heal_colour" type="Timer" parent="Unit/health"]
+[node name="heal_colour" type="Timer" parent="unit_sb/health_n3D"]
 wait_time = 0.3
 one_shot = true
 
-[node name="Stats" type="Node3D" parent="."]
+[node name="abilities_n3D" type="Node3D" parent="unit_sb"]
+script = ExtResource("5_o4qeg")
+
+[node name="stats_n3D" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("4_g1rtt")
 
-[connection signal="input_event" from="Unit/area_body_shape" to="Unit" method="on_click"]
-[connection signal="body_entered" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_entered"]
-[connection signal="area_entered" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_area_entered"]
-[connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]
-[connection signal="body_exited" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="Unit/attack/Timer" to="Unit/attack" method="_on_timer_timeout"]
-[connection signal="timeout" from="Unit/health/heal_colour" to="Unit/health" method="_on_heal_colour_timeout"]
+[connection signal="input_event" from="unit_sb/ability_collision_a3D" to="unit_sb" method="on_click"]
+[connection signal="body_entered" from="unit_sb/enemy_collision_a3D" to="unit_sb" method="_on_area_3d_body_entered"]
+[connection signal="area_entered" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="unit_sb/range_n3D/range_a3D" to="unit_sb/abilities_n3D" method="_range_entered_mirror_skill"]
+[connection signal="area_exited" from="unit_sb/range_n3D/range_a3D" to="unit_sb/abilities_n3D" method="_range_exited_mirror_skill"]
+[connection signal="body_entered" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="body_entered_attack_range"]
+[connection signal="body_exited" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="unit_sb/attack_n3D/Timer" to="unit_sb/attack_n3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="unit_sb/health_n3D/heal_colour" to="unit_sb/health_n3D" method="_on_heal_colour_timeout"]

@@ -7,7 +7,6 @@ var damage = 100
 var enemies_in_range = []
 
 @onready var hit_timer = $Timer
-@onready var range = $"../range"
 
 var current_enemy
 
