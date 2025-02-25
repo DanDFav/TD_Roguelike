@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bosn0njq2uf30"]
+[gd_scene load_steps=17 format=3 uid="uid://bosn0njq2uf30"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_r7gbj"]
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_7blx5"]
@@ -13,6 +13,8 @@ albedo_color = Color(0.24, 0.683333, 1, 1)
 material = SubResource("StandardMaterial3D_ejads")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8m6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bl4ea"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sqb5u"]
 
@@ -50,6 +52,13 @@ mesh = SubResource("BoxMesh_5n06o")
 [node name="mesh_collision" type="CollisionShape3D" parent="Unit" groups=["friendly_unit"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_j8m6v")
+
+[node name="area_body_shape" type="Area3D" parent="Unit"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Unit/area_body_shape"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_bl4ea")
+disabled = true
 
 [node name="Area3D" type="Area3D" parent="Unit" groups=["friendly_unit"]]
 input_ray_pickable = false
@@ -117,6 +126,7 @@ one_shot = true
 [node name="Stats" type="Node3D" parent="."]
 script = ExtResource("3_fnxa7")
 
+[connection signal="input_event" from="Unit/area_body_shape" to="Unit" method="on_click"]
 [connection signal="body_entered" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]

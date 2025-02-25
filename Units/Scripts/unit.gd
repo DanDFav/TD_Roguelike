@@ -10,6 +10,8 @@ extends StaticBody3D
 @onready var direction_indicator = $direct_indicator
 @onready var stats = $"../Stats"
 @onready var health_node = $health
+@onready var clickable = $area_body_shape/CollisionShape3D
+#var mirror = preload("res://Units/Scenes/mirror.tscn")
 
 
 var can_be_placed 
@@ -86,10 +88,12 @@ func can_place(block):
 
 func place_unit(block): 
 	placed = true
+	
 	placed_on = block 
 	position.y = block.height 
 	global_position.x = block.global_position.x 
 	global_position.z = block.global_position.z 
+	clickable.disabled = false
 
 
 func _input(event) -> void: 
@@ -135,10 +139,14 @@ func on_hit(damage):
 	health_node.take_damage(damage)
 
 
-#var blocked = false 
-#var blocked_by
 func on_death():
 	for enemy in blocked_enemies: 
 		enemy.unblock()
 		pass
 	get_parent().queue_free()
+
+
+func on_click(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			print("Ground Unit")

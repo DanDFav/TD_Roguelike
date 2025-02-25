@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds5asbx52regm"]
+[gd_scene load_steps=16 format=3 uid="uid://ds5asbx52regm"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_d1k4j"]
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_eolyn"]
@@ -13,6 +13,8 @@ albedo_color = Color(1, 0.21, 0.21, 1)
 material = SubResource("StandardMaterial3D_riujv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8m6v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7klqg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sqb5u"]
 
@@ -46,12 +48,20 @@ mesh = SubResource("BoxMesh_vlggf")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_j8m6v")
 
+[node name="area_body_shape" type="Area3D" parent="Unit"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Unit/area_body_shape"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_7klqg")
+disabled = true
+
 [node name="Area3D" type="Area3D" parent="Unit" groups=["friendly_unit"]]
 input_ray_pickable = false
 
 [node name="enemy_collision" type="CollisionShape3D" parent="Unit/Area3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_sqb5u")
+disabled = true
 
 [node name="direct_indicator" type="MeshInstance3D" parent="Unit"]
 transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)
@@ -110,6 +120,7 @@ one_shot = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("4_g1rtt")
 
+[connection signal="input_event" from="Unit/area_body_shape" to="Unit" method="on_click"]
 [connection signal="body_entered" from="Unit/Area3D" to="Unit" method="_on_area_3d_body_entered"]
 [connection signal="area_entered" from="Unit/range/Area3D" to="Unit/range" method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Unit/range/Area3D" to="Unit/range" method="body_entered_attack_range"]

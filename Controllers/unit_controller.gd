@@ -3,6 +3,7 @@ extends Node3D
 var ranged_unit_resource = preload("res://Units/Scenes/ranged_unit.tscn")
 var ground_unit_resource = preload("res://Units/Scenes/ground_unit.tscn")
 var healer_unit_resource = preload("res://Units/Scenes/healer_unit.tscn")
+var mirror_unit_resource = preload("res://Units/Scenes/mirror.tscn")
 var selected_unit 
 
 
@@ -15,6 +16,8 @@ func _input(event):
 		unit_selected("three")
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
 		deselect_unit()
+	elif Input.is_action_just_pressed("four"):
+		unit_selected("four")
 
 func unit_selected(unit):
 	deselect_unit()
@@ -25,6 +28,9 @@ func unit_selected(unit):
 		selected_unit = ranged_unit_resource.instantiate()
 	elif unit == "three":
 		selected_unit = healer_unit_resource.instantiate()
+	elif unit == "four": 
+		selected_unit = mirror_unit_resource.instantiate()
+	
 	get_tree().root.add_child(selected_unit)
 	selected_unit = selected_unit.get_child(0)
 
