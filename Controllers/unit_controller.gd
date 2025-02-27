@@ -16,15 +16,15 @@ var summon_units = []
 var summon_placing = false
 
 func _input(event):
-	if Input.is_action_just_pressed("one"):
+	if Input.is_action_just_pressed("one") and len(party) >= 1: 
 		unit_selected(party[0])
-	elif Input.is_action_just_pressed("two"):
+	elif Input.is_action_just_pressed("two") and len(party) >= 2:
 		unit_selected(party[1])
-	elif Input.is_action_just_pressed("three"):
+	elif Input.is_action_just_pressed("three") and len(party) >= 3:
 		unit_selected(party[2])
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
 		deselect_unit()
-	elif Input.is_action_just_pressed("four"):
+	elif Input.is_action_just_pressed("four") and len(party) >= 4:
 		unit_selected(party[3])
 	#elif Input.is_action_just_pressed("five"):
 		#print("Five")
