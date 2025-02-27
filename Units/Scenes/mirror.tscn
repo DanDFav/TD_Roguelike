@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://5l554qni0mw4"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_g1crt"]
-[ext_resource type="Script" path="res://Units/Scenes/summon_range.gd" id="2_ny25d"]
-[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="3_lwmri"]
-[ext_resource type="Script" path="res://Units/Scenes/mirror_stats.gd" id="3_qef8k"]
+[ext_resource type="Script" path="res://Units/Scripts/summon_range.gd" id="2_ny25d"]
+[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="3_lwmri"]
+[ext_resource type="Script" path="res://Units/Scripts/mirror_stats.gd" id="3_qef8k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pp7vd"]
 albedo_color = Color(0.590591, 0.692553, 0.465957, 1)
@@ -72,7 +72,7 @@ script = ExtResource("2_ny25d")
 input_ray_pickable = false
 
 [node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 shape = SubResource("BoxShape3D_7s1ls")
 
 [node name="direct_indicator_m" type="MeshInstance3D" parent="unit_sb"]

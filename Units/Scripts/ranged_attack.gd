@@ -1,19 +1,25 @@
 extends Node3D
 
 
-var rate_of_fire = 0.5
-var damage = 100
+var rate_of_fire 
+var damage 
 
 var enemies_in_range = []
+var total_damage_dealt = 0
 
 @onready var hit_timer = $Timer
+@onready var unit = get_parent()
+@onready var stats = $"../../stats_n3D"
 
 var current_enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame  # Ensures nodes are ready
+
 	if hit_timer:
+		rate_of_fire = stats.rate_of_fire
+		damage = stats.damage
 		hit_timer.wait_time = rate_of_fire
 
 
@@ -34,4 +40,5 @@ func _on_timer_timeout() -> void:
 
 func auto_attack(): 
 	if len(enemies_in_range) != 0: 
-		enemies_in_range[0].hit(damage)
+		enemies_in_range[0].hit(damage, unit)
+		total_damage_dealt += damage 

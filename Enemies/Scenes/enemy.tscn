@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_stats.gd" id="3_6j2nf"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_attack.gd" id="4_e4sp1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyyi7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttbvu"]
 albedo_color = Color(0.964706, 0.352941, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_32ysm"]
-material = SubResource("StandardMaterial3D_xyyi7")
+material = SubResource("StandardMaterial3D_ttbvu")
 size = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p75x8"]

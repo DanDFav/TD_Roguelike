@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://kwsr1uvcsesk"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_health.gd" id="1_knim8"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_test.gd" id="1_phbsr"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_attack.gd" id="3_1fqjl"]
+[ext_resource type="Script" path="res://Enemies/Scripts/dog_stats.gd" id="3_wyle2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nddch"]
+albedo_color = Color(0.959161, 0, 0.449863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lk2qo"]
+material = SubResource("StandardMaterial3D_nddch")
+size = Vector3(0.4, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6x6q"]
+
+[node name="Enemy_dog" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_phbsr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_lk2qo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.74846e-08, -0.25, 0, 0.4, -1.09278e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_o6x6q")
+
+[node name="health" type="Node3D" parent="."]
+script = ExtResource("1_knim8")
+
+[node name="Timer" type="Timer" parent="health"]
+wait_time = 0.15
+one_shot = true
+
+[node name="stats" type="Node3D" parent="."]
+script = ExtResource("3_wyle2")
+
+[node name="attack" type="Node3D" parent="."]
+script = ExtResource("3_1fqjl")
+
+[node name="Timer" type="Timer" parent="attack"]
+one_shot = true
+
+[connection signal="timeout" from="health/Timer" to="health" method="_on_timer_timeout"]
+[connection signal="timeout" from="attack/Timer" to="attack" method="_on_timer_timeout"]

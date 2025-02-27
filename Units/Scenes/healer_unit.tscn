@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://cuvdiblx5sx1u"]
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_uqeh2"]
-[ext_resource type="Script" path="res://Units/Scenes/healer_range.gd" id="2_sodww"]
-[ext_resource type="Script" path="res://Units/Scenes/healer_unit_stats.gd" id="3_rxbnv"]
-[ext_resource type="Script" path="res://Units/Scenes/heal.gd" id="4_53xyq"]
-[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="4_kvjqv"]
+[ext_resource type="Script" path="res://Units/Scripts/healer_range.gd" id="2_sodww"]
+[ext_resource type="Script" path="res://Units/Scripts/healer_unit_stats.gd" id="3_rxbnv"]
+[ext_resource type="Script" path="res://Units/Scripts/heal.gd" id="4_53xyq"]
+[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="4_kvjqv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhul1"]
 albedo_color = Color(0.18, 0.75, 0.2085, 1)
@@ -81,6 +81,7 @@ input_ray_pickable = false
 [node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 shape = SubResource("BoxShape3D_e6oao")
+disabled = true
 
 [node name="health_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("4_kvjqv")

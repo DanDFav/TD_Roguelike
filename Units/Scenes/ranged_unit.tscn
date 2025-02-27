@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_eolyn"]
 [ext_resource type="Script" path="res://Units/Scripts/ranged_attack.gd" id="3_4djmc"]
 [ext_resource type="Script" path="res://Units/Scripts/Ranged_unit_stats.gd" id="4_g1rtt"]
-[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="4_osnob"]
-[ext_resource type="Script" path="res://Units/Scenes/ranged_abilities.gd" id="5_o4qeg"]
+[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="4_osnob"]
+[ext_resource type="Script" path="res://Units/ranged_abilities.gd" id="5_o4qeg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riujv"]
 albedo_color = Color(1, 0.21, 0.21, 1)
@@ -77,6 +77,7 @@ input_ray_pickable = false
 [node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 0)
 shape = SubResource("BoxShape3D_4rt24")
+disabled = true
 
 [node name="attack_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("3_4djmc")

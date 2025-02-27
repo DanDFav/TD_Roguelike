@@ -13,6 +13,7 @@ var grid_index
 
 var enemy_resource = preload("res://Enemies/Scenes/enemy.tscn")
 var enemy_hulk_resource = preload("res://Enemies/Scenes/enemy_hulk.tscn")
+var enemy_dog_resource = preload("res://Enemies/Scenes/enemy_dog.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,6 +67,8 @@ func spawn_enemy(enemy_type):
 		
 	elif enemy_type == 1: 
 		enemy = enemy_hulk_resource.instantiate()
+	elif enemy_type == 2: 
+		enemy = enemy_dog_resource.instantiate()
 		
 	enemy.position.y = 0.5
 	enemy.path = path_info

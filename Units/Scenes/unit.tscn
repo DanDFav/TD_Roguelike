@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_mbd18"]
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_42kbo"]
-[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="3_ec42j"]
+[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="3_ec42j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejads"]
 albedo_color = Color(0.24, 0.683333, 1, 1)
@@ -24,8 +24,8 @@ size = Vector3(0.2, 1, 0.1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqqqh"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f7jpc"]
-viewport_path = NodePath("Unit/health/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_qv74d"]
+viewport_path = NodePath("health_n3D/SubViewport")
 
 [node name="unit_sb" type="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -85,12 +85,10 @@ show_percentage = false
 [node name="Sprite3D" type="Sprite3D" parent="health_n3D"]
 transform = Transform3D(-1.6995e-08, 0, -1, 0, 0.315, 0, 0.3888, 0, -4.37114e-08, 0, 0.36594, 0)
 billboard = 1
-texture = SubResource("ViewportTexture_f7jpc")
+texture = SubResource("ViewportTexture_qv74d")
 
 [node name="heal_colour" type="Timer" parent="health_n3D"]
 wait_time = 0.3
 one_shot = true
 
-[connection signal="body_entered" from="enemy_collision_a3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="range_n3D/range_a3D" to="." method="body_entered_attack_range"]
 [connection signal="timeout" from="health_n3D/heal_colour" to="health_n3D" method="_on_heal_colour_timeout"]

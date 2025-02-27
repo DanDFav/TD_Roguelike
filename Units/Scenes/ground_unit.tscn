@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_7blx5"]
 [ext_resource type="Script" path="res://Units/Scripts/ground_attack.gd" id="3_e6pdo"]
 [ext_resource type="Script" path="res://Units/Scripts/Ground_unit_stats.gd" id="3_fnxa7"]
-[ext_resource type="Script" path="res://Units/Scenes/unit_health.gd" id="4_t8n8v"]
+[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="4_t8n8v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejads"]
 albedo_color = Color(0.24, 0.683333, 1, 1)
@@ -38,9 +38,9 @@ border_color = Color(0.0810101, 0.139033, 0.194037, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_0vdfi"]
 viewport_path = NodePath("unit_sb/health_n3D/SubViewport")
 
-[node name="ground_unit" type="Node3D" groups=["friendly_unit"]]
+[node name="ground_unit" type="Node3D"]
 
-[node name="unit_sb" type="StaticBody3D" parent="." groups=["friendly_unit"]]
+[node name="unit_sb" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 input_ray_pickable = false
 script = ExtResource("1_r7gbj")
@@ -49,7 +49,7 @@ script = ExtResource("1_r7gbj")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_5n06o")
 
-[node name="useless_cb" type="CollisionShape3D" parent="unit_sb" groups=["friendly_unit"]]
+[node name="useless_cb" type="CollisionShape3D" parent="unit_sb"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_j8m6v")
 
@@ -78,8 +78,9 @@ script = ExtResource("2_7blx5")
 input_ray_pickable = false
 
 [node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
-transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0.261899, 0, 1.04077e-08)
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_02b3u")
+disabled = true
 
 [node name="attack_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("3_e6pdo")

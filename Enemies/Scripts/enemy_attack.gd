@@ -5,11 +5,17 @@ extends Node3D
 @onready var controller = $".."
 @onready var timer = $Timer
 
-var damage = 80
-var attack_speed = 0.8
+var damage 
+var attack_speed
 
 var blocked_by 
 var can_attack = false
+
+
+func _ready() -> void:
+	damage = stats.damage
+	attack_speed = stats.attack_speed
+
 
 func attack(blocker): 
 	blocked_by = blocker
@@ -17,7 +23,6 @@ func attack(blocker):
 	if can_attack: 
 		can_attack = false
 		blocker.on_hit(damage)
-		pass
 	else: 
 		if timer.is_stopped(): timer.start()
 

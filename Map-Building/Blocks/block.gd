@@ -10,14 +10,13 @@ var col: int
 var occupied = false 
 var unit_on_tile 
 
-@onready var root = get_tree().root.get_child(0)
-@onready var unit_controller = root.get_child(3)
+@onready var root = get_tree().root.get_node("Stage")
+@onready var unit_controller = root.get_node("Unit_controller")
 
 func place_unit(): 
 	var unit = unit_controller.selected_unit
 	if not occupied and unit != null: 
 		if unit.can_place(self):
-			print("Placed Unit at", Vector2(row, col))
 			occupied = true 
 			unit_on_tile = unit
 	else: 

@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://diskbdedr2rdy"]
+
+[ext_resource type="Script" path="res://Menus/Scripts/character_selecter.gd" id="1_w2d02"]
+
+[node name="character_selecter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2d02")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="vanguard_btn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Vangaurd
+"
+
+[node name="ranger_btn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ranger
+"
+
+[node name="healer_btn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Healer
+"
+
+[node name="scout_btn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Scout
+"
+
+[node name="back_btn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+text = "Back
+"
+
+[connection signal="pressed" from="VBoxContainer/vanguard_btn" to="." method="_on_vanguard_btn_pressed"]
+[connection signal="button_down" from="VBoxContainer/ranger_btn" to="." method="_on_ranger_btn_button_down"]
+[connection signal="pressed" from="VBoxContainer/healer_btn" to="." method="_on_healer_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/scout_btn" to="." method="_on_scout_btn_pressed"]
+[connection signal="pressed" from="back_btn" to="." method="_on_back_btn_pressed"]
