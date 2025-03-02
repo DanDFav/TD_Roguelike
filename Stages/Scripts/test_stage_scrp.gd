@@ -27,7 +27,7 @@ var path_one = [Vector2(1, 4), Vector2(1,3), Vector2(1,2), Vector2(2,2), Vector2
 			
 var object_inst 
 
-var starting_morale = 14
+var starting_morale = 36
 
 
 func recieve_signal_from_spawner(object):

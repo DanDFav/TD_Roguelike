@@ -27,16 +27,13 @@ func _input(event):
 		unit_selected(placeable_units[4])
 
 func unit_selected(unit): 
+	deselect_unit()
 	selected_unit = Party.character_dictionary[unit]["Instance"]
 	
 	unit_display.unit_selected(unit)
 	
 	print(selected_unit)
 	if selected_unit != null: 
-		if selected_unit.get_parent() != null: 
-			selected_unit = selected_unit.get_child(0)
-			deselect_unit()
-			return
 		get_tree().root.add_child(selected_unit)
 		selected_unit = selected_unit.get_child(0)
 
@@ -85,4 +82,6 @@ func deselect_unit() -> void:
 
 func add_summon(summon):
 	placeable_units.append(summon)
-	#party.append()
+	var icon_normal = Party.character_dictionary[summon]['Icon_normal']
+	var icon_selected = Party.character_dictionary[summon]['Icon_hover']
+	unit_display.create_texture_button(summon, icon_normal, icon_selected)

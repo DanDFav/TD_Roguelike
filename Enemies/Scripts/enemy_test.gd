@@ -14,6 +14,9 @@ var colour
 @onready var stats = $stats
 @onready var attack_node = $attack
 
+var random_offset 
+var offset = 0.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame  # Ensures nodes are ready
@@ -21,18 +24,22 @@ func _ready() -> void:
 		SPEED = stats.SPEED
 		block_required = stats.block_required
 		colour = stats.colour
-
+	
+	random_offset = Vector3(randf_range(-1 * offset, offset), 0, randf_range(-1 * offset, offset))
+	position = position + random_offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var target_pos = Vector3(path[path_segment].global_position.x, global_position.y , path[path_segment].global_position.z)
+	target_pos = target_pos + random_offset
+	
 	if not blocked:
 		global_position = global_position.move_toward(target_pos, delta* SPEED)
 		if not global_position.is_equal_approx(target_pos):
 			look_at(target_pos)
 		
 		
-	if global_position == target_pos: 
+	if global_position.is_equal_approx(target_pos): 
 		path_segment = clamp(path_segment + 1, 0, len(path) -1 )
 	
 	if blocked: 
@@ -45,7 +52,7 @@ func get_blocker(blocker):
 	blocked_by = blocker
 	
 	var block_taken = blocker_current_block + block_required
-	if block_taken <= blocker_block_count: 
+	if blocker_current_block <= blocker_block_count: 
 		blocked = true 
 		return true
 	else: 

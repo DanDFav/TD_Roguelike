@@ -98,7 +98,6 @@ func create_new_ground_block(x: int, y: int, z: int, row_inst: Node3D, length:Ve
 	
 	ground_block.position = Vector3(x_pos, 0, z_pos)
 	
-	var GB_vec = Vector2(x, z)
 	grid_index[x*10 + z] = ground_block
 	
 	row_inst.add_child(ground_block)

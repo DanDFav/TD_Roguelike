@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Party="*res://party.gd"
+GameSpeed="*res://game_speed.gd"
 
 [display]
 

@@ -23,6 +23,11 @@ func place_unit():
 		print("This tile is occupied")
 
 
+func unit_dead(unit): 
+	occupied = false 
+	unit_on_tile = null
+	pass
+
 func _on_area_3d_mouse_entered() -> void:
 	if not occupied: 
 		var on_hover_mat = StandardMaterial3D.new()

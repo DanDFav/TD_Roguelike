@@ -163,6 +163,8 @@ func on_hit(damage):
 
 
 func on_death():
+	placed_on.unit_dead(self)
+	
 	for enemy in blocked_enemies: 
 		enemy.unblock()
 		pass

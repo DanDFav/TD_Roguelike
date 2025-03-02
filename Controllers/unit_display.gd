@@ -3,6 +3,8 @@ extends Control
 
 @onready var hbox = $Container/MarginContainer2/HBoxContainer
 
+@onready var unit_controller = $".."
+
 var buttons = []
 
 func _ready() -> void:
@@ -22,6 +24,8 @@ func create_texture_button(unit, normal, selected):
 	button.ignore_texture_size = true
 	button.toggle_mode = true
 	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	
+	button.connect("pressed", Callable(unit_controller, "unit_selected").bind(unit))
 	
 	Party.character_dictionary[unit]["Icon"] = button
 	buttons.append(button)
