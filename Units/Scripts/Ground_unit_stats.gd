@@ -9,3 +9,5 @@ extends Node3D
 
 @onready var rate_of_fire = 0.6
 @onready var damage = 125
+
+@onready var unit_name = "Ground_unit"

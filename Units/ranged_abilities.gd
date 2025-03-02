@@ -3,7 +3,6 @@ extends Node3D
 @onready var unit = $".."
 
 var unit_controller
-var mirror = preload("res://Units/Scenes/mirror.tscn")
 @onready var root = get_tree().root.get_node("Stage")
 
 func _ready() -> void:
@@ -11,7 +10,10 @@ func _ready() -> void:
 	unit.add_on_placed_skill(passive_skill_two)
 
 func passive_skill_two(): 
-	unit_controller.add_summon(mirror, unit)
+	var mirror = preload("res://Units/Scenes/mirror.tscn").instantiate()
+	mirror.get_node("unit_sb").parent_summon = unit
+	Party.character_dictionary['Mirror_summon']["Instance"] = mirror
+	unit_controller.add_summon('Mirror_summon')
 
 
 func _range_entered_mirror_skill(area: Area3D) -> void:

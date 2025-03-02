@@ -84,6 +84,7 @@ shape = SubResource("BoxShape3D_e6oao")
 disabled = true
 
 [node name="health_n3D" type="Node3D" parent="unit_sb"]
+visible = false
 script = ExtResource("4_kvjqv")
 
 [node name="SubViewport" type="SubViewport" parent="unit_sb/health_n3D"]

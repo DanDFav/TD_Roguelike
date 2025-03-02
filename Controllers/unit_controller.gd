@@ -1,43 +1,50 @@
 extends Node3D
 
-var ranged_unit_resource = preload("res://Units/Scenes/ranged_unit.tscn")
-var ground_unit_resource = preload("res://Units/Scenes/ground_unit.tscn")
-var healer_unit_resource = preload("res://Units/Scenes/healer_unit.tscn")
-var mirror_unit_resource = preload("res://Units/Scenes/mirror.tscn")
-var scout_unit_resource  = preload("res://Units/Scenes/scout.tscn")
-
-var party = Party.party
-
-
+#var party = Party.party
 
 var selected_unit 
 
 var summon_units = []
+
+var placeable_units = Party.party
+
 var summon_placing = false
 
+@onready var unit_display = $unit_display
+
 func _input(event):
-	if Input.is_action_just_pressed("one") and len(party) >= 1: 
-		unit_selected(party[0])
-	elif Input.is_action_just_pressed("two") and len(party) >= 2:
-		unit_selected(party[1])
-	elif Input.is_action_just_pressed("three") and len(party) >= 3:
-		unit_selected(party[2])
+	if Input.is_action_just_pressed("one") and len(placeable_units) >= 1: 
+		unit_selected(placeable_units[0])
+	elif Input.is_action_just_pressed("two") and len(placeable_units) >= 2:
+		unit_selected(placeable_units[1])
+	elif Input.is_action_just_pressed("three") and len(placeable_units) >= 3:
+		unit_selected(placeable_units[2])
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
 		deselect_unit()
-	elif Input.is_action_just_pressed("four") and len(party) >= 4:
-		unit_selected(party[3])
-	#elif Input.is_action_just_pressed("five"):
-		#print("Five")
-		#unit_selected("five")
+	elif Input.is_action_just_pressed("four") and len(placeable_units) >= 4:
+		unit_selected(placeable_units[3])
+	elif Input.is_action_just_pressed("five") and len(placeable_units) >= 5:
+		unit_selected(placeable_units[4])
 
 func unit_selected(unit): 
-	deselect_unit()
+	selected_unit = Party.character_dictionary[unit]["Instance"]
 	
-	selected_unit = unit.instantiate()
+	unit_display.unit_selected(unit)
+	
+	print(selected_unit)
 	if selected_unit != null: 
+		if selected_unit.get_parent() != null: 
+			selected_unit = selected_unit.get_child(0)
+			deselect_unit()
+			return
 		get_tree().root.add_child(selected_unit)
 		selected_unit = selected_unit.get_child(0)
 
+
+func placed(unit):
+	unit_display.remove_button(unit)
+	placeable_units.erase(unit)
+	deselect_unit()
 
 ## TODO: DO NOT DELETE
 #func unit_selected(unit):
@@ -66,13 +73,16 @@ func unit_selected(unit):
 	
 
 func deselect_unit() -> void: 
+	unit_display.deselect_buttons()
 	if selected_unit == null: 
 		return
-		
+	
 	if not selected_unit.placed:
 		get_tree().root.remove_child(selected_unit.get_parent())
 		selected_unit = null
+		
 
 
-func add_summon(summon, unit):
-	summon_units.append([summon, unit]) 
+func add_summon(summon):
+	placeable_units.append(summon)
+	#party.append()

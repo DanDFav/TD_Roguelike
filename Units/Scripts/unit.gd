@@ -60,8 +60,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 	elif body.is_in_group("enemy") and currently_blocking >= block_count: 
 		blocked_queue.append(body)
-		
-		
+
 
 func block_enemy(enemy): 
 	if enemy.blocked == false and placed: 
@@ -94,6 +93,8 @@ func place_unit(block):
 	range_cb.disabled = false
 	morale_controller.spend_morale(unit_cost)
 	
+	unit_controller.placed(stats.unit_name)
+	
 	for skill in on_place_skills: 
 		skill.call()
 
@@ -105,6 +106,12 @@ func _input(event) -> void:
 				self.rotate_y(-1.571 / 2.0)
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				self.rotate_y(1.571 / 2.0)
+		
+		if event is InputEventKey: 
+			if event.is_action_pressed("q"):
+				self.rotate_y(-1.571)
+			elif event.is_action_pressed("e"): 
+				self.rotate_y(1.571)
 
 
 ## Called By: Enemy 

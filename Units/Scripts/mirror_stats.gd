@@ -6,3 +6,5 @@ extends Node3D
 
 @onready var max_health = 2000 
 @onready var armour = 25
+
+@onready var unit_name = "Mirror_unit"
