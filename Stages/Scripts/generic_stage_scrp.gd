@@ -1,10 +1,8 @@
 extends Node3D
 
-@onready var child = get_child(2)
+@onready var child = $Specific_stage_scrp
 @onready var map 
 @onready var path
-
-var path_nodes = []
 
 var block_resource = preload("res://Map-Building/Blocks/Block.tscn")
 var spawner_resource = preload("res://Map-Building/Blocks/spawner.tscn")
@@ -20,10 +18,12 @@ var z_pos_base := BLOCK_SIZE + 0.1 + 0.5
 
 var grid_index = {}
 
+var path_count = 0 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	map = child.map
-	path = child.path_one
+	path = child.paths
 	
 	create_map()
 	child.start_stage(grid_index)
@@ -54,6 +54,8 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 	var special
 	if y == 2: 
 		special = spawner_resource.instantiate()
+		special.path_number = path_count
+		path_count += 1 
 	elif y == 3: 
 		special = exit_resource.instantiate()
 		grid_index[x*10 + z] = special
@@ -62,7 +64,6 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 	var centering_val_z = length.x / 2
 	
 	special.position = Vector3(x - centering_val_x, 0, z - centering_val_z)
-	
 	
 	add_child(special)
 	

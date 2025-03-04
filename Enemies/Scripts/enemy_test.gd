@@ -1,6 +1,7 @@
 extends CharacterBody3D
+class_name Enemy
 
-var path 
+var path = []
 var path_segment = 0
 var blocked = false 
 var blocked_by
@@ -46,19 +47,12 @@ func _process(delta: float) -> void:
 		attack_node.attack(blocked_by)
 
 
-func get_blocker(blocker): 
-	var blocker_block_count = blocker.block_count
-	var blocker_current_block = blocker.currently_blocking
+func get_blocked(blocker: Unit): 
+	blocked = true 
 	blocked_by = blocker
-	
-	var block_taken = blocker_current_block + block_required
-	if blocker_current_block <= blocker_block_count: 
-		blocked = true 
-		return true
-	else: 
-		return false
 
-func hit(damage, unit):
+
+func hit(damage: int, unit: Unit):
 	health_node.on_hit(damage, unit)
 
 
@@ -66,7 +60,7 @@ func unblock():
 	blocked = false 
 	blocked_by = null 
 
-func on_death(killed_by): 
+func on_death(killed_by: Unit): 
 	killed_by.killed_enemy()
 	if blocked_by: 
 		blocked_by.notify_death(self) 

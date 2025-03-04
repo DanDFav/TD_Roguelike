@@ -1,4 +1,5 @@
 extends StaticBody3D
+class_name Unit
 
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
@@ -12,16 +13,15 @@ extends StaticBody3D
 @onready var attack_node = $attack_n3D
 @onready var range_cb = $range_n3D/range_a3D/range_collision_cb
 
-var can_be_placed 
+var can_be_placed ## Can be either "Ground" / "Ranged" / "None"
 var block_count
 var currently_blocking = 0
 var blocked_enemies = []
-var blocked_queue = []
+var blocked_queue = [] ## A Queue made up of enemies who can be blocked if a currently blocked enemy is removed 
 var fixed_y: float = 1.5
 var placed = false 
 var placed_on 
 var selected = false
-var augments = {}
 var on_place_skills = []
 var on_kill_skill = []
 var unit_cost : int
@@ -43,16 +43,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if len(blocked_enemies) == 0: 
-		check_enemies_for_block()
 	if not placed: 
 		position = get_mouse_world_position()
 
-
-func check_enemies_for_block(): 
-	for body in block_collision.get_overlapping_bodies():
-		if body.is_in_group("enemy"):
-			block_enemy(body)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy") and currently_blocking < block_count: 
@@ -62,14 +55,39 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		blocked_queue.append(body)
 
 
-func block_enemy(enemy): 
-	if enemy.blocked == false and placed: 
-		if enemy.get_blocker(self) == true: 
-			blocked_enemies.append(enemy)
-			currently_blocking += enemy.block_required
+
+
+## [b] Called by: [method _on_area_3d_body_entered] [/b] [br] [br]
+## [b] Used for: Checks to see if the enemy is not already blocked, and that the unit has already been placed, 
+## finally it checks to make sure its block count hasnt been reached. [br] 
+## If those conditions are met, we let the enemy know it has been blocked, we add it to the
+## [member blocked_enemies] array. Finally we increment our block count [br][br]
+## [b] Calls: [method enemy_test.get_blocked], [method can_block_more_enemies]
+func block_enemy(enemy : Node3D): 
+	if enemy.blocked == false and placed and can_block_more_enemies() == true: 
+		enemy.get_blocked(self)
+		blocked_enemies.append(enemy)
+		currently_blocking += enemy.block_required
 
 
 
+
+## [b] Called by: [b] [method block_enemy] [br] [br]
+## [b] Used for: [b] Checks if it can block any more enemies
+func can_block_more_enemies() -> bool: 
+	if currently_blocking <= block_count: 
+		return true
+	return false
+
+
+
+
+
+## [b] Called by: [b] [block.place_unit] [br] [br]
+## [b] Used for: [b] If the unit hasnt been placed yet, we check the group the unit is in, then check
+## That the block it is trying to be placed on matches that group, and that we have enough morale to place it. [br] [br]
+## Returns true if can be placed, false otherwise. [br] [br]
+## [b] Calls: [b] [method morale_controller.get_morale()], [method place_unit]
 func can_place(block): 
 	if not placed: 
 		if block.is_in_group("ground_block") and can_be_placed == "ground" and morale_controller.get_morale() >= unit_cost: 
@@ -82,6 +100,11 @@ func can_place(block):
 	
 	return false
 
+
+
+## [b] Called by: [b] [method can_place] [br] [br]
+## [b] Used for: [b] Places the unit. Enables / Disables certain collision objects / area3d's. [br] [br]
+## [b] Calls: [b] [method morale_controller.spend_morale], [method unit_controller.placed]
 func place_unit(block): 
 	placed = true
 	
@@ -114,18 +137,18 @@ func _input(event) -> void:
 				self.rotate_y(1.571)
 
 
-## Called By: Enemy 
-## Called When: An enemy this unit is blocking dies
-## Use: Activates on kill effects
+## [b] Called By: [b] [method enemy_test.on_death] [br] [br]
+## [b] Called When: [b] An enemy this unit is blocking dies [br] [br]
+## [b] Used for: [b] Activates on kill effects [br] [br]
 func killed_enemy(): 
 	if len(on_kill_skill) > 0: 
 		for skill in on_kill_skill: 
 			skill.call()
 
 
-## Called By: Enemy 
-## Called When: An enemy this unit is blocking dies
-## Use: lets a blocker know to remove that enemy from blocked Queue / current block
+## [b] Called By: [b] [method enemy_test.on_death] [br] [br]
+## [b] Called When: [b] An enemy this unit is blocking dies [br] [br]
+## [b] Use: [b] lets a blocker know to remove that enemy from blocked Queue / current block [br] [br]
 func notify_death(enemy):
 	if enemy in blocked_enemies:
 		blocked_enemies.erase(enemy)

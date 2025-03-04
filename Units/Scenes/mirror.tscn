@@ -72,7 +72,7 @@ script = ExtResource("2_ny25d")
 input_ray_pickable = false
 
 [node name="range_collision_cb" type="CollisionShape3D" parent="unit_sb/range_n3D/range_a3D"]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 shape = SubResource("BoxShape3D_7s1ls")
 
 [node name="direct_indicator_m" type="MeshInstance3D" parent="unit_sb"]

@@ -1,4 +1,5 @@
 extends Node3D
+class_name Enemy_attack
 
 
 @onready var stats = $"../stats"
@@ -17,7 +18,7 @@ func _ready() -> void:
 	attack_speed = stats.attack_speed
 
 
-func attack(blocker): 
+func attack(blocker: Unit): 
 	blocked_by = blocker
 	timer.wait_time = attack_speed
 	if can_attack: 

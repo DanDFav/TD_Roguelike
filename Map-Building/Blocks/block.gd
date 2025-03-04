@@ -23,7 +23,7 @@ func place_unit():
 		print("This tile is occupied")
 
 
-func unit_dead(unit): 
+func unit_dead(unit: Unit): 
 	occupied = false 
 	unit_on_tile = null
 	pass

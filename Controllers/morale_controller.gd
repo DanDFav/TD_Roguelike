@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 
 func _on_morale_timer_timeout() -> void:
 	morale += 1
-	
 
 func get_morale() -> int:
 	return morale

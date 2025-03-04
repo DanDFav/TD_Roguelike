@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name Enemy_health
 
 @onready var mesh = $"../MeshInstance3D"
 @onready var hurt_timer = $Timer
@@ -29,9 +29,12 @@ func _ready() -> void:
 	health_bar_node.max_value = max_health
 	health_bar_node.value = health
 	health_bar_node.add_theme_stylebox_override("fill", normal_style_box)
+	
+	self.visible = false
 
-func on_hit(damage, unit): 
-	health -= damage_mitigation(damage)	
+func on_hit(damage: int, unit: Unit): 
+	health -= damage_mitigation(damage)
+	self.visible = true
 	health_bar_node.value = health
 	if health <= 0: 
 		on_death(unit)
@@ -42,10 +45,10 @@ func on_hit(damage, unit):
 	hurt_timer.start()
 	
 
-func on_death(unit): 
+func on_death(unit: Unit): 
 	get_parent().on_death(unit)
 
-func damage_mitigation(damage) -> float: 
+func damage_mitigation(damage: int) -> float: 
 	return (float(damage) / (1.0 + (armour / 100.0)))
 
 
