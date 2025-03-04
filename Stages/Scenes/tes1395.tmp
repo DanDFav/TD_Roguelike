@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy8y6ilvqt7lt"]
+
+[ext_resource type="Script" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_rmoja"]
+[ext_resource type="Script" path="res://Stages/Scripts/test_stage_scrp.gd" id="2_m5qar"]
+[ext_resource type="Script" path="res://Controllers/unit_controller.gd" id="3_2d355"]
+[ext_resource type="Script" path="res://Controllers/morale_controller.gd" id="4_dwnba"]
+[ext_resource type="PackedScene" uid="uid://btomesfkxg43i" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
+
+[node name="Stage" type="Node3D"]
+script = ExtResource("1_rmoja")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.51049e-05, -0.000186612, 0.000182977, 0.518177, 0.855274, 5.81212e-05, -0.855274, 0.518177, 1.68014, 7.46656, 6.73396)
+current = true
+fov = 50.0
+size = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.454706, 0.890642, 0, -0.890642, 0.454706, 0, 6.22326, 3.62413)
+light_energy = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 2.019
+
+[node name="Specific_stage_scrp" type="Node3D" parent="."]
+script = ExtResource("2_m5qar")
+
+[node name="Unit_controller" type="Node3D" parent="."]
+script = ExtResource("3_2d355")
+
+[node name="unit_display" parent="Unit_controller" instance=ExtResource("5_d54r5")]
+
+[node name="morale_controller_n3D" type="Node3D" parent="."]
+script = ExtResource("4_dwnba")
+
+[node name="display_morale_l" type="Label" parent="morale_controller_n3D"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = -210.0
+offset_right = 592.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Hello
+
+"
+vertical_alignment = 2
+
+[node name="morale_timer" type="Timer" parent="morale_controller_n3D"]
+
+[connection signal="timeout" from="morale_controller_n3D/morale_timer" to="morale_controller_n3D" method="_on_morale_timer_timeout"]

@@ -16,7 +16,6 @@ var current_enemy
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame  # Ensures nodes are ready
-
 	if hit_timer:
 		rate_of_fire = stats.rate_of_fire
 		damage = stats.damage

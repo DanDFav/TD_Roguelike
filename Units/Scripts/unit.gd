@@ -167,7 +167,6 @@ func on_death():
 	
 	for enemy in blocked_enemies: 
 		enemy.unblock()
-		pass
 	get_parent().queue_free()
 
 

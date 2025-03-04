@@ -92,6 +92,7 @@ one_shot = true
 
 [node name="health_n3D" type="Node3D" parent="unit_sb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000712633, 0.0060215, 1.23978e-05)
+visible = false
 script = ExtResource("4_t8n8v")
 
 [node name="SubViewport" type="SubViewport" parent="unit_sb/health_n3D"]

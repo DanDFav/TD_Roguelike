@@ -42,31 +42,6 @@ func placed(unit):
 	unit_display.remove_button(unit)
 	placeable_units.erase(unit)
 	deselect_unit()
-
-## TODO: DO NOT DELETE
-#func unit_selected(unit):
-	#deselect_unit()
-	#
-	#if unit == "one":
-		#selected_unit = ground_unit_resource.instantiate()
-	#elif unit == "two": 
-		#selected_unit = ranged_unit_resource.instantiate()
-	#elif unit == "three":
-		#selected_unit = healer_unit_resource.instantiate()
-	#elif unit == "four": 
-		#selected_unit = scout_unit_resource.instantiate()
-	#elif unit == "five": 
-		#if len(summon_units) > 0:
-			#selected_unit = summon_units[0][0].instantiate()
-		#else: return 
-	#
-	#
-	#if selected_unit != null: 
-		#get_tree().root.add_child(selected_unit)
-		#selected_unit = selected_unit.get_child(0)
-		#
-		#if unit == "five" and len(summon_units) > 0:
-			#selected_unit.parent_summon = summon_units[0][1]
 	
 
 func deselect_unit() -> void: 

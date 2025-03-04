@@ -9,6 +9,7 @@ var enemies_in_range = []
 @onready var hit_timer = $Timer
 @onready var unit = get_parent()
 @onready var stats = $"../../stats_n3D"
+@onready var on_hit_skills = []
 
 
 var current_enemy
@@ -34,6 +35,8 @@ func enemy_entered_range(enemy):
 func enemy_left_range(enemy):
 	enemies_in_range.erase(enemy)
 
+func add_on_hit_skill(skill): 
+	on_hit_skills.append(skill)
 
 func _on_timer_timeout() -> void:
 	auto_attack()
@@ -43,5 +46,7 @@ func auto_attack():
 		var enemy = get_parent().blocked_enemies[0]
 		if is_instance_valid(enemy): 
 			enemy.hit(damage, unit)
+			for skill in on_hit_skills: 
+				skill.call(enemy)
 	elif len(enemies_in_range) != 0: 
 		enemies_in_range[0].hit(damage, unit)

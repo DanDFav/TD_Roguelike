@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b30xydfgcnwdh"]
+
+[ext_resource type="Script" path="res://Units/Scripts/rend.gd" id="1_m3vca"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxmbf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3btw"]
+bg_color = Color(0.494118, 0, 0.756863, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q7lox"]
+viewport_path = NodePath("visuals_n3D/SubViewport")
+
+[node name="rend" type="Node3D"]
+script = ExtResource("1_m3vca")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="visuals_n3D" type="Node3D" parent="."]
+visible = false
+
+[node name="SubViewport" type="SubViewport" parent="visuals_n3D"]
+disable_3d = true
+transparent_bg = true
+
+[node name="ProgressBar" type="ProgressBar" parent="visuals_n3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -2.5
+offset_right = 20.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_fxmbf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v3btw")
+step = 1.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="visuals_n3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_q7lox")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
