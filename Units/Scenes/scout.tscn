@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://c0g0678wep4qm"]
 
-[ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_s1mxf"]
-[ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_p271u"]
-[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="3_70lja"]
-[ext_resource type="Script" path="res://Units/Scripts/ground_attack.gd" id="3_badqk"]
-[ext_resource type="Script" path="res://Units/Scripts/scout_stats.gd" id="4_2egxi"]
-[ext_resource type="Script" path="res://Units/Scripts/scout_abilities.gd" id="5_0utj6"]
+[ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_s1mxf"]
+[ext_resource type="Script" uid="uid://dsp3guarxm68p" path="res://Units/Scripts/range.gd" id="2_p271u"]
+[ext_resource type="Script" uid="uid://b73bf6dxfmvm" path="res://Units/Scripts/unit_health.gd" id="3_70lja"]
+[ext_resource type="Script" uid="uid://d0cda1p2ydg1l" path="res://Units/Scripts/ground_attack.gd" id="3_badqk"]
+[ext_resource type="Script" uid="uid://d33pvqikj0jcq" path="res://Units/Scripts/scout_stats.gd" id="4_2egxi"]
+[ext_resource type="Script" uid="uid://xpmdjo5w1kqt" path="res://Units/Scripts/scout_abilities.gd" id="5_0utj6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewodx"]
 albedo_color = Color(0.493333, 0.24, 1, 1)

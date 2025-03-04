@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://bosn0njq2uf30"]
 
-[ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_r7gbj"]
-[ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_7blx5"]
-[ext_resource type="Script" path="res://Units/Scripts/ground_attack.gd" id="3_e6pdo"]
-[ext_resource type="Script" path="res://Units/Scripts/Ground_unit_stats.gd" id="3_fnxa7"]
-[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="4_t8n8v"]
+[ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_r7gbj"]
+[ext_resource type="Script" uid="uid://dsp3guarxm68p" path="res://Units/Scripts/range.gd" id="2_7blx5"]
+[ext_resource type="Script" uid="uid://d0cda1p2ydg1l" path="res://Units/Scripts/ground_attack.gd" id="3_e6pdo"]
+[ext_resource type="Script" uid="uid://gscfd1dtpfkm" path="res://Units/Scripts/Ground_unit_stats.gd" id="3_fnxa7"]
+[ext_resource type="Script" uid="uid://b73bf6dxfmvm" path="res://Units/Scripts/unit_health.gd" id="4_t8n8v"]
 [ext_resource type="Script" path="res://Units/Scripts/ground_unit_abilities.gd" id="5_jx1sn"]
 [ext_resource type="PackedScene" uid="uid://b30xydfgcnwdh" path="res://Units/Scenes/unit_abilities/rend.tscn" id="7_ye3h7"]
 

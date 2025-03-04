@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://kwsr1uvcsesk"]
 
-[ext_resource type="Script" path="res://Enemies/Scripts/enemy_health.gd" id="1_knim8"]
-[ext_resource type="Script" path="res://Enemies/Scripts/enemy_test.gd" id="1_phbsr"]
-[ext_resource type="Script" path="res://Enemies/Scripts/enemy_attack.gd" id="3_1fqjl"]
-[ext_resource type="Script" path="res://Enemies/Scripts/dog_stats.gd" id="3_wyle2"]
+[ext_resource type="Script" uid="uid://dwll4ufnavo6s" path="res://Enemies/Scripts/enemy_health.gd" id="1_knim8"]
+[ext_resource type="Script" uid="uid://ooxbd223d0ar" path="res://Enemies/Scripts/enemy_test.gd" id="1_phbsr"]
+[ext_resource type="Script" uid="uid://n2hm2g2ual6n" path="res://Enemies/Scripts/enemy_attack.gd" id="3_1fqjl"]
+[ext_resource type="Script" uid="uid://bvjacohebk3oi" path="res://Enemies/Scripts/dog_stats.gd" id="3_wyle2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nddch"]
 albedo_color = Color(0.959161, 0, 0.449863, 1)

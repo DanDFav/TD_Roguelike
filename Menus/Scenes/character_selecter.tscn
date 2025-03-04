@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://diskbdedr2rdy"]
 
-[ext_resource type="Script" path="res://Menus/Scripts/character_selecter.gd" id="1_w2d02"]
+[ext_resource type="Script" uid="uid://c8q771ai3i06a" path="res://Menus/Scripts/character_selecter.gd" id="1_w2d02"]
 
 [node name="character_selecter" type="Control"]
 layout_mode = 3
