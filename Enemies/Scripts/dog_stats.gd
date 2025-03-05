@@ -1,7 +1,7 @@
 extends Node3D
 
 var block_required = 1
-const SPEED = 1.75
+const SPEED = 1.55
 var colour = Color("f50073")
 
 var damage = 110 

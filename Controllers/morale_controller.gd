@@ -4,6 +4,8 @@ var morale : int
 @onready var spec_stage_script = $"../Specific_stage_scrp"
 @onready var label = $display_morale_l
 @onready var morale_timer = $morale_timer
+@onready var timer_wait_time = 1.0 * GameSpeed.game_speed
+
 
 var start = false
 
@@ -14,7 +16,7 @@ func _ready() -> void:
 	if spec_stage_script:
 		morale = spec_stage_script.starting_morale
 		label.text = str(morale)
-		morale_timer.start()
+		morale_timer.start(timer_wait_time)
 		start = true
 
 

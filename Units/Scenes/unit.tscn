@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://rfotrs8n2bu8"]
 
-[ext_resource type="Script" path="res://Units/Scripts/unit.gd" id="1_mbd18"]
-[ext_resource type="Script" path="res://Units/Scripts/range.gd" id="2_42kbo"]
-[ext_resource type="Script" path="res://Units/Scripts/unit_health.gd" id="3_ec42j"]
+[ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_mbd18"]
+[ext_resource type="Script" uid="uid://dsp3guarxm68p" path="res://Units/Scripts/range.gd" id="2_42kbo"]
+[ext_resource type="Script" uid="uid://b73bf6dxfmvm" path="res://Units/Scripts/unit_health.gd" id="3_ec42j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejads"]
 albedo_color = Color(0.24, 0.683333, 1, 1)

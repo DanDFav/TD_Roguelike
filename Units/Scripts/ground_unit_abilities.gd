@@ -5,7 +5,7 @@ extends Node3D
 @onready var rend =  preload("res://Units/Scenes/unit_abilities/rend.tscn")
 @onready var health_node = $"../health_n3D"
 
-@onready var p1_heal_val = 140
+@onready var p1_heal_val = 120
 
 
 var applied_to: Array[Enemy] = []

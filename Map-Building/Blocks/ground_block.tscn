@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://8rorfrnkyp3m"]
+[gd_scene load_steps=7 format=3 uid="uid://8rorfrnkyp3m"]
 
-[ext_resource type="Script" path="res://Map-Building/Blocks/block.gd" id="1_ut4kq"]
+[ext_resource type="Script" uid="uid://cpjn8vuakfue4" path="res://Map-Building/Blocks/block.gd" id="1_ut4kq"]
+[ext_resource type="PackedScene" uid="uid://mcqn12j6loqd" path="res://Map-Building/Blocks/block_ray_casts.tscn" id="2_uwia5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b51x"]
 albedo_color = Color(0.71, 0.71, 0.71, 1)
@@ -30,6 +31,8 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_e0rw4")
+
+[node name="ray_casts" parent="." instance=ExtResource("2_uwia5")]
 
 [connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

@@ -187,7 +187,7 @@ func on_hit(damage):
 
 func on_death():
 	placed_on.unit_dead(self)
-	
+	attack_node.unsubscribe_game_speed()
 	for enemy in blocked_enemies: 
 		enemy.unblock()
 	get_parent().queue_free()

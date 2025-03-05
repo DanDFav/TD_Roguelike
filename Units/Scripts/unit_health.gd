@@ -6,7 +6,7 @@ var health
 var armour 
 @onready var health_bar_node = $SubViewport/health_bar
 @onready var timer = $heal_colour
-
+@onready var timer_wait_time = 0.35 / GameSpeed.game_speed
 
 @onready var stats = $"../../stats_n3D"
 
@@ -42,7 +42,7 @@ func heal(value):
 	
 	if health > max_health: 
 		health = max_health
-	timer.start()
+	timer.start(timer_wait_time)
 
 
 func damage_mitigation(damage) -> float: 

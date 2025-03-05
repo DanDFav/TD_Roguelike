@@ -5,9 +5,9 @@ extends Node3D
 @onready var morale_cost = 12
 
 @onready var max_health = 2800 
-@onready var armour = 40
+@onready var armour = 30
 
-@onready var rate_of_fire = 0.7
+@onready var rate_of_fire = 0.7 
 @onready var damage = 140
 
 @onready var unit_name = "Ground_unit"

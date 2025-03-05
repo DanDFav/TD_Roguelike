@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b5602o1n7h3py" path="res://Stages/Scripts/test_stage_scrp.gd" id="2_m5qar"]
 [ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="3_2d355"]
 [ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="4_dwnba"]
-[ext_resource type="PackedScene" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
+[ext_resource type="PackedScene" uid="uid://btomesfkxg43i" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
 
 [node name="Stage" type="Node3D"]
 script = ExtResource("1_rmoja")

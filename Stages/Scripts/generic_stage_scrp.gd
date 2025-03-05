@@ -60,6 +60,9 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 		special = exit_resource.instantiate()
 		grid_index[x*10 + z] = special
 	
+	special.row = x
+	special.col = y
+	
 	var centering_val_x = length.y / 2
 	var centering_val_z = length.x / 2
 	

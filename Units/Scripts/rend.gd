@@ -2,6 +2,8 @@ extends Node3D
 class_name Skill
 
 @onready var timer = $Timer
+@onready var timer_wait_time = 2.0 / GameSpeed.game_speed
+
 @onready var progress_bar
 
 var attached_to 
@@ -61,7 +63,7 @@ func increment_stacks():
 		burst()
 	
 #	If enemy hasn't been hit in 2 seconds, remove the rend
-	timer.start()
+	timer.start(timer_wait_time)
 
 func burst(): 
 	attached_to.get_node("health").on_hit(on_max_stacks, applied_by)

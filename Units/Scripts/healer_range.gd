@@ -2,7 +2,7 @@ extends Node3D
 
 var friendlies_in_range = []
 
-@onready var heal_node = $"../heal_n3D"
+@onready var heal_node = $"../attack_n3D"
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("friendly_unit"): 

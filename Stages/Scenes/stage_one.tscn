@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d1msib56ltg0e" path="res://Stages/Scripts/stage_one.gd" id="1_413es"]
 [ext_resource type="Script" uid="uid://bye7jq8xvtdl1" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_kd610"]
 [ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="6_aniao"]
-[ext_resource type="PackedScene" path="res://Controllers/unit_display.tscn" id="7_kd610"]
+[ext_resource type="PackedScene" uid="uid://btomesfkxg43i" path="res://Controllers/unit_display.tscn" id="7_kd610"]
 [ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="8_c0yb8"]
 
 [node name="Stage" type="Node3D"]

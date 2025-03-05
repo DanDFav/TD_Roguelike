@@ -118,10 +118,10 @@ texture = SubResource("ViewportTexture_8riqk")
 wait_time = 0.35
 one_shot = true
 
-[node name="heal_n3D" type="Node3D" parent="unit_sb"]
+[node name="attack_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("4_53xyq")
 
-[node name="Timer" type="Timer" parent="unit_sb/heal_n3D"]
+[node name="Timer" type="Timer" parent="unit_sb/attack_n3D"]
 wait_time = 1.75
 one_shot = true
 
@@ -134,4 +134,4 @@ script = ExtResource("3_rxbnv")
 [connection signal="area_entered" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="unit_sb/range_n3D/range_a3D" to="unit_sb/range_n3D" method="_on_area_3d_area_exited"]
 [connection signal="timeout" from="unit_sb/health_n3D/heal_colour" to="unit_sb/health_n3D" method="_on_heal_colour_timeout"]
-[connection signal="timeout" from="unit_sb/heal_n3D/Timer" to="unit_sb/heal_n3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="unit_sb/attack_n3D/Timer" to="unit_sb/attack_n3D" method="_on_timer_timeout"]

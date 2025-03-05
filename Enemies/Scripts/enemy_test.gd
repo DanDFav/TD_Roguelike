@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	target_pos = target_pos + random_offset
 	
 	if not blocked:
-		global_position = global_position.move_toward(target_pos, delta* SPEED)
+		global_position = global_position.move_toward(target_pos, delta * SPEED * GameSpeed.game_speed)
 		if not global_position.is_equal_approx(target_pos):
 			look_at(target_pos)
 		
@@ -62,6 +62,7 @@ func unblock():
 
 func on_death(killed_by: Unit): 
 	killed_by.killed_enemy()
+	attack_node.unsubscribe_game_speed()
 	if blocked_by: 
 		blocked_by.notify_death(self) 
 	self.queue_free()

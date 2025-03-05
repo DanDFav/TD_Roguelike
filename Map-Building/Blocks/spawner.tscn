@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1dv4gwj0yawp"]
+[gd_scene load_steps=8 format=3 uid="uid://c1dv4gwj0yawp"]
 
-[ext_resource type="Script" path="res://Map-Building/Blocks/spawner.gd" id="1_p58gp"]
+[ext_resource type="Script" uid="uid://xxpsj4x80i58" path="res://Map-Building/Blocks/spawner.gd" id="1_p58gp"]
+[ext_resource type="PackedScene" uid="uid://mcqn12j6loqd" path="res://Map-Building/Blocks/block_ray_casts.tscn" id="2_6nvpf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udt2t"]
 albedo_color = Color(0.709804, 0.709804, 0.709804, 1)
@@ -16,7 +17,7 @@ albedo_color = Color(0.406549, 0.705379, 0.90368, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_b4uwc"]
 material = SubResource("StandardMaterial3D_pi6tx")
 
-[node name="Node3D" type="Node3D"]
+[node name="Spawner" type="Node3D"]
 script = ExtResource("1_p58gp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -39,3 +40,5 @@ mesh = SubResource("CylinderMesh_b4uwc")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_fll52")
 disabled = true
+
+[node name="ray_casts" parent="." instance=ExtResource("2_6nvpf")]

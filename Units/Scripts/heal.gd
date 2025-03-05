@@ -8,6 +8,14 @@ extends Node3D
 var friendlies_in_range = []
 var can_heal = false 
 
+var attack_speed 
+
+func _ready() -> void:
+	await get_tree().process_frame
+	attack_speed = stats.attack_speed / GameSpeed.game_speed
+	game_speed_subscribe()
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if len(friendlies_in_range) > 0 and timer.is_stopped() and parent.placed:
@@ -53,3 +61,18 @@ func update_friendlies_in_range(friends):
 
 func _on_timer_timeout() -> void:
 	can_heal = true
+
+
+func game_speed_subscribe(): 
+	GameSpeed.subscribe(self)
+
+func unsubscribe_game_speed():
+	GameSpeed.unsubscribe(self)
+
+func update_game_speed(val): 
+	if not timer.is_stopped():
+		var progress_ratio = timer.time_left / timer.wait_time  
+		timer.wait_time = attack_speed / val  
+		timer.start(timer.wait_time * progress_ratio)  
+	else:
+		timer.wait_time = attack_speed / val  

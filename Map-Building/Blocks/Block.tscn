@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://rvggtbtkm3m6"]
 
-[ext_resource type="Script" path="res://Map-Building/Blocks/block.gd" id="1_dq8id"]
+[ext_resource type="Script" uid="uid://cpjn8vuakfue4" path="res://Map-Building/Blocks/block.gd" id="1_dq8id"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aurc2"]
 
@@ -22,6 +22,24 @@ shape = SubResource("BoxShape3D_yidm4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yidm4")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.5)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Node3D"]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, -0.5)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.5, 0, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.5, 0, 0)
+target_position = Vector3(0, -0.5, 0)
 
 [connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

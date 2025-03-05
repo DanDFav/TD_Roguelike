@@ -3,6 +3,9 @@ extends Node3D
 var gen_stage_script 
 var spec_stage_script
 
+var row: int
+var col: int
+
 var path_number : int
 
 var time = 0
@@ -12,6 +15,8 @@ var spawn_info
  
 var path_info = []
 var grid_index
+
+@onready var ray_casts := $ray_casts
 
 var enemy_resource = preload("res://Enemies/Scenes/enemy.tscn")
 var enemy_hulk_resource = preload("res://Enemies/Scenes/enemy_hulk.tscn")
@@ -33,11 +38,12 @@ func get_map_node():
 # If we have recieved the spawning data, we can start spawning enemies at their correct interval 
 func _process(delta: float) -> void:
 	if spawn_ready == true: 
-		time += delta
+		time += delta * GameSpeed.game_speed
 		time = snapped(time, 0.01) 
 		if spawn_info:
 			for i in spawn_info: 
 				if time >= i[1] and i[1] >= time - delta and i[2] == path_number:  
+					print(time)
 					spawn_enemy(i[0])
 					spawn_info.erase(i) 
 

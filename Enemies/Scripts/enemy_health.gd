@@ -11,6 +11,8 @@ class_name Enemy_health
 @onready var heal_style_box 
 
 
+var timer_wait_time = 0.15 / GameSpeed.game_speed
+
 var health
 var max_health
 var armour
@@ -42,7 +44,7 @@ func on_hit(damage: int, unit: Unit):
 	var on_hover_mat = StandardMaterial3D.new()
 	on_hover_mat.albedo_color = Color("e80c0c")
 	mesh.material_override = on_hover_mat
-	hurt_timer.start()
+	hurt_timer.start(timer_wait_time)
 	
 
 func on_death(unit: Unit): 
