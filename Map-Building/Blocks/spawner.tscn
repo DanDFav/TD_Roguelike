@@ -1,15 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1dv4gwj0yawp"]
 
 [ext_resource type="Script" uid="uid://xxpsj4x80i58" path="res://Map-Building/Blocks/spawner.gd" id="1_p58gp"]
-[ext_resource type="PackedScene" uid="uid://mcqn12j6loqd" path="res://Map-Building/Blocks/block_ray_casts.tscn" id="2_6nvpf"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udt2t"]
-albedo_color = Color(0.709804, 0.709804, 0.709804, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_vkubd"]
-material = SubResource("StandardMaterial3D_udt2t")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fll52"]
+[ext_resource type="Script" uid="uid://byltcfb2b6egn" path="res://Map-Building/Blocks/block_ray_casts.gd" id="2_6nvpf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi6tx"]
 albedo_color = Color(0.406549, 0.705379, 0.90368, 1)
@@ -17,18 +9,16 @@ albedo_color = Color(0.406549, 0.705379, 0.90368, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_b4uwc"]
 material = SubResource("StandardMaterial3D_pi6tx")
 
-[node name="Spawner" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fll52"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udt2t"]
+albedo_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vkubd"]
+material = SubResource("StandardMaterial3D_udt2t")
+
+[node name="Spawner" type="StaticBody3D" groups=["ground_block"]]
 script = ExtResource("1_p58gp")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_vkubd")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("BoxShape3D_fll52")
-disabled = true
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 
@@ -41,4 +31,29 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_fll52")
 disabled = true
 
-[node name="ray_casts" parent="." instance=ExtResource("2_6nvpf")]
+[node name="ray_casts" type="Node3D" parent="."]
+script = ExtResource("2_6nvpf")
+
+[node name="Down" type="RayCast3D" parent="ray_casts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.5)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="Up" type="RayCast3D" parent="ray_casts"]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, -0.5)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="Right" type="RayCast3D" parent="ray_casts"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.5, 0, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="Left" type="RayCast3D" parent="ray_casts"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.5, 0, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vkubd")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_fll52")

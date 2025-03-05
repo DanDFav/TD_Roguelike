@@ -6,9 +6,14 @@ var col: int
 @export var height: float
 
 @onready var mesh = $MeshInstance3D
+@onready var ray_casts = $ray_casts
 
 var occupied = false 
 var unit_on_tile 
+
+var explored = false 
+
+var exit 
 
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
@@ -46,3 +51,7 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				place_unit()
+				
+
+func path_find(): 
+	ray_casts.get_neighbours()

@@ -43,6 +43,7 @@ func create_map():
 				create_new_special(z, block_type, x, center_block)
 			elif block_type == 3: 
 				create_new_special(z, block_type, x, center_block)
+	
 
 func find_center_block():
 	var x_mid = len(map) / 2

@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy8y6ilvqt7lt"]
+[gd_scene load_steps=6 format=3 uid="uid://r8ijg7a14vux"]
 
-[ext_resource type="Script" uid="uid://bye7jq8xvtdl1" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_rmoja"]
-[ext_resource type="Script" uid="uid://b5602o1n7h3py" path="res://Stages/Scripts/test_stage_scrp.gd" id="2_m5qar"]
-[ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="3_2d355"]
-[ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="4_dwnba"]
-[ext_resource type="PackedScene" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
+[ext_resource type="Script" uid="uid://bye7jq8xvtdl1" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_htkmu"]
+[ext_resource type="Script" uid="uid://dpwjkoch5216d" path="res://Stages/Scripts/stage_two.gd" id="2_htkmu"]
+[ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="3_q473s"]
+[ext_resource type="PackedScene" path="res://Controllers/unit_display.tscn" id="4_kgt03"]
+[ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="5_xvbw7"]
 
 [node name="Stage" type="Node3D"]
-script = ExtResource("1_rmoja")
+script = ExtResource("1_htkmu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -4.51049e-05, -0.000186612, 0.000182977, 0.518177, 0.855274, 5.81212e-05, -0.855274, 0.518177, 1.68014, 7.46656, 6.73396)
@@ -24,15 +24,15 @@ shadow_reverse_cull_face = true
 shadow_blur = 2.019
 
 [node name="Specific_stage_scrp" type="Node3D" parent="."]
-script = ExtResource("2_m5qar")
+script = ExtResource("2_htkmu")
 
 [node name="Unit_controller" type="Node3D" parent="."]
-script = ExtResource("3_2d355")
+script = ExtResource("3_q473s")
 
-[node name="unit_display" parent="Unit_controller" instance=ExtResource("5_d54r5")]
+[node name="unit_display" parent="Unit_controller" instance=ExtResource("4_kgt03")]
 
 [node name="morale_controller_n3D" type="Node3D" parent="."]
-script = ExtResource("4_dwnba")
+script = ExtResource("5_xvbw7")
 
 [node name="display_morale_l" type="Label" parent="morale_controller_n3D"]
 anchors_preset = 2

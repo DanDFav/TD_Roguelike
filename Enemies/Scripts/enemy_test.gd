@@ -1,11 +1,13 @@
 extends CharacterBody3D
 class_name Enemy
 
-var path = []
-var path_segment = 0
+#var path = []
+#var path_segment = 0
 var blocked = false 
 var blocked_by
 var block_required
+
+var next_block 
 
 var SPEED 
 var attack_damage 
@@ -31,7 +33,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var target_pos = Vector3(path[path_segment].global_position.x, global_position.y , path[path_segment].global_position.z)
+	var target_pos = Vector3(next_block.global_position.x, global_position.y , next_block.global_position.z)
 	target_pos = target_pos + random_offset
 	
 	if not blocked:
@@ -39,9 +41,10 @@ func _process(delta: float) -> void:
 		if not global_position.is_equal_approx(target_pos):
 			look_at(target_pos)
 		
-		
+	
 	if global_position.is_equal_approx(target_pos): 
-		path_segment = clamp(path_segment + 1, 0, len(path) -1 )
+		next_block = next_block.exit
+		#path_segment = clamp(path_segment + 1, 0, len(path) -1 )
 	
 	if blocked: 
 		attack_node.attack(blocked_by)

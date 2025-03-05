@@ -1,4 +1,5 @@
 extends Node3D
+class_name Spawner
 
 var gen_stage_script 
 var spec_stage_script
@@ -13,6 +14,10 @@ var path_ready = false
 var spawn_ready = false 
 var spawn_info
  
+var explored = false 
+var exit
+
+
 var path_info = []
 var grid_index
 
@@ -38,14 +43,16 @@ func get_map_node():
 # If we have recieved the spawning data, we can start spawning enemies at their correct interval 
 func _process(delta: float) -> void:
 	if spawn_ready == true: 
-		time += delta * GameSpeed.game_speed
-		time = snapped(time, 0.01) 
-		if spawn_info:
-			for i in spawn_info: 
-				if time >= i[1] and i[1] >= time - delta and i[2] == path_number:  
-					print(time)
-					spawn_enemy(i[0])
-					spawn_info.erase(i) 
+		GameStart.start_game()
+		if GameStart.enemy_start: 
+			time += delta * GameSpeed.game_speed
+			time = snapped(time, 0.01) 
+			if spawn_info:
+				for i in spawn_info: 
+					if time >= i[1] and i[1] >= time - delta and i[2] == path_number:  
+						print(time)
+						spawn_enemy(i[0], i[3])
+						spawn_info.erase(i) 
 
 
 #Is called by the specific stage script, sets some variables 
@@ -68,8 +75,9 @@ func translate_path(path_data):
 	return path
 
 #Spawns an enemy, and sets its path 
-func spawn_enemy(enemy_type): 
-	var enemy
+func spawn_enemy(enemy_type, path): 
+	var enemy : Enemy
+	GameStart.start_game()
 	if enemy_type == 0: 
 		enemy = enemy_resource.instantiate()
 	elif enemy_type == 1: 
@@ -78,5 +86,6 @@ func spawn_enemy(enemy_type):
 		enemy = enemy_dog_resource.instantiate()
 		
 	enemy.position.y = 0.5
-	enemy.path = path_info
+	if path == -1: 
+		enemy.next_block = exit
 	add_child(enemy)
