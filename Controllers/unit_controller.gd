@@ -12,6 +12,10 @@ var summon_placing = false
 
 @onready var unit_display = $unit_display
 
+func _ready() -> void:
+	for i in Party.util_party: 
+		placeable_units.append(i)
+
 func _input(event):
 	if Input.is_action_just_pressed("one") and len(placeable_units) >= 1: 
 		unit_selected(placeable_units[0])
@@ -30,6 +34,9 @@ func _input(event):
 
 func unit_selected(unit): 
 	deselect_unit()
+	#if unit in Party.util_party: 
+		#
+		#return 
 	selected_unit = Party.character_dictionary[unit]["Instance"]
 	
 	unit_display.unit_selected(unit)
@@ -55,7 +62,6 @@ func deselect_unit() -> void:
 	if not selected_unit_placement_comp.placed:
 		get_tree().root.remove_child(selected_unit.get_parent())
 		selected_unit = null
-		
 
 
 func add_summon(summon):

@@ -12,6 +12,14 @@ func _ready() -> void:
 		var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
 		var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
 		create_texture_button(unit, icon_normal, icon_selected)
+	
+	var uniques = []
+	for unit in Party.util_party:
+		if unit not in uniques: 
+			var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
+			var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
+			create_texture_button(unit, icon_normal, icon_selected)
+			uniques.append(unit) 
 
 
 
@@ -34,6 +42,7 @@ func create_texture_button(unit, normal, selected):
 
 func unit_selected(unit): 
 	var button = Party.character_dictionary[unit]["Icon"]
+	
 	button.button_pressed = true
 	for i in buttons: 
 		if i != button: 

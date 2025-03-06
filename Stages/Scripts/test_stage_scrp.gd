@@ -33,15 +33,22 @@ var spawners = []
 
 var starting_morale = 36
 
+var roadblocks = 3 
 
+func _ready() -> void:
+	add_utilities()
 
 func recieve_signal_from_spawner(spawner):
 	spawners.append(spawner)
 
 func start_stage(grid_index): 
 	var count = 0 
-	
 	for spawner in spawners: 
 		spawner.recieve_spawn_info(grid_index, spawns, null) 
 		count += 1
 	#GameStart.start_game()
+
+
+func add_utilities():
+	for i in range(roadblocks): 
+		Party.add_to_utils("Roadblock")

@@ -43,14 +43,19 @@ extends Node
 				"Icon_normal": load("res://Units/Thumbnails/mirror.png"),
 				"Icon_hover": load("res://Units/Thumbnails/mirror_hover.png")
 	}
-
 }
 
-var party = ["Ground_unit", "Ranged_unit", "Scout_unit", "Healer_unit", "Mace_unit", "Roadblock"]
-
+var party = ["Ground_unit", "Ranged_unit", "Scout_unit", "Healer_unit", "Mace_unit"]
+var util_party = []
 
 func add_to_party(unit): 
 	party.append(unit)
 
 func remove_from_party(unit):
 	party.erase(unit)
+
+func add_to_utils(util): 
+	util_party.append(util)
+
+func remove_from_utils(util): 
+	util_party.erase(util)

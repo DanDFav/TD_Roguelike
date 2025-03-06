@@ -46,12 +46,10 @@ func _process(delta: float) -> void:
 		if global_position.is_equal_approx(target_pos): 
 			if next_block.is_this_exit: 
 				at_exit()
+				return
 			next_block = next_block.exit
 			if next_block.roadblocked: 
-				next_block = null
-		
-		#path_segment = clamp(path_segment + 1, 0, len(path) -1 )
-	
+				next_block = null	
 	if blocked: 
 		attack_node.attack(blocked_by)
 

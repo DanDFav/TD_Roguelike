@@ -23,14 +23,17 @@
             "id": "2c16b48a8b8e06fb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Other Game Notes/Emberward.md",
-                "mode": "source",
-                "source": false
+                "file": "System Overview/Creating the Map/Creating the Map.canvas",
+                "viewState": {
+                  "x": 113.90229091523895,
+                  "y": 105.60800834084762,
+                  "zoom": -0.3443879684755874
+                }
               },
-              "icon": "lucide-file",
-              "title": "Emberward"
+              "icon": "lucide-layout-dashboard",
+              "title": "Creating the Map"
             }
           }
         ],
@@ -185,12 +188,12 @@
   },
   "active": "2c16b48a8b8e06fb",
   "lastOpenFiles": [
+    "Other Game Notes/Emberward.md",
     "System Overview/Creating the Map/Images/Pasted image 20250305224514.png.import",
     "System Overview/Creating the Map/Images/Pasted image 20250305224501.png.import",
     "System Overview/Creating the Map/Images/Pasted image 20250305222444.png.import",
     "System Overview/Creating the Map/Images/Pasted image 20250305222221.png.import",
     "Welcome.md",
-    "Other Game Notes/Emberward.md",
     "Other Game Notes",
     "System Overview/Spawning Enemies - Start to Finish.canvas",
     "Game Systems.md",
@@ -207,7 +210,6 @@
     "System Overview/Creating the Map/Images/In-game Map.png.import",
     "System Overview/Creating the Map/Images/Map Array.png.import",
     "System Overview/Creating the Map/Images/In-game Map.png",
-    "System Overview/Creating the Map/Images/Map Array.png",
-    "System Overview/Creating the Map/Images"
+    "System Overview/Creating the Map/Images/Map Array.png"
   ]
 }
