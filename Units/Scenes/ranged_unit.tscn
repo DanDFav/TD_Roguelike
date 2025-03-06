@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds5asbx52regm"]
+[gd_scene load_steps=18 format=3 uid="uid://ds5asbx52regm"]
 
 [ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_d1k4j"]
 [ext_resource type="Script" uid="uid://dsp3guarxm68p" path="res://Units/Scripts/range.gd" id="2_eolyn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dpjtd14dctf18" path="res://Units/Scripts/Ranged_unit_stats.gd" id="4_g1rtt"]
 [ext_resource type="Script" uid="uid://b73bf6dxfmvm" path="res://Units/Scripts/unit_health.gd" id="4_osnob"]
 [ext_resource type="Script" uid="uid://2s8sqy5j1biv" path="res://Units/ranged_abilities.gd" id="5_o4qeg"]
+[ext_resource type="Script" uid="uid://cn4wc03gunwyb" path="res://Units/Scripts/placement_component_n_3d.gd" id="6_bwofw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riujv"]
 albedo_color = Color(1, 0.21, 0.21, 1)
@@ -121,8 +122,10 @@ one_shot = true
 [node name="abilities_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("5_o4qeg")
 
-[node name="stats_n3D" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="placement_component_n3D" type="Node3D" parent="unit_sb"]
+script = ExtResource("6_bwofw")
+
+[node name="stats_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("4_g1rtt")
 
 [connection signal="input_event" from="unit_sb/ability_collision_a3D" to="unit_sb" method="on_click"]

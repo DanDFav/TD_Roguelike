@@ -1,5 +1,7 @@
 extends Node3D
 
+
+
 var row: int
 var col: int 
 @export var colour: Color
@@ -12,16 +14,20 @@ var occupied = false
 var unit_on_tile 
 
 var explored = false 
-
+var roadblocked = false 
 var exit 
+
+var is_this_exit = false
 
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
 
 func place_unit(): 
 	var unit = unit_controller.selected_unit
+	
 	if not occupied and unit != null: 
-		if unit.can_place(self):
+		var unit_place_comp = unit.get_node("placement_component_n3D")
+		if unit_place_comp.can_place(self):
 			occupied = true 
 			unit_on_tile = unit
 	else: 
@@ -31,7 +37,7 @@ func place_unit():
 func unit_dead(unit: Unit): 
 	occupied = false 
 	unit_on_tile = null
-	pass
+
 
 func _on_area_3d_mouse_entered() -> void:
 	if not occupied: 

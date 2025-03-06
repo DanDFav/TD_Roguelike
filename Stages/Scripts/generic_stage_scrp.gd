@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var map_update_controller = $map_update_controller
 @onready var child = $Specific_stage_scrp
 @onready var map 
 @onready var path
@@ -19,6 +20,9 @@ var z_pos_base := BLOCK_SIZE + 0.1 + 0.5
 var grid_index = {}
 
 var path_count = 0 
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -60,6 +64,7 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 	elif y == 3: 
 		special = exit_resource.instantiate()
 		grid_index[x*10 + z] = special
+		special.is_this_exit = true
 	
 	special.row = x
 	special.col = y
@@ -70,7 +75,8 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 	special.position = Vector3(x - centering_val_x, 0, z - centering_val_z)
 	
 	add_child(special)
-	
+	map_update_controller.subscribe(special)
+
 
 func create_new_range_block(x: int, y: int, z: int, row_inst: Node3D, length:Vector2): 
 	var range_block = ranged_block_resource.instantiate()
@@ -80,6 +86,7 @@ func create_new_range_block(x: int, y: int, z: int, row_inst: Node3D, length:Vec
 	var x_pos = x * BLOCK_SIZE - centering_val_x
 	var z_pos = z * BLOCK_SIZE - centering_val_z
 	
+	
 	range_block.row = x
 	range_block.col = z
 	
@@ -88,6 +95,7 @@ func create_new_range_block(x: int, y: int, z: int, row_inst: Node3D, length:Vec
 	grid_index[x*10 + z] = range_block
 	
 	row_inst.add_child(range_block)
+	map_update_controller.subscribe(range_block)
 	
 	
 func create_new_ground_block(x: int, y: int, z: int, row_inst: Node3D, length:Vector2): 
@@ -106,3 +114,4 @@ func create_new_ground_block(x: int, y: int, z: int, row_inst: Node3D, length:Ve
 	grid_index[x*10 + z] = ground_block
 	
 	row_inst.add_child(ground_block)
+	map_update_controller.subscribe(ground_block)

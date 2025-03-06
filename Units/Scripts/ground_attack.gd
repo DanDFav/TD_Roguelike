@@ -8,7 +8,7 @@ var enemies_in_range = []
 
 @onready var hit_timer = $Timer
 @onready var unit = get_parent()
-@onready var stats = $"../../stats_n3D"
+@onready var stats = $"../stats_n3D"
 @onready var on_hit_skills = []
 
 

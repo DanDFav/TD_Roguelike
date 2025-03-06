@@ -25,6 +25,8 @@ func _input(event):
 		unit_selected(placeable_units[3])
 	elif Input.is_action_just_pressed("five") and len(placeable_units) >= 5:
 		unit_selected(placeable_units[4])
+	elif Input.is_action_just_pressed("six") and len(placeable_units) >= 6:
+		unit_selected(placeable_units[5])
 
 func unit_selected(unit): 
 	deselect_unit()
@@ -49,7 +51,8 @@ func deselect_unit() -> void:
 	if selected_unit == null: 
 		return
 	
-	if not selected_unit.placed:
+	var selected_unit_placement_comp = selected_unit.get_node("placement_component_n3D")
+	if not selected_unit_placement_comp.placed:
 		get_tree().root.remove_child(selected_unit.get_parent())
 		selected_unit = null
 		

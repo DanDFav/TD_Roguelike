@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0g0678wep4qm"]
+[gd_scene load_steps=19 format=3 uid="uid://c0g0678wep4qm"]
 
 [ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_s1mxf"]
 [ext_resource type="Script" uid="uid://dsp3guarxm68p" path="res://Units/Scripts/range.gd" id="2_p271u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0cda1p2ydg1l" path="res://Units/Scripts/ground_attack.gd" id="3_badqk"]
 [ext_resource type="Script" uid="uid://d33pvqikj0jcq" path="res://Units/Scripts/scout_stats.gd" id="4_2egxi"]
 [ext_resource type="Script" uid="uid://xpmdjo5w1kqt" path="res://Units/Scripts/scout_abilities.gd" id="5_0utj6"]
+[ext_resource type="Script" uid="uid://cn4wc03gunwyb" path="res://Units/Scripts/placement_component_n_3d.gd" id="6_tjxoh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewodx"]
 albedo_color = Color(0.493333, 0.24, 1, 1)
@@ -126,7 +127,11 @@ one_shot = true
 [node name="abilities_n3D" type="Node3D" parent="unit_sb"]
 script = ExtResource("5_0utj6")
 
-[node name="stats_n3D" type="Node3D" parent="."]
+[node name="placement_component_n3D" type="Node3D" parent="unit_sb"]
+script = ExtResource("6_tjxoh")
+
+[node name="stats_n3D" type="Node3D" parent="unit_sb"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("4_2egxi")
 
 [connection signal="body_entered" from="unit_sb/enemy_collision_a3D" to="unit_sb" method="_on_area_3d_body_entered"]

@@ -1,0 +1,213 @@
+{
+  "main": {
+    "id": "9d1053338334a295",
+    "type": "split",
+    "children": [
+      {
+        "id": "36d0006bd5d903a7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0b8afa13031ade69",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "System Overview/Creating the Map/Images/Map Array.png"
+              },
+              "icon": "lucide-image",
+              "title": "Map Array"
+            }
+          },
+          {
+            "id": "2c16b48a8b8e06fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Other Game Notes/Emberward.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Emberward"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0d200bb1c866dcbe",
+    "type": "split",
+    "children": [
+      {
+        "id": "b536b6fbaedcd1b1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a54203d398857010",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "77f8cbc03969ff7f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d37fd8e6260f7c77",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7c5b655e47df7810",
+    "type": "split",
+    "children": [
+      {
+        "id": "4b4aed0d9fb1b456",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e67bcedca2d0a7fe",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "System Overview/Creating the Map/Creating the Map.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Creating the Map"
+            }
+          },
+          {
+            "id": "ca3cd49908ebb790",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "System Overview/Creating the Map/Creating the Map.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Creating the Map"
+            }
+          },
+          {
+            "id": "1fb956841a49e28b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "c1568379f839a61d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Game Systems.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Game Systems"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-kanban:Create new board": false
+    }
+  },
+  "active": "2c16b48a8b8e06fb",
+  "lastOpenFiles": [
+    "System Overview/Creating the Map/Images/Pasted image 20250305224514.png.import",
+    "System Overview/Creating the Map/Images/Pasted image 20250305224501.png.import",
+    "System Overview/Creating the Map/Images/Pasted image 20250305222444.png.import",
+    "System Overview/Creating the Map/Images/Pasted image 20250305222221.png.import",
+    "Welcome.md",
+    "Other Game Notes/Emberward.md",
+    "Other Game Notes",
+    "System Overview/Spawning Enemies - Start to Finish.canvas",
+    "Game Systems.md",
+    "create a link.md",
+    "System Overview/Creating the Map/Images/Pasted image 20250305222221.png",
+    "System Overview/Creating the Map/Images/Pasted image 20250305222444.png",
+    "System Overview/Creating the Map/Images/Pasted image 20250305224501.png",
+    "System Overview/Creating the Map/Images/Pasted image 20250305224514.png",
+    "System Overview/Creating the Map/Creating the Map.canvas",
+    "Pasted image 20250305222444.png.import",
+    "Pasted image 20250305222221.png.import",
+    "System Overview/Creating the Map/Images/generic stage ready func.png.import",
+    "System Overview/Creating the Map/Images/generic stage ready func.png",
+    "System Overview/Creating the Map/Images/In-game Map.png.import",
+    "System Overview/Creating the Map/Images/Map Array.png.import",
+    "System Overview/Creating the Map/Images/In-game Map.png",
+    "System Overview/Creating the Map/Images/Map Array.png",
+    "System Overview/Creating the Map/Images"
+  ]
+}

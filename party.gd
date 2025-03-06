@@ -25,6 +25,18 @@ extends Node
 					"Icon_normal": load("res://Units/Thumbnails/Healer_unit.png"), 
 					"Icon_hover": load("res://Units/Thumbnails/Healer_unit_hover.png") }, 
 	
+	"Mace_unit": {"Status": true, 
+					"Icon": null, 
+					"Instance": preload("res://Units/Scenes/mace_unit.tscn").instantiate(),
+					"Icon_normal": load("res://Units/Thumbnails/Mace_unit.png"), 
+					"Icon_hover": load("res://Units/Thumbnails/Mace_unit_hover.png") }, 
+
+	"Roadblock": {"Status": true, 
+					"Icon": null, 
+					"Instance": preload("res://Units/Scenes/roadblock.tscn").instantiate(),
+					"Icon_normal": load("res://Units/Thumbnails/roadblock.png"), 
+					"Icon_hover": load("res://Units/Thumbnails/roadblock.png") }, 
+	
 	"Mirror_summon": { 
 				"Icon": null, 
 				"Instance": preload("res://Units/Scenes/mirror.tscn"),
@@ -34,7 +46,7 @@ extends Node
 
 }
 
-var party = ["Ground_unit", "Ranged_unit", "Scout_unit", "Healer_unit"]
+var party = ["Ground_unit", "Ranged_unit", "Scout_unit", "Healer_unit", "Mace_unit", "Roadblock"]
 
 
 func add_to_party(unit): 

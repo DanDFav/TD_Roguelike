@@ -3,11 +3,11 @@ extends Node3D
 
 @onready var range = $"../range_n3D"
 @onready var timer = $Timer
-@onready var stats = $"../../stats_n3D"
+@onready var stats = $"../stats_n3D"
 @onready var parent = $".."
 var friendlies_in_range = []
 var can_heal = false 
-
+@onready var placement_comp = $"../placement_component_n3D"
 var attack_speed 
 
 func _ready() -> void:
@@ -18,7 +18,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if len(friendlies_in_range) > 0 and timer.is_stopped() and parent.placed:
+	
+	if len(friendlies_in_range) > 0 and timer.is_stopped() and placement_comp.placed:
 		timer.start()
 
 	var lowest_health = get_friend_with_least_health()

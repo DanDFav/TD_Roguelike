@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuvdiblx5sx1u"]
+[gd_scene load_steps=18 format=3 uid="uid://cuvdiblx5sx1u"]
 
 [ext_resource type="Script" uid="uid://dnqfp1b0usdc4" path="res://Units/Scripts/unit.gd" id="1_uqeh2"]
 [ext_resource type="Script" uid="uid://c1wle1sj5mwwt" path="res://Units/Scripts/healer_range.gd" id="2_sodww"]
 [ext_resource type="Script" uid="uid://btgosluetf7gh" path="res://Units/Scripts/healer_unit_stats.gd" id="3_rxbnv"]
 [ext_resource type="Script" uid="uid://83rn6qwx5mmr" path="res://Units/Scripts/heal.gd" id="4_53xyq"]
 [ext_resource type="Script" uid="uid://b73bf6dxfmvm" path="res://Units/Scripts/unit_health.gd" id="4_kvjqv"]
+[ext_resource type="Script" uid="uid://cn4wc03gunwyb" path="res://Units/Scripts/placement_component_n_3d.gd" id="5_rp6yl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhul1"]
 albedo_color = Color(0.18, 0.75, 0.2085, 1)
@@ -125,7 +126,11 @@ script = ExtResource("4_53xyq")
 wait_time = 1.75
 one_shot = true
 
-[node name="stats_n3D" type="Node3D" parent="."]
+[node name="placement_component_n3D" type="Node3D" parent="unit_sb"]
+script = ExtResource("5_rp6yl")
+
+[node name="stats_n3D" type="Node3D" parent="unit_sb"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("3_rxbnv")
 
 [connection signal="input_event" from="unit_sb/ability_collision_a3D" to="unit_sb" method="on_click"]

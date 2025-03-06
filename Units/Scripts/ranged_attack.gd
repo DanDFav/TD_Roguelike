@@ -9,7 +9,7 @@ var total_damage_dealt = 0
 
 @onready var hit_timer = $Timer
 @onready var unit = get_parent()
-@onready var stats = $"../../stats_n3D"
+@onready var stats = $"../stats_n3D"
 
 var current_enemy
 

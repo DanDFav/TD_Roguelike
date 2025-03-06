@@ -27,3 +27,7 @@ func path_found():
 	path_finished_count += 1
 	if path_finished_count == len(subscribers): 
 		enemy_start = true
+
+func map_updated(): 
+	for i in subscribers: 
+		i.map_updated()

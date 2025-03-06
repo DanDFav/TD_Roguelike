@@ -8,10 +8,12 @@ var armour
 @onready var timer = $heal_colour
 @onready var timer_wait_time = 0.35 / GameSpeed.game_speed
 
-@onready var stats = $"../../stats_n3D"
+@onready var stats = $"../stats_n3D"
 
 @onready var normal_style_box 
 @onready var heal_style_box 
+
+var hitcount = 0 # Test variable, not needed for functionality 
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -52,7 +54,8 @@ func damage_mitigation(damage) -> float:
 func take_damage(damage): 
 	var post_mitigation_damage = damage_mitigation(damage)
 	health -= post_mitigation_damage
-	
+	hitcount += 1
+	print("HitCount: ", hitcount)
 	if health <= 0: 
 		get_parent().on_death()
 	health_bar_node.value = health

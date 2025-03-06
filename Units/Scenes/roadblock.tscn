@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://3uaj5rvc4yj"]
+
+[ext_resource type="Script" uid="uid://cn4wc03gunwyb" path="res://Units/Scripts/placement_component_n_3d.gd" id="1_dul4j"]
+[ext_resource type="Script" uid="uid://1p0j6qfeq2bh" path="res://Units/Scripts/roadblock_logic.gd" id="1_xf8mp"]
+[ext_resource type="Script" uid="uid://bpqb65rippteu" path="res://Units/Scripts/roadblock_stats.gd" id="2_1qw1h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qw1h"]
+albedo_color = Color(0.23, 0.22126, 0.2208, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xf8mp"]
+material = SubResource("StandardMaterial3D_1qw1h")
+size = Vector3(0.8, 0.5, 0.8)
+
+[node name="roadblock" type="CharacterBody3D" groups=["Block", "roadblock"]]
+
+[node name="roadblock_logic" type="Node3D" parent="."]
+script = ExtResource("1_xf8mp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="roadblock_logic"]
+mesh = SubResource("BoxMesh_xf8mp")
+skeleton = NodePath("../..")
+
+[node name="placement_component_n3D" type="Node3D" parent="roadblock_logic"]
+script = ExtResource("1_dul4j")
+
+[node name="stats_n3D" type="Node3D" parent="roadblock_logic"]
+script = ExtResource("2_1qw1h")

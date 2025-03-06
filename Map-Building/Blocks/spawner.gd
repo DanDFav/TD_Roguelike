@@ -17,7 +17,7 @@ var spawn_info
 var explored = false 
 var exit
 
-
+var roadblocked = false
 var path_info = []
 var grid_index
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy8y6ilvqt7lt"]
+[gd_scene load_steps=7 format=3 uid="uid://dy8y6ilvqt7lt"]
 
 [ext_resource type="Script" uid="uid://bye7jq8xvtdl1" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_rmoja"]
 [ext_resource type="Script" uid="uid://b5602o1n7h3py" path="res://Stages/Scripts/test_stage_scrp.gd" id="2_m5qar"]
 [ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="3_2d355"]
 [ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="4_dwnba"]
-[ext_resource type="PackedScene" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
+[ext_resource type="PackedScene" uid="uid://beu43omci5qkg" path="res://Controllers/unit_display.tscn" id="5_d54r5"]
+[ext_resource type="Script" uid="uid://dfg4bhpb1plx1" path="res://Controllers/map_update_controller.gd" id="6_hl5it"]
 
 [node name="Stage" type="Node3D"]
 script = ExtResource("1_rmoja")
@@ -50,5 +51,8 @@ text = "Hello
 vertical_alignment = 2
 
 [node name="morale_timer" type="Timer" parent="morale_controller_n3D"]
+
+[node name="map_update_controller" type="Node3D" parent="."]
+script = ExtResource("6_hl5it")
 
 [connection signal="timeout" from="morale_controller_n3D/morale_timer" to="morale_controller_n3D" method="_on_morale_timer_timeout"]

@@ -3,23 +3,24 @@ class_name Unit
 
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
-@onready var morale_controller = root.get_node("morale_controller_n3D")
+#@onready var morale_controller = root.get_node("morale_controller_n3D")
 
 ## block_collision: The area3D that checks to see if enemies should be blocked by this unit
 @onready var block_collision = $enemy_collision_a3D 
-@onready var stats = $"../stats_n3D"
+@onready var stats = $stats_n3D
 @onready var health_node = $health_n3D
 @onready var clickable = $ability_collision_a3D/ability_collision_cb
 @onready var attack_node = $attack_n3D
 @onready var range_cb = $range_n3D/range_a3D/range_collision_cb
+@onready var placement_comp = $placement_component_n3D
 
-var can_be_placed ## Can be either "Ground" / "Ranged" / "None"
+#var can_be_placed ## Can be either "Ground" / "Ranged" / "None"
 var block_count
 var currently_blocking = 0
 var blocked_enemies = []
 var blocked_queue = [] ## A Queue made up of enemies who can be blocked if a currently blocked enemy is removed 
 var fixed_y: float = 1.5
-var placed = false 
+#var placed = false 
 var placed_on 
 var selected = false
 var on_place_skills = []
@@ -36,15 +37,19 @@ func _ready() -> void:
 	if stats:
 		health_node.visible = false
 		block_count = stats.block_count
-		can_be_placed = stats.can_be_placed
-		unit_cost = stats.morale_cost
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if not placed: 
-		position = get_mouse_world_position()
+func placed_func(block):
+	placed_on = block 
+	position.y = block.height 
+	global_position.x = block.global_position.x 
+	global_position.z = block.global_position.z 
+	clickable.disabled = false
+	range_cb.disabled = false
+	unit_controller.placed(stats.unit_name)
+	for skill in on_place_skills: 
+		skill.call()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -64,7 +69,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 ## [member blocked_enemies] array. Finally we increment our block count [br][br]
 ## [b] Calls: [method enemy_test.get_blocked], [method can_block_more_enemies]
 func block_enemy(enemy : Node3D): 
-	if enemy.blocked == false and placed and can_block_more_enemies() == true: 
+	if enemy.blocked == false and placement_comp.placed and can_block_more_enemies() == true: 
 		enemy.get_blocked(self)
 		blocked_enemies.append(enemy)
 		currently_blocking += enemy.block_required
@@ -79,62 +84,6 @@ func can_block_more_enemies() -> bool:
 		return true
 	return false
 
-
-
-
-
-## [b] Called by: [b] [block.place_unit] [br] [br]
-## [b] Used for: [b] If the unit hasnt been placed yet, we check the group the unit is in, then check
-## That the block it is trying to be placed on matches that group, and that we have enough morale to place it. [br] [br]
-## Returns true if can be placed, false otherwise. [br] [br]
-## [b] Calls: [b] [method morale_controller.get_morale()], [method place_unit]
-func can_place(block): 
-	if not placed: 
-		if block.is_in_group("ground_block") and can_be_placed == "ground" and morale_controller.get_morale() >= unit_cost: 
-			place_unit(block)
-			return true
-		
-		elif block.is_in_group("ranged_block") and can_be_placed == "ranged" and morale_controller.get_morale() >= unit_cost: 
-			place_unit(block)
-			return true
-	
-	return false
-
-
-
-## [b] Called by: [b] [method can_place] [br] [br]
-## [b] Used for: [b] Places the unit. Enables / Disables certain collision objects / area3d's. [br] [br]
-## [b] Calls: [b] [method morale_controller.spend_morale], [method unit_controller.placed]
-func place_unit(block): 
-	placed = true
-	
-	placed_on = block 
-	position.y = block.height 
-	global_position.x = block.global_position.x 
-	global_position.z = block.global_position.z 
-	clickable.disabled = false
-	range_cb.disabled = false
-	morale_controller.spend_morale(unit_cost)
-	
-	unit_controller.placed(stats.unit_name)
-	
-	for skill in on_place_skills: 
-		skill.call()
-
-
-func _input(event) -> void: 
-	if not placed: 
-		if event is InputEventMouseButton: 
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				self.rotate_y(-1.571 / 2.0)
-			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				self.rotate_y(1.571 / 2.0)
-		
-		if event is InputEventKey: 
-			if event.is_action_pressed("q"):
-				self.rotate_y(-1.571)
-			elif event.is_action_pressed("e"): 
-				self.rotate_y(1.571)
 
 
 ## [b] Called By: [b] [method enemy_test.on_death] [br] [br]
@@ -155,26 +104,6 @@ func notify_death(enemy):
 		currently_blocking -= enemy.block_required
 	if enemy in blocked_queue: 
 		blocked_queue.erase(enemy)
-	
-
-func get_mouse_world_position() -> Vector3:
-	var camera = get_viewport().get_camera_3d()
-	if not camera:
-		return Vector3()
-	
-	var mouse_pos = get_viewport().get_mouse_position() 
-	mouse_pos.y = get_viewport().get_mouse_position().y 
-	
-	var ray_origin = camera.project_ray_origin(mouse_pos)
-	var ray_dir = camera.project_ray_normal(mouse_pos)
-	
-	var t = (fixed_y - ray_origin.y) / ray_dir.y  
-	if t < 0:
-		return Vector3()  
-	
-	var world_pos = ray_origin + ray_dir * t
-	
-	return Vector3(world_pos.x, fixed_y, world_pos.z)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

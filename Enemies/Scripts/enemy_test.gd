@@ -33,22 +33,32 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var target_pos = Vector3(next_block.global_position.x, global_position.y , next_block.global_position.z)
-	target_pos = target_pos + random_offset
-	
-	if not blocked:
-		global_position = global_position.move_toward(target_pos, delta * SPEED * GameSpeed.game_speed)
-		if not global_position.is_equal_approx(target_pos):
-			look_at(target_pos)
+	if next_block: 
+		var target_pos = Vector3(next_block.global_position.x, global_position.y , next_block.global_position.z)
+		target_pos = target_pos + random_offset
 		
-	
-	if global_position.is_equal_approx(target_pos): 
-		next_block = next_block.exit
+		if not blocked:
+			global_position = global_position.move_toward(target_pos, delta * SPEED * GameSpeed.game_speed)
+			if not global_position.is_equal_approx(target_pos):
+				look_at(target_pos)
+			
+		
+		if global_position.is_equal_approx(target_pos): 
+			if next_block.is_this_exit: 
+				at_exit()
+			next_block = next_block.exit
+			if next_block.roadblocked: 
+				next_block = null
+		
 		#path_segment = clamp(path_segment + 1, 0, len(path) -1 )
 	
 	if blocked: 
 		attack_node.attack(blocked_by)
 
+
+func at_exit(): 
+	print("enemy exited")
+	queue_free()
 
 func get_blocked(blocker: Unit): 
 	blocked = true 
