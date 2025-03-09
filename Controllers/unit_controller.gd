@@ -12,9 +12,9 @@ var summon_placing = false
 
 @onready var unit_display = $unit_display
 
-func _ready() -> void:
-	for i in Party.util_party: 
-		placeable_units.append(i)
+#func _ready() -> void:
+	#for i in Party.util_party: 
+		#placeable_units.append(i)
 
 func _input(event):
 	if Input.is_action_just_pressed("one") and len(placeable_units) >= 1: 
@@ -31,13 +31,17 @@ func _input(event):
 		unit_selected(placeable_units[4])
 	elif Input.is_action_just_pressed("six") and len(placeable_units) >= 6:
 		unit_selected(placeable_units[5])
+	elif Input.is_action_just_pressed("seven") and len(placeable_units) >= 7:
+		unit_selected(placeable_units[6])
+	elif Input.is_action_just_pressed("eight") and len(placeable_units) >= 8:
+		unit_selected(placeable_units[7])
+	elif Input.is_action_just_pressed("nine") and len(placeable_units) >= 9:
+		unit_selected(placeable_units[8])
 
 func unit_selected(unit): 
 	deselect_unit()
-	#if unit in Party.util_party: 
-		#
-		#return 
-	selected_unit = Party.character_dictionary[unit]["Instance"]
+
+	selected_unit = Party.character_dictionary[unit]["Instance"].instantiate()
 	
 	unit_display.unit_selected(unit)
 	
@@ -48,8 +52,8 @@ func unit_selected(unit):
 
 
 func placed(unit):
-	unit_display.remove_button(unit)
 	placeable_units.erase(unit)
+	unit_display.remove_button(unit, placeable_units)
 	deselect_unit()
 	
 

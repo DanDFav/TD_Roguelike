@@ -46,9 +46,8 @@ func start_stage(grid_index):
 	for spawner in spawners: 
 		spawner.recieve_spawn_info(grid_index, spawns, null) 
 		count += 1
-	#GameStart.start_game()
 
 
 func add_utilities():
 	for i in range(roadblocks): 
-		Party.add_to_utils("Roadblock")
+		Party.add_to_party("Roadblock")

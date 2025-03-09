@@ -33,7 +33,6 @@ func _ready() -> void:
 
 
 #Get the specific map script, call a function in that script, and pass a reference to this spawner. 
-#TODO May not work with 2 spawners, might want to send more details
 func get_map_node(): 
 	spec_stage_script = get_parent().get_node("Specific_stage_scrp")
 	spec_stage_script.recieve_signal_from_spawner(self)

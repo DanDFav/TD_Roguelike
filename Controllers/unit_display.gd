@@ -13,13 +13,13 @@ func _ready() -> void:
 		var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
 		create_texture_button(unit, icon_normal, icon_selected)
 	
-	var uniques = []
-	for unit in Party.util_party:
-		if unit not in uniques: 
-			var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
-			var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
-			create_texture_button(unit, icon_normal, icon_selected)
-			uniques.append(unit) 
+	#var uniques = []
+	#for unit in Party.util_party:
+		#if unit not in uniques: 
+			#var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
+			#var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
+			#create_texture_button(unit, icon_normal, icon_selected)
+			#uniques.append(unit) 
 
 
 
@@ -40,6 +40,10 @@ func create_texture_button(unit, normal, selected):
 	hbox.add_child(button) 
 
 
+
+## TODO: BUTTON BUG: When the roadblocks are created, the button reference is stored
+## in the party dictionary, when there are 3 roadblock buttons, only one reference is 
+## stored in the dictionary 
 func unit_selected(unit): 
 	var button = Party.character_dictionary[unit]["Icon"]
 	
@@ -52,7 +56,9 @@ func deselect_buttons():
 	for i in buttons: 
 		i.button_pressed = false
 
-func remove_button(unit): 
+func remove_button(unit, party_left): 
 	var button = Party.character_dictionary[unit]["Icon"]
+	if unit in party_left: 
+		print("STILL HERE!")
 	buttons.erase(button)
 	button.queue_free()
