@@ -8,22 +8,22 @@ extends Control
 var buttons = []
 
 func _ready() -> void:
+	var uniques = []
 	for unit in Party.party: 
-		var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
-		var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
-		create_texture_button(unit, icon_normal, icon_selected)
-	
-	#var uniques = []
-	#for unit in Party.util_party:
-		#if unit not in uniques: 
-			#var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
-			#var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
-			#create_texture_button(unit, icon_normal, icon_selected)
-			#uniques.append(unit) 
+		if unit not in uniques: 
+			var icon_normal = Party.character_dictionary[unit]["Icon_normal"]
+			var icon_selected = Party.character_dictionary[unit]["Icon_hover"]
+			create_texture_button(unit, icon_normal, icon_selected, count_value(unit, Party.party))
+		uniques.append(unit)
 
+func count_value(target, arr):
+	var count = 0
+	for value in arr:
+		if value == target:
+			count += 1
+	return count
 
-
-func create_texture_button(unit, normal, selected): 
+func create_texture_button(unit, normal, selected, max_clicks): 
 	var button = TextureButton.new()
 	button.texture_normal = normal
 	button.texture_hover = selected
@@ -32,13 +32,14 @@ func create_texture_button(unit, normal, selected):
 	button.ignore_texture_size = true
 	button.toggle_mode = true
 	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-	
-	button.connect("pressed", Callable(unit_controller, "unit_selected").bind(unit))
-	
+
+	# Store the max click count and current click count inside the button
+	button.set_meta("max_clicks", max_clicks)
+	button.set_meta("current_clicks", 0)
+
 	Party.character_dictionary[unit]["Icon"] = button
 	buttons.append(button)
-	hbox.add_child(button) 
-
+	hbox.add_child(button)
 
 
 ## TODO: BUTTON BUG: When the roadblocks are created, the button reference is stored
@@ -56,9 +57,14 @@ func deselect_buttons():
 	for i in buttons: 
 		i.button_pressed = false
 
-func remove_button(unit, party_left): 
+func remove_button(unit, party_left):
 	var button = Party.character_dictionary[unit]["Icon"]
-	if unit in party_left: 
-		print("STILL HERE!")
+	var current_clicks = button.get_meta("current_clicks")
+	var max_clicks = button.get_meta("max_clicks")
+	current_clicks += 1 
+	button.set_meta("current_clicks", current_clicks)
+	if current_clicks < max_clicks:
+		return
+	
 	buttons.erase(button)
 	button.queue_free()

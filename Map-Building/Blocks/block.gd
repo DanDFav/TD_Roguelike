@@ -1,7 +1,5 @@
 extends Node3D
 
-
-
 var row: int
 var col: int 
 @export var colour: Color
@@ -15,12 +13,34 @@ var unit_on_tile
 
 var explored = false 
 var roadblocked = false 
+var roadblock_instance
 var exit 
 
 var is_this_exit = false
 
+var t_global_pos
+var north_edge 
+var south_edge 
+var east_edge 
+var west_edge 
+var edge_dict = {}
+
+var enemies_on_tile = []
+
+
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
+
+func _ready() -> void:
+	block_positions()
+	
+	pass
+
+func add_enemy_on_tile(enemy : Enemy):
+	enemies_on_tile.append(enemy)
+
+func remove_enemy_on_tile(enemy : Enemy):
+	enemies_on_tile.erase(enemy)
 
 func place_unit(): 
 	var unit = unit_controller.selected_unit
@@ -37,6 +57,11 @@ func place_unit():
 func unit_dead(unit: Unit): 
 	occupied = false 
 	unit_on_tile = null
+
+
+func destroy_roadblock(): 
+	roadblocked = false 
+	roadblock_instance = null
 
 
 func _on_area_3d_mouse_entered() -> void:
@@ -57,7 +82,15 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				place_unit()
-				
+
 
 func path_find(): 
 	ray_casts.get_neighbours()
+
+
+func block_positions(): 
+	t_global_pos = global_position
+	edge_dict["north"] = Vector3(t_global_pos.x, t_global_pos.y + 0.5, t_global_pos.z - 0.5)
+	edge_dict["south"] = Vector3(t_global_pos.x, t_global_pos.y + 0.5, t_global_pos.z + 0.5)
+	edge_dict["east"] =  Vector3(t_global_pos.x + 0.5, t_global_pos.y + 0.5, t_global_pos.z) 
+	edge_dict["west"] = Vector3(t_global_pos.x - 0.5, t_global_pos.y + 0.5, t_global_pos.z)

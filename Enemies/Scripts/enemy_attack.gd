@@ -7,8 +7,6 @@ class_name Enemy_attack
 @onready var hit_timer = $Timer
 
 
-
-
 var damage 
 var attack_speed
 
@@ -20,7 +18,7 @@ func _ready() -> void:
 	damage = stats.damage
 	attack_speed = stats.attack_speed
 	hit_timer.wait_time = attack_speed / GameSpeed.game_speed
-	game_speed_subscribe()
+
 
 
 func attack(blocker: Unit): 
@@ -35,11 +33,6 @@ func attack(blocker: Unit):
 func _on_timer_timeout() -> void:
 	can_attack = true
 
-func game_speed_subscribe(): 
-	GameSpeed.subscribe(self)
-
-func unsubscribe_game_speed():
-	GameSpeed.unsubscribe(self)
 
 func update_game_speed(val): 
 	if not hit_timer.is_stopped():

@@ -33,6 +33,10 @@ func _process(delta: float) -> void:
 func can_place(block): 
 	if not placed: 
 		if block.is_in_group("ground_block") and can_be_placed == "ground" and morale_controller.get_morale() >= unit_cost: 
+			if parent_node is Roadblock: 
+				var enemy_count = len(block.enemies_on_tile)
+				if enemy_count != 0: 
+					return false
 			place_unit(block)
 			return true
 		
@@ -67,7 +71,7 @@ func place_unit(block):
 	if parent_node is Unit: 
 		parent_node.placed_func(block)
 	elif parent_node is Roadblock: 
-		parent_node.placed_func(block)
+			parent_node.placed_func(block)
 
 func get_mouse_world_position() -> Vector3:
 	var camera = get_viewport().get_camera_3d()

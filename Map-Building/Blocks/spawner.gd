@@ -21,6 +21,8 @@ var roadblocked = false
 var path_info = []
 var grid_index
 
+var enemies_on_tile = []
+
 @onready var ray_casts := $ray_casts
 
 var enemy_resource = preload("res://Enemies/Scenes/enemy.tscn")
@@ -83,8 +85,16 @@ func spawn_enemy(enemy_type, path):
 		enemy = enemy_hulk_resource.instantiate()
 	elif enemy_type == 2: 
 		enemy = enemy_dog_resource.instantiate()
-		
+	
+	enemy.current_tile = self
 	enemy.position.y = 0.5
 	if path == -1: 
 		enemy.next_block = exit
 	add_child(enemy)
+
+
+func add_enemy_on_tile(enemy : Enemy):
+	enemies_on_tile.append(enemy)
+
+func remove_enemy_on_tile(enemy : Enemy):
+	enemies_on_tile.erase(enemy)
