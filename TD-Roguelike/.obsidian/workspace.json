@@ -35,9 +35,26 @@
               "icon": "lucide-layout-dashboard",
               "title": "Creating the Map"
             }
+          },
+          {
+            "id": "fb259374908e8d71",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "System Overview/Creating the Map/Creating the Map.canvas",
+                "viewState": {
+                  "x": 383.4779874213837,
+                  "y": 22.264150943396217,
+                  "zoom": -0.670110619409955
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Creating the Map"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -186,8 +203,12 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "2c16b48a8b8e06fb",
+  "active": "fb259374908e8d71",
   "lastOpenFiles": [
+    "System Overview/Pathfinding.md",
+    "Pasted image 20250310140200.png.import",
+    "Pasted image 20250310140200.png",
+    "Game Systems.md",
     "Other Game Notes/Emberward.md",
     "System Overview/Creating the Map/Images/Pasted image 20250305224514.png.import",
     "System Overview/Creating the Map/Images/Pasted image 20250305224501.png.import",
@@ -196,7 +217,6 @@
     "Welcome.md",
     "Other Game Notes",
     "System Overview/Spawning Enemies - Start to Finish.canvas",
-    "Game Systems.md",
     "create a link.md",
     "System Overview/Creating the Map/Images/Pasted image 20250305222221.png",
     "System Overview/Creating the Map/Images/Pasted image 20250305222444.png",
@@ -208,7 +228,6 @@
     "System Overview/Creating the Map/Images/generic stage ready func.png.import",
     "System Overview/Creating the Map/Images/generic stage ready func.png",
     "System Overview/Creating the Map/Images/In-game Map.png.import",
-    "System Overview/Creating the Map/Images/Map Array.png.import",
     "System Overview/Creating the Map/Images/In-game Map.png",
     "System Overview/Creating the Map/Images/Map Array.png"
   ]

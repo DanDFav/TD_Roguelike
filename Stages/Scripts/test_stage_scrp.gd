@@ -44,7 +44,7 @@ func recieve_signal_from_spawner(spawner):
 func start_stage(grid_index): 
 	var count = 0 
 	for spawner in spawners: 
-		spawner.recieve_spawn_info(grid_index, spawns, null) 
+		spawner.recieve_spawn_info(grid_index, spawns, paths[count]) 
 		count += 1
 
 

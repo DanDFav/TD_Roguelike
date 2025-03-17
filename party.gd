@@ -35,7 +35,7 @@ extends Node
 					"Icon": null, 
 					"Instance": preload("res://Units/Scenes/roadblock.tscn"),
 					"Icon_normal": load("res://Units/Thumbnails/roadblock.png"), 
-					"Icon_hover": load("res://Units/Thumbnails/roadblock.png") }, 
+					"Icon_hover": load("res://Units/Thumbnails/roadblock_hover.png") }, 
 	
 	"Mirror_summon": { 
 				"Icon": null, 
@@ -46,16 +46,9 @@ extends Node
 }
 
 var party = ["Ground_unit", "Ranged_unit", "Scout_unit", "Healer_unit", "Mace_unit"]
-#var util_party = []
 
 func add_to_party(unit): 
 	party.append(unit)
 
 func remove_from_party(unit):
 	party.erase(unit)
-
-#func add_to_utils(util): 
-	#util_party.append(util)
-#
-#func remove_from_utils(util): 
-	#util_party.erase(util)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1dv4gwj0yawp"]
+[gd_scene load_steps=9 format=3 uid="uid://c1dv4gwj0yawp"]
 
 [ext_resource type="Script" uid="uid://xxpsj4x80i58" path="res://Map-Building/Blocks/spawner.gd" id="1_p58gp"]
 [ext_resource type="Script" uid="uid://byltcfb2b6egn" path="res://Map-Building/Blocks/block_ray_casts.gd" id="2_6nvpf"]
+[ext_resource type="Script" uid="uid://1veewtkogm7i" path="res://Map-Building/Blocks/path_find_start.gd" id="3_wg7tt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi6tx"]
 albedo_color = Color(0.406549, 0.705379, 0.90368, 1)
@@ -57,3 +58,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_fll52")
+
+[node name="path_find_start" type="Node3D" parent="."]
+script = ExtResource("3_wg7tt")

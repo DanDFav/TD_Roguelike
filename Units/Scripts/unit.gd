@@ -53,11 +53,11 @@ func placed_func(block):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("enemy") and currently_blocking < block_count: 
+	if body.is_in_group("enemy"): 
 		block_enemy(body)
 
-	elif body.is_in_group("enemy") and currently_blocking >= block_count: 
-		blocked_queue.append(body)
+	#elif body.is_in_group("enemy") and currently_blocking >= block_count: 
+		#blocked_queue.append(body)
 
 
 
@@ -69,18 +69,21 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 ## [member blocked_enemies] array. Finally we increment our block count [br][br]
 ## [b] Calls: [method enemy_test.get_blocked], [method can_block_more_enemies]
 func block_enemy(enemy : Node3D): 
+	if enemy == null: return
+	
 	if enemy.blocked == false and placement_comp.placed and can_block_more_enemies() == true: 
 		enemy.get_blocked(self)
 		blocked_enemies.append(enemy)
 		currently_blocking += enemy.block_required
-
+	else: 
+		blocked_queue.append(enemy)
 
 
 
 ## [b] Called by: [b] [method block_enemy] [br] [br]
 ## [b] Used for: [b] Checks if it can block any more enemies
 func can_block_more_enemies() -> bool: 
-	if currently_blocking <= block_count: 
+	if currently_blocking < block_count: 
 		return true
 	return false
 
@@ -102,6 +105,7 @@ func notify_death(enemy):
 	if enemy in blocked_enemies:
 		blocked_enemies.erase(enemy)
 		currently_blocking -= enemy.block_required
+		block_enemy(blocked_queue.pop_front())
 	if enemy in blocked_queue: 
 		blocked_queue.erase(enemy)
 

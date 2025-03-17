@@ -17,7 +17,7 @@ func _ready() -> void:
 	if stats:
 		can_be_placed = stats.can_be_placed
 		unit_cost = stats.morale_cost
-		
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,11 +37,11 @@ func can_place(block):
 				var enemy_count = len(block.enemies_on_tile)
 				if enemy_count != 0: 
 					return false
-			place_unit(block)
+			#place_unit(block)
 			return true
 		
 		elif block.is_in_group("ranged_block") and can_be_placed == "ranged" and morale_controller.get_morale() >= unit_cost: 
-			place_unit(block)
+			#place_unit(block)
 			return true
 	
 	return false

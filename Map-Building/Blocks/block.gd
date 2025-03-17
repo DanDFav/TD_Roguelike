@@ -1,7 +1,8 @@
 extends Node3D
 
-var row: int
-var col: int 
+@export var row: int
+@export var col: int 
+
 @export var colour: Color
 @export var height: float
 
@@ -14,16 +15,15 @@ var unit_on_tile
 var explored = false 
 var roadblocked = false 
 var roadblock_instance
-var exit 
+var next_block 
+@export var is_exit = false 
 
-var is_this_exit = false
+
 
 var t_global_pos
-var north_edge 
-var south_edge 
-var east_edge 
-var west_edge 
 var edge_dict = {}
+
+var mouse_inside = false
 
 var enemies_on_tile = []
 
@@ -36,20 +36,32 @@ func _ready() -> void:
 	
 	pass
 
+func _process(delta: float) -> void:
+	if mouse_inside: 
+		var on_hover_mat = StandardMaterial3D.new()
+		on_hover_mat.albedo_color = Color("e8af7e")
+		mesh.material_override = on_hover_mat
+		var unit = unit_controller.selected_unit
+		if unit:
+			var unit_place_comp = unit.get_node("placement_component_n3D")
+			if not unit_place_comp.can_place(self):
+				on_hover_mat.albedo_color = Color("e85869")
+			else: 
+				on_hover_mat.albedo_color = Color("58e894")
+
 func add_enemy_on_tile(enemy : Enemy):
 	enemies_on_tile.append(enemy)
 
 func remove_enemy_on_tile(enemy : Enemy):
 	enemies_on_tile.erase(enemy)
 
-func place_unit(): 
-	var unit = unit_controller.selected_unit
-	
+func place_unit(unit): 
 	if not occupied and unit != null: 
 		var unit_place_comp = unit.get_node("placement_component_n3D")
 		if unit_place_comp.can_place(self):
 			occupied = true 
 			unit_on_tile = unit
+			unit_place_comp.place_unit(self)
 	else: 
 		print("This tile is occupied")
 
@@ -66,12 +78,10 @@ func destroy_roadblock():
 
 func _on_area_3d_mouse_entered() -> void:
 	if not occupied: 
-		var on_hover_mat = StandardMaterial3D.new()
-		on_hover_mat.albedo_color = Color("e8af7e")
-		mesh.material_override = on_hover_mat
-
+		mouse_inside = true
 
 func _on_area_3d_mouse_exited() -> void:
+	mouse_inside = false
 	var normal_mat = StandardMaterial3D.new()
 	normal_mat.albedo_color = colour
 	mesh.material_override = normal_mat
@@ -80,8 +90,11 @@ func _on_area_3d_mouse_exited() -> void:
 func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				place_unit()
+			var unit = unit_controller.selected_unit
+			if unit: 
+				var unit_place_comp = unit.get_node("placement_component_n3D")
+				if event.pressed and unit_place_comp.can_place(self):
+					place_unit(unit)
 
 
 func path_find(): 

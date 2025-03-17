@@ -4,6 +4,8 @@ extends Node3D
 
 var unit_controller
 @onready var root = get_tree().root.get_node("Stage")
+var placement_comp 
+
 
 func _ready() -> void:
 	unit_controller = root.get_node("Unit_controller")
@@ -14,13 +16,14 @@ func passive_skill_two():
 	mirror.get_node("unit_sb").parent_summon = unit
 	Party.character_dictionary['Mirror_summon']["Instance"] = mirror
 	unit_controller.add_summon('Mirror_summon')
+	placement_comp = mirror.get_child(0).get_node("placement_component_n3D")
 
 
 func _range_entered_mirror_skill(area: Area3D) -> void:
 	if area.is_in_group("mirror"):
-		area.get_parent().can_be_placed = "ranged"
+		placement_comp.can_be_placed = "ranged"
 
 
 func _range_exited_mirror_skill(area: Area3D) -> void:
 	if area.is_in_group("mirror"):
-		area.get_parent().can_be_placed = "none"
+		placement_comp.can_be_placed = "none"

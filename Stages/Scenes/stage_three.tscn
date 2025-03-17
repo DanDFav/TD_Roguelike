@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc4uix2sutr58"]
+
+[ext_resource type="Script" uid="uid://bye7jq8xvtdl1" path="res://Stages/Scripts/generic_stage_scrp.gd" id="1_itpnx"]
+[ext_resource type="Script" uid="uid://by2tb1jwinkm0" path="res://Stages/Scripts/stage_three.gd" id="2_itpnx"]
+[ext_resource type="Script" uid="uid://ciwcikn2ha6b5" path="res://Controllers/unit_controller.gd" id="3_3d4iy"]
+[ext_resource type="PackedScene" uid="uid://beu43omci5qkg" path="res://Controllers/unit_display.tscn" id="4_woo2x"]
+[ext_resource type="Script" uid="uid://c1om0wmppiliv" path="res://Controllers/morale_controller.gd" id="5_mkeuw"]
+[ext_resource type="Script" uid="uid://dfg4bhpb1plx1" path="res://Controllers/map_update_controller.gd" id="6_vqeiv"]
+
+[node name="Stage" type="Node3D"]
+script = ExtResource("1_itpnx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.51049e-05, -0.000186612, 0.000182977, 0.518177, 0.855274, 5.81212e-05, -0.855274, 0.518177, 1.68014, 7.46656, 6.73396)
+current = true
+fov = 50.0
+size = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.454706, 0.890642, 0, -0.890642, 0.454706, 0, 6.22326, 3.62413)
+light_energy = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 2.019
+
+[node name="Specific_stage_scrp" type="Node3D" parent="."]
+script = ExtResource("2_itpnx")
+
+[node name="Unit_controller" type="Node3D" parent="."]
+script = ExtResource("3_3d4iy")
+
+[node name="unit_display" parent="Unit_controller" instance=ExtResource("4_woo2x")]
+
+[node name="morale_controller_n3D" type="Node3D" parent="."]
+script = ExtResource("5_mkeuw")
+
+[node name="display_morale_l" type="Label" parent="morale_controller_n3D"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = -210.0
+offset_right = 592.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Hello
+
+"
+vertical_alignment = 2
+
+[node name="morale_timer" type="Timer" parent="morale_controller_n3D"]
+
+[node name="map_update_controller" type="Node3D" parent="."]
+script = ExtResource("6_vqeiv")
+
+[connection signal="timeout" from="morale_controller_n3D/morale_timer" to="morale_controller_n3D" method="_on_morale_timer_timeout"]

@@ -32,8 +32,8 @@ func create_texture_button(unit, normal, selected, max_clicks):
 	button.ignore_texture_size = true
 	button.toggle_mode = true
 	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-
-	# Store the max click count and current click count inside the button
+	button.connect("pressed", Callable(unit_controller, "unit_selected").bind(unit))
+	
 	button.set_meta("max_clicks", max_clicks)
 	button.set_meta("current_clicks", 0)
 
@@ -66,5 +66,6 @@ func remove_button(unit, party_left):
 	if current_clicks < max_clicks:
 		return
 	
+	unit_controller.remove_unit_from_placeable(unit)
 	buttons.erase(button)
 	button.queue_free()

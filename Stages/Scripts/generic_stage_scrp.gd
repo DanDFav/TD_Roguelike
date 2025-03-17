@@ -21,16 +21,31 @@ var grid_index = {}
 
 var path_count = 0 
 
-
+var spawners = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	map = child.map
+	#map = child.map
 	path = child.paths
+	#create_map()
+	start_stage(grid_index)
 	
-	create_map()
-	child.start_stage(grid_index)
+
+
+func start_stage(grid_index): 
+	await get_tree().process_frame
+	var count = 0 
+	
+	#for spawner in spawners: 
+		#var index 
+		#var size = child.paths.size()
+		#if count < size:
+			#index = child.paths[count]
+		#spawner.recieve_spawn_info(grid_index, child.spawns, index) 
+		#count += 1
+	
+	#GameStart.start_game()
 
 func create_map(): 
 	var center_block = find_center_block()
@@ -49,6 +64,7 @@ func create_map():
 				create_new_special(z, block_type, x, center_block)
 	
 
+
 func find_center_block():
 	var x_mid = len(map) / 2
 	var z_mid = len(map[0]) / 2
@@ -60,14 +76,15 @@ func create_new_special(x: int, y: int, z:int, length: Vector2):
 	if y == 2: 
 		special = spawner_resource.instantiate()
 		special.path_number = path_count
+		spawners.append(special)
 		path_count += 1 
 	elif y == 3: 
 		special = exit_resource.instantiate()
 		grid_index[x*10 + z] = special
-		special.is_this_exit = true
+		special.is_exit = true
 	
 	special.row = x
-	special.col = y
+	special.col = z
 	
 	var centering_val_x = length.y / 2
 	var centering_val_z = length.x / 2

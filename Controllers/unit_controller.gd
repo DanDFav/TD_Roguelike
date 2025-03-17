@@ -12,49 +12,41 @@ var summon_placing = false
 
 @onready var unit_display = $unit_display
 
-#func _ready() -> void:
-	#for i in Party.util_party: 
-		#placeable_units.append(i)
+func _ready() -> void:
+	placeable_units = remove_duplicates(placeable_units)
 
 func _input(event):
-	if Input.is_action_just_pressed("one") and len(placeable_units) >= 1: 
-		unit_selected(placeable_units[0])
-	elif Input.is_action_just_pressed("two") and len(placeable_units) >= 2:
-		unit_selected(placeable_units[1])
-	elif Input.is_action_just_pressed("three") and len(placeable_units) >= 3:
-		unit_selected(placeable_units[2])
-	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
-		deselect_unit()
-	elif Input.is_action_just_pressed("four") and len(placeable_units) >= 4:
-		unit_selected(placeable_units[3])
-	elif Input.is_action_just_pressed("five") and len(placeable_units) >= 5:
-		unit_selected(placeable_units[4])
-	elif Input.is_action_just_pressed("six") and len(placeable_units) >= 6:
-		unit_selected(placeable_units[5])
-	elif Input.is_action_just_pressed("seven") and len(placeable_units) >= 7:
-		unit_selected(placeable_units[6])
-	elif Input.is_action_just_pressed("eight") and len(placeable_units) >= 8:
-		unit_selected(placeable_units[7])
-	elif Input.is_action_just_pressed("nine") and len(placeable_units) >= 9:
-		unit_selected(placeable_units[8])
+	if event: 
+		for i in range(9):
+			if Input.is_action_just_pressed(str(i + 1)) and len(placeable_units) > i:
+				unit_selected(placeable_units[i])
+				return  
+		
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			deselect_unit()
+
 
 func unit_selected(unit): 
 	deselect_unit()
+	var instance = Party.character_dictionary[unit]["Instance"]
+	selected_unit = instance
+	if instance is PackedScene: 
+		selected_unit = selected_unit.instantiate()
 
-	selected_unit = Party.character_dictionary[unit]["Instance"].instantiate()
-	
 	unit_display.unit_selected(unit)
 	
-	print(selected_unit)
 	if selected_unit != null: 
 		get_tree().root.add_child(selected_unit)
 		selected_unit = selected_unit.get_child(0)
 
 
 func placed(unit):
-	placeable_units.erase(unit)
 	unit_display.remove_button(unit, placeable_units)
 	deselect_unit()
+	selected_unit = null
+
+func remove_unit_from_placeable(unit): 
+	placeable_units.erase(unit)
 	
 
 func deselect_unit() -> void: 
@@ -72,4 +64,12 @@ func add_summon(summon):
 	placeable_units.append(summon)
 	var icon_normal = Party.character_dictionary[summon]['Icon_normal']
 	var icon_selected = Party.character_dictionary[summon]['Icon_hover']
-	unit_display.create_texture_button(summon, icon_normal, icon_selected)
+	unit_display.create_texture_button(summon, icon_normal, icon_selected, 1)
+
+
+func remove_duplicates(array):
+	var new_array = []
+	for item in array:
+		if item not in new_array:
+			new_array.append(item)
+	return new_array

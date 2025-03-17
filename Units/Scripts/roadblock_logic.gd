@@ -38,3 +38,15 @@ func destroy():
 		enemy.unroadblock()
 	
 	get_parent().queue_free()
+
+
+func cant_place() -> void:
+	var on_hover_mat = StandardMaterial3D.new()
+	on_hover_mat.albedo_color = Color(0.8,0,0)
+	$MeshInstance3D.material_override = on_hover_mat
+
+
+func can_place() -> void:
+	var normal_mat = StandardMaterial3D.new()
+	normal_mat.albedo_color = Color("3b3838")
+	$MeshInstance3D.material_override = normal_mat

@@ -31,3 +31,5 @@ func start_stage(grid_index):
 	for spawner in spawners: 
 		spawner.recieve_spawn_info(grid_index, spawns, paths[count]) 
 		count += 1
+	
+	GameStart.start_game()

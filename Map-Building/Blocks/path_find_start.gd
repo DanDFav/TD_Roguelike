@@ -9,8 +9,9 @@ func _ready() -> void:
 	print("Subbed")
 
 func self_find_path(): 
-	var path_found = ray_casts.find_path_to_spawner()
-	return path_found
+	#var path_found = ray_casts.find_path_to_spawner()
+	ray_casts.build_map()
+	#return path_found
 	
 func notify_game_start(): 
 	print("CALLED")

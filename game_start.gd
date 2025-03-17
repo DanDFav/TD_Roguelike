@@ -11,7 +11,6 @@ extends Node
 func start_game(): 
 	if not started: 
 		started = true 
-		print("Notifying")
 		for i in subscribers: 
 			i.notify_game_start()
 

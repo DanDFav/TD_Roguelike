@@ -81,7 +81,7 @@ func movement(delta: float):
 	
 	
 	if global_position.is_equal_approx(target_pos): 
-		if next_block.is_this_exit: 
+		if next_block.is_exit: 
 			at_exit()
 			return
 		
@@ -107,10 +107,7 @@ func get_self_pos_relative_to_block():
 	var selected 
 	for entry in next_block_edge_dict: 
 		var distance = abs(self_current_pos - next_block_edge_dict[entry])
-		if closest == null: 
-			closest = distance
-			selected = entry
-		elif distance < closest: 
+		if closest == null or distance < closest:  
 			closest = distance
 			selected = entry
 	next_block_entry = selected
