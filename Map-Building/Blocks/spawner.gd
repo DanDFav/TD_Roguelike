@@ -5,7 +5,7 @@ class_name Spawner
 var row: int
 var col: int
 
-var path_number : int
+@export var path_number : int
 
 var time = 0
 var path_ready = false
@@ -19,6 +19,8 @@ var is_exit = false
 var roadblocked = false
 var path_info = []
 var grid_index
+
+var path_lists = {}
 
 var enemies_on_tile = []
 
@@ -42,9 +44,12 @@ func _process(delta: float) -> void:
 					spawn_info.erase(i) 
 
 
+func add_path_entry(path, next_block): 
+	path_lists[path] = next_block
+
 #Is called by the specific stage script, sets some variables 
 func recieve_spawn_info(grid_data, spawns, path):
-	#spawn_ready = true
+	spawn_ready = true
 	spawn_info = spawns
 	grid_index = grid_data 
 	if path != null: 
@@ -73,8 +78,12 @@ func spawn_enemy(enemy_type, path):
 	
 	enemy.current_tile = self
 	enemy.position.y = 0.5
-	if path == -1: 
-		enemy.next_block = next_block
+	if path == 1: 
+		enemy.next_block = path_lists["path_one"]
+		enemy.path = "path_one"
+	elif path == 2: 
+		enemy.next_block = path_lists["path_two"]
+		enemy.path = "path_two"
 	add_child(enemy)
 
 

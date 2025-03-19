@@ -1,8 +1,10 @@
 extends Node3D
 
 
+@export var vis_layer  = -1
+@export var self_layer = -1
+
 var path_list = []
-var finished = false
 
 func append_path(node):
 	path_list.append(node)
@@ -17,17 +19,20 @@ func _ready() -> void:
 
 
 func finished_dist(): 
-	finished = true
 	distribute_percent()
 
 func distribute_percent(): 
 	var count = 0
 	var length = len(path_list)
+	var xyz = self.name
 	for i in length:
 		var path_node = path_list[i][0] 
 		var block = path_list[i][1]
+		
 		if count < len(path_list) - 1: 
-			block.next_block = path_list[count + 1][0]
+			#add_path_entry(path, next_block): 
+			block.add_path_entry(self.name, path_list[count+1][1])
+			#block.next_block = path_list[count + 1][1]
 		if path_node: 
 			path_node.percent_start = float(count) / float(length) 
 			path_node.percent_end = float(count + 1) / float(length) 

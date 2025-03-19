@@ -18,34 +18,29 @@ var x_pos_base := BLOCK_SIZE - 0.1 + 0.5
 var z_pos_base := BLOCK_SIZE + 0.1 + 0.5
 
 var grid_index = {}
-
 var path_count = 0 
-
 var spawners = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#map = child.map
-	path = child.paths
-	#create_map()
+	spawners = child.spawners
 	start_stage(grid_index)
-	
 
 
 func start_stage(grid_index): 
 	await get_tree().process_frame
 	var count = 0 
 	
-	#for spawner in spawners: 
-		#var index 
-		#var size = child.paths.size()
-		#if count < size:
-			#index = child.paths[count]
-		#spawner.recieve_spawn_info(grid_index, child.spawns, index) 
-		#count += 1
+	for spawner in child.spawners: 
+		var index 
+		var size = child.paths.size()
+		if count < size:
+			index = child.paths[count]
+		spawner.recieve_spawn_info(grid_index, child.spawns, index) 
+		count += 1
 	
-	#GameStart.start_game()
+	GameStart.start_game()
 
 func create_map(): 
 	var center_block = find_center_block()

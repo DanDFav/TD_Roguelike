@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dpydux1qlsjfo" path="res://Map-Building/Blocks/exit.tscn" id="5_hxq7g"]
 [ext_resource type="Script" uid="uid://dfg4bhpb1plx1" path="res://Controllers/map_update_controller.gd" id="6_hl5it"]
 [ext_resource type="PackedScene" uid="uid://by00q8ekwymdn" path="res://Map-Building/Blocks/ranged_block.tscn" id="6_teqsf"]
-[ext_resource type="Script" uid="uid://c3ycdpm6r5ysd" path="res://Stages/Scenes/path_one.gd" id="7_l0wo4"]
+[ext_resource type="Script" uid="uid://c3ycdpm6r5ysd" path="res://Map-Building/path.gd" id="7_l0wo4"]
 [ext_resource type="PackedScene" uid="uid://bn1tpawatsvp7" path="res://Map-Building/path_node.tscn" id="8_hxq7g"]
 
 [node name="Stage" type="Node3D"]
@@ -269,6 +269,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
 
 [node name="path_one" type="Node3D" parent="Specific_stage_scrp/Paths"]
 script = ExtResource("7_l0wo4")
+vis_layer = 1
+self_layer = 1
 
 [node name="Node3D" parent="Specific_stage_scrp/Paths/path_one" instance=ExtResource("8_hxq7g")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)

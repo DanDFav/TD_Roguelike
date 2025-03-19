@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
-#var path = []
+var path 
 #var path_segment = 0
 var blocked = false 
 var blocked_by
@@ -86,7 +86,7 @@ func movement(delta: float):
 			return
 		
 		if not to_edge: 
-			next_block = next_block.exit
+			next_block = next_block.path_lists[path]
 		else: 
 			current_tile.remove_enemy_on_tile(self)
 			current_tile = next_block

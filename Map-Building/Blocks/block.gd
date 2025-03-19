@@ -27,14 +27,14 @@ var mouse_inside = false
 
 var enemies_on_tile = []
 
+var path_lists = {}
+
 
 @onready var root = get_tree().root.get_node("Stage")
 @onready var unit_controller = root.get_node("Unit_controller")
 
 func _ready() -> void:
 	block_positions()
-	
-	pass
 
 func _process(delta: float) -> void:
 	if mouse_inside: 
@@ -99,6 +99,11 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 
 func path_find(): 
 	ray_casts.get_neighbours()
+
+
+func add_path_entry(path, next_block): 
+	path_lists[path] = next_block
+	pass
 
 
 func block_positions(): 
