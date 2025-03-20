@@ -21,6 +21,8 @@ func _ready() -> void:
 func finished_dist(): 
 	distribute_percent()
 
+
+## TODO: Rewrite this section to just handle distributing percents, i think we can handle the other stuff elsewhere 
 func distribute_percent(): 
 	var count = 0
 	var length = len(path_list)

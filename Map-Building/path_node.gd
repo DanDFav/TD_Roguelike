@@ -57,9 +57,10 @@ func build_new_path(new_path, path):
 			rotate_node(first_block.path_node[path], direction)
 			first_block.path_next_block[path] = next_block
 			first_block = next_block 
-			create_new_node(next_block, path)
+			if not next_block.path_node.has(path):  
+				create_new_node(next_block, path)
 		
-	#distribute_self()
+	#get_parent().distribute_self()s
 
 func create_new_node(block, path): 
 	var new_path_node = path_node_resource.instantiate()
