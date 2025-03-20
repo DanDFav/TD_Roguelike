@@ -31,9 +31,10 @@ func distribute_percent():
 		
 		if count < len(path_list) - 1: 
 			#add_path_entry(path, next_block): 
-			block.add_path_entry(self.name, path_list[count+1][1])
+			block.add_path_entry(self.name, path_list[count+1][1], path_list, count, path_node)
 			#block.next_block = path_list[count + 1][1]
 		if path_node: 
 			path_node.percent_start = float(count) / float(length) 
 			path_node.percent_end = float(count + 1) / float(length) 
+			path_node.path_position = count
 			count += 1

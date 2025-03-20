@@ -14,14 +14,16 @@ var map := [
 #[0] = enemy_type
 #[1] = time 
 #[2] = path 
-var spawns = [[0, 1.0, 0, -1], [0, 3.0, 1, -1], [0, 5.0, 0, -1], [0, 7.0, 1, -1], [2, 14.0, 0, -1], [0, 16.0, 1, -1], [0, 16.0, 0, -1], [0, 17.0, 1, -1], [0, 17.0, 0, -1]]
-#var spawns
-var spawners = []
+var spawns = [[0, 1.0, 0, 1], [0, 6.0, 0, 1]]
+
+@onready var spawners = [$blocks/Spawner]
 var starting_morale = 15
-var paths = [[Vector2(5,2), Vector2(5,3), Vector2(5,4), Vector2(5,5), Vector2(4,5), Vector2(3,5), Vector2(2,5), Vector2(1,5), Vector2(1,4), Vector2(1,3), Vector2(2,3), Vector2(3,3),],  
-			 [Vector2(7,2), Vector2(7,3), Vector2(7,4), Vector2(7,5), Vector2(6,5), Vector2(5,5), Vector2(4,5), Vector2(3,5), Vector2(2,5), Vector2(1,5), Vector2(1,4), Vector2(1,3), Vector2(2,3), Vector2(3,3), ]]
+var paths = [[]]
 
+var roadblocks = 3
 
+func _ready() -> void:
+	add_utilities()
 
 func recieve_signal_from_spawner(spawner):
 	spawners.append(spawner)
@@ -33,3 +35,7 @@ func start_stage(grid_index):
 		count += 1
 	
 	GameStart.start_game()
+	
+func add_utilities():
+	for i in range(roadblocks): 
+		Party.add_to_party("Roadblock")

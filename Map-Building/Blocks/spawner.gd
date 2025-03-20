@@ -20,9 +20,13 @@ var roadblocked = false
 var path_info = []
 var grid_index
 
-var path_lists = {}
+var path_next_block = {}
+var complete_paths = {}
+var path_position = {}
+var path_node = {}
 
 var enemies_on_tile = []
+
 
 @onready var ray_casts := $ray_casts
 
@@ -44,30 +48,35 @@ func _process(delta: float) -> void:
 					spawn_info.erase(i) 
 
 
-func add_path_entry(path, next_block): 
-	path_lists[path] = next_block
+func add_path_entry(path, next_block, complete_path, path_pos, path_node_p): 
+	path_next_block[path] = next_block
+	complete_paths[path] = complete_path
+	path_position[path] = path_pos
+	path_node[path] = path_node_p
 
 #Is called by the specific stage script, sets some variables 
 func recieve_spawn_info(grid_data, spawns, path):
 	spawn_ready = true
 	spawn_info = spawns
 	grid_index = grid_data 
-	if path != null: 
-		path_info = translate_path(path)
+	#if path != null: 
+		#path_info = translate_path(path)
 
 
 #Takes in a list of path Vector2(x,y), and translates them into a dictionary key 
 #E.g. Vector(4,1) becomes { "41": objectA }
-func translate_path(path_data): 
-	var path = [] 
-	for i in path_data: 
-		var idx: int 
-		idx = i.x * 10 + i.y
-		path.append(grid_index[idx])
-	return path
+#func translate_path(path_data): 
+	#var path = [] 
+	#for i in path_data: 
+		#var idx: int 
+		#idx = i.x * 10 + i.y
+		#path.append(grid_index[idx])
+	#return path
 
 #Spawns an enemy, and sets its path 
 func spawn_enemy(enemy_type, path): 
+	#if path_number == 0: 
+		#print("ERROR: PATH NUMBER EXPORT NOT SET")
 	var enemy : Enemy
 	if enemy_type == 0: 
 		enemy = enemy_resource.instantiate()
@@ -79,10 +88,10 @@ func spawn_enemy(enemy_type, path):
 	enemy.current_tile = self
 	enemy.position.y = 0.5
 	if path == 1: 
-		enemy.next_block = path_lists["path_one"]
+		enemy.next_block = path_next_block["path_one"]
 		enemy.path = "path_one"
 	elif path == 2: 
-		enemy.next_block = path_lists["path_two"]
+		enemy.next_block = path_next_block["path_two"]
 		enemy.path = "path_two"
 	add_child(enemy)
 

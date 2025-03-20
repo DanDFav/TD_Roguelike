@@ -170,27 +170,41 @@ self_layer = 1
 [node name="path_node" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 start = true
+end = null
 
 [node name="path_node2" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+start = null
+end = null
 
 [node name="path_node3" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+start = null
+end = null
 
 [node name="path_node4" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+start = null
+end = null
 
 [node name="path_node5" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+start = null
+end = null
 
 [node name="path_node6" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+start = null
+end = null
 
 [node name="path_node7" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+start = null
+end = null
 
 [node name="path_node8" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("7_02em8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+start = null
 end = true
 
 [node name="Unit_controller" type="Node3D" parent="."]

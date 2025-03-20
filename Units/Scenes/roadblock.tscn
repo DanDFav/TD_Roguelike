@@ -25,3 +25,37 @@ script = ExtResource("1_dul4j")
 
 [node name="stats_n3D" type="Node3D" parent="roadblock_logic"]
 script = ExtResource("2_1qw1h")
+
+[node name="neighbours" type="Node3D" parent="roadblock_logic"]
+
+[node name="top_left" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.224749, -1)
+collision_mask = 16
+
+[node name="top_middle" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224749, -1)
+collision_mask = 16
+
+[node name="top_right" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.224749, -1)
+collision_mask = 16
+
+[node name="middle_left" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.224749, 0)
+collision_mask = 16
+
+[node name="middle_right" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.224749, 0)
+collision_mask = 16
+
+[node name="bottom_left" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.224749, 1)
+collision_mask = 16
+
+[node name="bottom_middle" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224749, 1)
+collision_mask = 16
+
+[node name="bottom_right" type="RayCast3D" parent="roadblock_logic/neighbours"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.224749, 1)
+collision_mask = 16

@@ -58,6 +58,45 @@ func not_completed():
 	
 	return false 
 
+
+func find_closest_path_to_exit(): 
+	print("Starting")
+	var queue = []
+	var visited = {}
+	var came_from = {}
+	
+	queue.append(self)
+	visited[self] = true
+	came_from[self] = null
+	
+	while len(queue) != 0: 
+		var current = queue.pop_front()
+		var block = current.get_parent()
+		if block.is_exit == true: 
+			return reconstruct_path(came_from, current) 
+		
+		for neighbour in map[block]: 
+			var neighbour_ray = neighbour.get_node("ray_casts")
+			if neighbour_ray not in visited and neighbour.roadblocked == false: 
+				queue.append(neighbour_ray)
+				visited[neighbour_ray] = true
+				came_from[neighbour_ray] = current
+	
+	print("no path found")
+	return null
+
+func reconstruct_path(came_from, exit): 
+	var path = []
+	var current = exit
+	while current != null: 
+		path.append(current.get_parent())
+		current = came_from[current]
+	path.reverse()
+	for i in path: 
+		change_mat(i, Color(0, 1, 0))
+		print(i.name)
+	return path
+	
 #func find_path_to_spawner():
 	#var queue = []
 	#var visited = {}
@@ -129,10 +168,10 @@ func not_completed():
 		##change_mat(current, Color(0, 1, 0))  # Green for the optimal path
 		#current = previous
 #
-#func change_mat(node, colour): 
-	#var material = StandardMaterial3D.new()
-	#material.albedo_color = colour
-	#
-	#var mesh = node.get_node("MeshInstance3D")
-	#if mesh: 
-		#mesh.set_surface_override_material(0, material)
+func change_mat(node, colour): 
+	var material = StandardMaterial3D.new()
+	material.albedo_color = colour
+	
+	var mesh = node.get_parent().get_node("MeshInstance3D")
+	if mesh: 
+		mesh.set_surface_override_material(0, material)
