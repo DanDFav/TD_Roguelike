@@ -40,17 +40,14 @@
             "id": "fb259374908e8d71",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "System Overview/Creating the Map/Creating the Map.canvas",
-                "viewState": {
-                  "x": 383.4779874213837,
-                  "y": 22.264150943396217,
-                  "zoom": -0.670110619409955
-                }
+                "file": "System Overview/Broken State.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Creating the Map"
+              "icon": "lucide-file",
+              "title": "Broken State"
             }
           }
         ],
@@ -205,30 +202,34 @@
   },
   "active": "fb259374908e8d71",
   "lastOpenFiles": [
+    "Pasted image 20250326180705.png.import",
+    "Pasted image 20250326180705.png",
+    "Pasted image 20250326172158.png.import",
+    "Pasted image 20250326172158.png",
+    "Pasted image 20250326140447.png.import",
+    "Pasted image 20250326140447.png",
+    "Pasted image 20250326140437.png.import",
+    "Pasted image 20250326140437.png",
+    "Pasted image 20250325220738.png.import",
+    "Pasted image 20250325220738.png",
+    "Pasted image 20250325214832.png.import",
+    "Pasted image 20250325214608.png.import",
+    "Pasted image 20250325214632.png.import",
+    "Pasted image 20250325214839.png.import",
+    "Pasted image 20250325214837.png.import",
+    "Pasted image 20250325214839.png",
+    "Pasted image 20250325214837.png",
+    "Pasted image 20250325214832.png",
+    "Pasted image 20250325214632.png",
+    "Pasted image 20250325214608.png",
+    "System Overview/Creating the Map/Creating the Map.canvas",
+    "System Overview/Broken State.md",
     "System Overview/Pathfinding.md",
     "Pasted image 20250310140200.png.import",
-    "Pasted image 20250310140200.png",
     "Game Systems.md",
     "Other Game Notes/Emberward.md",
-    "System Overview/Creating the Map/Images/Pasted image 20250305224514.png.import",
-    "System Overview/Creating the Map/Images/Pasted image 20250305224501.png.import",
-    "System Overview/Creating the Map/Images/Pasted image 20250305222444.png.import",
-    "System Overview/Creating the Map/Images/Pasted image 20250305222221.png.import",
     "Welcome.md",
-    "Other Game Notes",
     "System Overview/Spawning Enemies - Start to Finish.canvas",
-    "create a link.md",
-    "System Overview/Creating the Map/Images/Pasted image 20250305222221.png",
-    "System Overview/Creating the Map/Images/Pasted image 20250305222444.png",
-    "System Overview/Creating the Map/Images/Pasted image 20250305224501.png",
-    "System Overview/Creating the Map/Images/Pasted image 20250305224514.png",
-    "System Overview/Creating the Map/Creating the Map.canvas",
-    "Pasted image 20250305222444.png.import",
-    "Pasted image 20250305222221.png.import",
-    "System Overview/Creating the Map/Images/generic stage ready func.png.import",
-    "System Overview/Creating the Map/Images/generic stage ready func.png",
-    "System Overview/Creating the Map/Images/In-game Map.png.import",
-    "System Overview/Creating the Map/Images/In-game Map.png",
-    "System Overview/Creating the Map/Images/Map Array.png"
+    "create a link.md"
   ]
 }

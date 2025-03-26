@@ -16,7 +16,6 @@ var unit_on_tile
 var explored = false 
 var roadblocked = false 
 var roadblock_instance
-var next_block 
 @export var is_exit = false 
 
 
@@ -28,10 +27,10 @@ var mouse_inside = false
 
 var enemies_on_tile = []
 
-var path_next_block = {}
-var complete_paths = {}
 var path_position = {}
 var path_node = {}
+var next_node = {}
+var next_block = {}
 
 
 @onready var root = get_tree().root.get_node("Stage")
@@ -76,24 +75,54 @@ func unit_dead(unit: Unit):
 
 
 func destroy_roadblock(): 
+	p_change_road_destroy()
 	roadblocked = false 
 	roadblock_instance = null
+	
 
 func roadblock(roadblock_self): 
 	roadblocked = true
 	roadblock_instance = roadblock_self
 	path_changed()
 
-func path_changed(): 
-	var paths_on_this_block = complete_paths.keys()
+func clear_nodes(node_keys): 
+	for i in node_keys: 
+		if path_node.has(i):
+			path_node[i].queue_free()
+	for i in node_keys: 
+		path_position.erase(i)
+		path_node.erase(i)
+		next_node.erase(i)
+		next_block.erase(i)
+
+
+func p_change_road_destroy(): 
+	var nodes = ray_casts.get_surrounding_path_blocks()
+	var paths_on_this_block = nodes.keys()
 	var blocks_to_run = {}
-	#var path_to_build = {}
-	for path in complete_paths: 
-		blocks_to_run[path] = await roadblock_instance.get_surrounding_blocks(path)
-		var path_to_build = blocks_to_run[path].get_node('ray_casts').find_closest_path_to_exit()
+	
+	for path in paths_on_this_block: 
+		var earliest_block = nodes[path]
+		var rays = earliest_block.get_node('ray_casts')
+		var path_to_build = rays.find_closest_path_to_exit()
 		if path_to_build:
-			var path_node = path_to_build[0].path_node[path]
-			path_node.build_new_path(path_to_build, path)
+			var start = Time.get_ticks_usec()
+			var path_node_x = path_to_build[0].path_node[path]
+			path_node_x.build_new_path(path_to_build, 0, path, start)
+
+func path_changed(): 
+	var paths_on_this_block = path_node.keys()
+	
+	var blocks_to_run = {}
+	for path in paths_on_this_block: 
+		blocks_to_run[path] = await roadblock_instance.get_surrounding_blocks(path)
+		if blocks_to_run[path] != null: 
+			var path_to_build = blocks_to_run[path].get_node('ray_casts').find_closest_path_to_exit()
+			if path_to_build:
+				var start = Time.get_ticks_usec()
+				var path_node_x = path_to_build[0].path_node[path]
+				path_node_x.build_new_path(path_to_build, 0, path, start)
+	clear_nodes(paths_on_this_block)
 
 
 func _on_area_3d_mouse_entered() -> void:
@@ -119,18 +148,6 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 
 func path_find(): 
 	ray_casts.get_neighbours()
-
-
-func add_path_entry(path, next_block, complete_path, path_pos, path_node_p): 
-	path_next_block[path] = next_block
-	complete_paths[path] = complete_path
-	path_position[path] = path_pos
-	path_node[path] = path_node_p
-
-func find_self_in_path_list(): 
-	for node in complete_paths[""]:
-		pass
-	pass
 
 func block_positions(): 
 	t_global_pos = global_position

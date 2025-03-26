@@ -86,7 +86,7 @@ func movement(delta: float):
 			return
 		
 		if not to_edge: 
-			next_block = next_block.path_next_block[path]
+			next_block = next_block.next_block[path]
 		else: 
 			current_tile.remove_enemy_on_tile(self)
 			current_tile = next_block

@@ -60,7 +60,6 @@ func not_completed():
 
 
 func find_closest_path_to_exit(): 
-	print("Starting")
 	var queue = []
 	var visited = {}
 	var came_from = {}
@@ -85,6 +84,46 @@ func find_closest_path_to_exit():
 	print("no path found")
 	return null
 
+func get_surrounding_path_blocks():
+	var neighbors = []
+	var ray_casts = get_node("ray_casts")
+	var up_collider = up.get_collider()
+	var down_collider = down.get_collider()
+	var left_collider = left.get_collider()
+	var right_collider = right.get_collider()
+
+	for collider in [up_collider, down_collider, left_collider, right_collider]:
+		if collider and collider.is_in_group("ground_block") and not collider.roadblocked:
+			neighbors.append(collider)
+	
+	
+	var highest = {}
+	var selected = {}
+	
+	for block in neighbors: 
+		var paths_on_block = block.path_node.keys()
+		for path in paths_on_block: 
+			if not highest.has(path) or highest[path] == null:
+				highest[path] = block.path_position[path]
+				selected[path] = block
+			elif highest[path] <= block.path_position[path]:
+				highest[path] = block.path_position[path]
+				selected[path] = block
+	return selected
+	
+		#if len(block.path_position) > 0: 
+			#var path_pos = block.path_position[path]
+			#if highest == null: 
+				#highest = path_pos
+				#selected = block
+			#else: 
+				#if highest < path_pos:
+					#highest = path_pos
+					#selected = block
+	#return selected 
+	#for i in neighbors: 
+		#pass
+
 func reconstruct_path(came_from, exit): 
 	var path = []
 	var current = exit
@@ -92,86 +131,4 @@ func reconstruct_path(came_from, exit):
 		path.append(current.get_parent())
 		current = came_from[current]
 	path.reverse()
-	for i in path: 
-		change_mat(i, Color(0, 1, 0))
-		print(i.name)
 	return path
-	
-#func find_path_to_spawner():
-	#var queue = []
-	#var visited = {}
-	#var came_from = {}
-#
-	## Start from this block
-	#queue.append(parent_block)
-	#visited[parent_block] = true
-	#came_from[parent_block] = null
-#
-	#while queue.size() > 0:
-		#var current = queue.pop_front()
-		#
-		## If we found the exit, reconstruct and store the path
-		#print(current.is_exit)
-		#if current.is_exit:
-			#set_path_references(came_from, current)
-			#full_path = reconstruct_path(came_from, current)
-			#return true
-#
-		## Get neighbors
-		#var neighbors = get_neighbors(current)
-		#
-		#
-		#for neighbor in neighbors:
-			#if neighbor not in visited:
-				#queue.append(neighbor)
-				#visited[neighbor] = true
-				#came_from[neighbor] = current
-	#return false  
-#
-#func reconstruct_path(came_from, end_block):
-	#var path = []
-	#var current = end_block
-	#
-	#while current != null:
-		#path.append(current)
-		#current = came_from.get(current, null)
-	#
-	##  # Reverse to get path from start to end
-	#return path
-#
-#
-#func propegate_full_path(): 
-	#pass
-#
-## Helper function to get valid neighbors
-#func get_neighbors(block):
-	#var neighbors = []
-	#var ray_casts = block.get_node("ray_casts")
-	#var up_collider    = ray_casts.up.get_collider()
-	#var down_collider  = ray_casts.down.get_collider()
-	#var left_collider  = ray_casts.left.get_collider()
-	#var right_collider = ray_casts.right.get_collider()
-#
-	#for collider in [up_collider, down_collider, left_collider, right_collider]:
-		#if collider and collider.is_in_group("ground_block") and not collider.roadblocked:
-			#neighbors.append(collider)
-#
-	#return neighbors
-#
-## **Set the path references**
-#func set_path_references(came_from, end_block):
-	#var current = end_block
-	#while current != null:
-		#var previous = came_from.get(current, null)
-		#if previous:  # Set reference to the next block in the shortest path
-			#previous.exit = current
-		##change_mat(current, Color(0, 1, 0))  # Green for the optimal path
-		#current = previous
-#
-func change_mat(node, colour): 
-	var material = StandardMaterial3D.new()
-	material.albedo_color = colour
-	
-	var mesh = node.get_parent().get_node("MeshInstance3D")
-	if mesh: 
-		mesh.set_surface_override_material(0, material)

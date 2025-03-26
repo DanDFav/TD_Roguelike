@@ -13,7 +13,6 @@ var spawn_ready = false
 var spawn_info
  
 var explored = false 
-var next_block
 var is_exit = false
 
 var roadblocked = false
@@ -21,9 +20,10 @@ var path_info = []
 var grid_index
 
 var path_next_block = {}
-var complete_paths = {}
 var path_position = {}
 var path_node = {}
+var next_node = {}
+var next_block = {}
 
 var enemies_on_tile = []
 
@@ -46,13 +46,6 @@ func _process(delta: float) -> void:
 					print(time)
 					spawn_enemy(i[0], i[3])
 					spawn_info.erase(i) 
-
-
-func add_path_entry(path, next_block, complete_path, path_pos, path_node_p): 
-	path_next_block[path] = next_block
-	complete_paths[path] = complete_path
-	path_position[path] = path_pos
-	path_node[path] = path_node_p
 
 #Is called by the specific stage script, sets some variables 
 func recieve_spawn_info(grid_data, spawns, path):
@@ -88,11 +81,12 @@ func spawn_enemy(enemy_type, path):
 	enemy.current_tile = self
 	enemy.position.y = 0.5
 	if path == 1: 
-		enemy.next_block = path_next_block["path_one"]
 		enemy.path = "path_one"
+		enemy.next_block = next_block[enemy.path]
+
 	elif path == 2: 
-		enemy.next_block = path_next_block["path_two"]
 		enemy.path = "path_two"
+		enemy.next_block = next_block[enemy.path]
 	add_child(enemy)
 
 

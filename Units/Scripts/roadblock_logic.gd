@@ -6,16 +6,6 @@ class_name Roadblock
 @onready var map_controller = root.get_node("map_update_controller")
 @onready var stats = $stats_n3D
 
-
-#@onready var top_left = $neighbours/top_left
-#@onready var top_middle = $neighbours/top_middle
-#@onready var top_right = $neighbours/top_right
-#@onready var middle_left = $neighbours/middle_left
-#@onready var middle_right = $neighbours/middle_right
-#@onready var bottom_left = $neighbours/bottom_left
-#@onready var bottom_middle = $neighbours/bottom_middle
-#@onready var bottom_right = $neighbours/bottom_right
-
 @onready var colliders = [$neighbours/top_left, $neighbours/top_middle, $neighbours/top_right, $neighbours/middle_left, $neighbours/middle_right, $neighbours/bottom_left, $neighbours/bottom_middle, $neighbours/bottom_right]
 
 var blocking = []
@@ -40,21 +30,31 @@ func get_surrounding_blocks(path):
 	for collider in colliders: 
 		var coll_name = collider.name
 		var coll_obj = collider.get_collider()
+	
 		if coll_obj: 
-			surrounding[coll_name] = coll_obj
-	print(surrounding)
+			if path == "path_two": 
+				pass
+			if coll_obj.next_node.has(path):
+				if coll_obj.path_node[path] != null: 
+					var one = placed_on
+					var two = coll_obj.next_node[path].block
+					if  one == two: 
+						if coll_obj.roadblocked == false:
+							surrounding[coll_name] = coll_obj
+	
+		
 	var positions = surrounding.values()
-	var lowest 
+	var highest 
 	var selected 
 	for block in positions: 
 		if len(block.path_position) > 0: 
 			var path_pos = block.path_position[path]
-			if lowest == null: 
-				lowest = path_pos
+			if highest == null: 
+				highest = path_pos
 				selected = block
 			else: 
-				if lowest > path_pos:
-					lowest = path_pos
+				if highest < path_pos:
+					highest = path_pos
 					selected = block
 	return selected 
 

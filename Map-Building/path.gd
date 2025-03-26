@@ -15,28 +15,27 @@ func _ready() -> void:
 	
 	for child in get_children(): 
 		if child.start: 
-			child.distribute_self()
+			child.distribute_self(null)
+			break
 
 
 func finished_dist(): 
-	distribute_percent()
+	get_end()
 
 
-## TODO: Rewrite this section to just handle distributing percents, i think we can handle the other stuff elsewhere 
-func distribute_percent(): 
-	var count = 0
-	var length = len(path_list)
-	var xyz = self.name
-	for i in length:
-		var path_node = path_list[i][0] 
-		var block = path_list[i][1]
-		
-		if count < len(path_list) - 1: 
-			#add_path_entry(path, next_block): 
-			block.add_path_entry(self.name, path_list[count+1][1], path_list, count, path_node)
-			#block.next_block = path_list[count + 1][1]
-		if path_node: 
-			path_node.percent_start = float(count) / float(length) 
-			path_node.percent_end = float(count + 1) / float(length) 
-			path_node.path_position = count
-			count += 1
+func get_end():
+	for node in get_children(): 
+		if node.end: 
+			var count = 0 
+			backtrack_from_end(node, count)
+
+func backtrack_from_end(node, count, visited = {}):
+	if node == null or node in visited: 
+		return  
+
+	visited[node] = true  
+	node.path_position = count
+	node.block.path_position[self.name] = count
+
+	for n in node.prev_node:
+		backtrack_from_end(n, count + 1, visited)
