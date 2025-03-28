@@ -17,7 +17,7 @@
 script = ExtResource("1_htkmu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -4.51049e-05, -0.000186612, 0.000182977, 0.518177, 0.855274, 5.81212e-05, -0.855274, 0.518177, -1.43698, 8.45999, 8.78549)
+transform = Transform3D(1, -4.51049e-05, -0.000186612, 0.000184721, 0.490904, 0.871214, 5.23128e-05, -0.871214, 0.490904, -2.51656, 7.37797, 10.2328)
 current = true
 fov = 51.8
 size = 5.0
@@ -25,10 +25,7 @@ size = 5.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.454706, 0.890642, 0, -0.890642, 0.454706, 0, 6.22326, 3.62413)
 light_energy = 0.5
-light_bake_mode = 1
 shadow_enabled = true
-shadow_reverse_cull_face = true
-shadow_blur = 2.019
 
 [node name="Specific_stage_scrp" type="Node3D" parent="."]
 script = ExtResource("2_htkmu")
@@ -36,22 +33,14 @@ script = ExtResource("2_htkmu")
 [node name="blocks" type="Node3D" parent="Specific_stage_scrp"]
 
 [node name="Spawner" parent="Specific_stage_scrp/blocks" instance=ExtResource("3_p37nj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="Spawner2" parent="Specific_stage_scrp/blocks" instance=ExtResource("3_p37nj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 path_number = 1
 
 [node name="Exit" parent="Specific_stage_scrp/blocks" instance=ExtResource("4_osylh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
-
-[node name="ground_block" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="ground_block2" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="ground_block3" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7)
 
 [node name="ground_block4" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -59,215 +48,188 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 [node name="ground_block5" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 
-[node name="ground_block6" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-
 [node name="ground_block7" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5)
 
-[node name="ground_block8" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+[node name="ground_block12" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
 
-[node name="ground_block9" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+[node name="ground_block6" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="ground_block8" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
-[node name="ground_block10" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+[node name="ground_block9" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
 
-[node name="ground_block11" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5)
-
-[node name="ground_block12" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
-
-[node name="ground_block13" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3)
-
 [node name="ground_block14" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
-
-[node name="ground_block15" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
-
-[node name="ground_block16" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7)
 
 [node name="ground_block17" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
-
-[node name="ground_block18" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
-
-[node name="ground_block19" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
-
-[node name="ground_block20" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5)
 
 [node name="ground_block21" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="ground_block15" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
+
+[node name="ground_block19" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="ground_block20" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
 
 [node name="ground_block22" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 
-[node name="ranged_block" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+[node name="Exit2" parent="Specific_stage_scrp/blocks" instance=ExtResource("4_osylh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7)
 
-[node name="ranged_block2" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="ground_block10" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
 
-[node name="ranged_block3" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+[node name="ground_block11" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
 
-[node name="ranged_block4" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+[node name="ground_block18" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7)
 
-[node name="ranged_block5" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+[node name="ground_block23" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5)
 
-[node name="ranged_block6" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
-
-[node name="ranged_block7" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
-
-[node name="ranged_block8" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
-
-[node name="ranged_block9" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
-
-[node name="ranged_block10" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
-
-[node name="ranged_block11" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
-
-[node name="ranged_block12" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-
-[node name="ranged_block13" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
-
-[node name="ranged_block14" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
-
-[node name="ranged_block53" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+[node name="ground_block24" parent="Specific_stage_scrp/blocks" instance=ExtResource("5_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
 
 [node name="ranged_block15" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
 [node name="ranged_block16" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
 
 [node name="ranged_block17" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-
-[node name="ranged_block42" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="ranged_block43" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
-
-[node name="ranged_block44" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
-
-[node name="ranged_block45" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
-
-[node name="ranged_block46" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
-
-[node name="ranged_block48" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
-
-[node name="ranged_block49" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
-
-[node name="ranged_block50" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="ranged_block52" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-
-[node name="ranged_block51" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-
-[node name="ranged_block47" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
-
-[node name="ranged_block37" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 2)
-
-[node name="ranged_block38" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
-
-[node name="ranged_block39" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 4)
-
-[node name="ranged_block40" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
-
-[node name="ranged_block41" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
 [node name="ranged_block18" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
 
 [node name="ranged_block19" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
 
 [node name="ranged_block20" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
 [node name="ranged_block21" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
-
-[node name="ranged_block22" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-
-[node name="ranged_block23" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
-
-[node name="ranged_block24" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
-
-[node name="ranged_block25" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
 
-[node name="ranged_block26" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
-
-[node name="ranged_block27" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
-
-[node name="ranged_block28" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+[node name="ranged_block22" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
 
-[node name="ranged_block29" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+[node name="ranged_block23" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
 
-[node name="ranged_block30" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+[node name="ranged_block24" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
-[node name="ranged_block33" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+[node name="ranged_block25" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
 
-[node name="ranged_block34" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
-
-[node name="ranged_block35" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+[node name="ranged_block26" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
 
-[node name="ranged_block36" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+[node name="ranged_block27" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="ranged_block28" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="ranged_block29" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="ranged_block30" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 8)
 
 [node name="ranged_block31" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
 
 [node name="ranged_block32" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 8)
+
+[node name="ranged_block33" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
+
+[node name="ranged_block34" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 8)
+
+[node name="ranged_block35" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
+
+[node name="ranged_block36" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+
+[node name="ranged_block38" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
+
+[node name="ranged_block39" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
+
+[node name="ranged_block40" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
+
+[node name="ranged_block51" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="ranged_block52" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="ranged_block55" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="ranged_block56" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="ranged_block57" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="ranged_block58" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 4)
+
+[node name="ranged_block53" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="ranged_block54" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="ranged_block41" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="ranged_block42" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="ranged_block43" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="ranged_block44" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="ranged_block48" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+
+[node name="ranged_block49" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+
+[node name="ranged_block50" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="ranged_block45" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 8)
+
+[node name="ranged_block46" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 8)
+
+[node name="ranged_block47" parent="Specific_stage_scrp/blocks" instance=ExtResource("6_pgsa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 
 [node name="paths" type="Node3D" parent="Specific_stage_scrp"]
 
@@ -277,56 +239,44 @@ vis_layer = 1
 self_layer = 1
 
 [node name="path_node" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 3)
 start = true
 
 [node name="path_node2" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 1)
-
-[node name="path_node3" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 2)
-
-[node name="path_node4" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 3)
-
-[node name="path_node5" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 4)
 
-[node name="path_node6" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node3" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 5)
 
-[node name="path_node7" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node4" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 1, 5)
 
-[node name="path_node8" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node5" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 1, 5)
 
-[node name="path_node9" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node6" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 1, 5)
 
-[node name="path_node10" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node7" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 1, 5)
 
-[node name="path_node11" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+[node name="path_node8" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 1, 5)
 
+[node name="path_node9" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 1, 5)
+
+[node name="path_node10" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 1, 6)
+
+[node name="path_node11" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 7)
+
 [node name="path_node12" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 1, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 7)
 
 [node name="path_node13" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 1, 4)
-
-[node name="path_node14" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -6, 1, 3)
-
-[node name="path_node15" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -5, 1, 3)
-
-[node name="path_node16" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, 1, 3)
-
-[node name="path_node17" parent="Specific_stage_scrp/paths/path_one" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -3, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 7)
 end = true
 
 [node name="path_two" type="Node3D" parent="Specific_stage_scrp/paths"]
@@ -335,66 +285,51 @@ script = ExtResource("7_6mbfe")
 vis_layer = 4
 self_layer = 4
 
-[node name="path_node" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+[node name="path_node16" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, 3)
 start = true
 
 [node name="path_node2" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 1)
-
-[node name="path_node3" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 2)
-
-[node name="path_node4" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 3)
-
-[node name="path_node5" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 4)
-
-[node name="path_node6" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 5)
-
-[node name="path_node7" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 1, 5)
-
-[node name="path_node8" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 1, 5)
-
-[node name="path_node9" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 1, 5)
-
-[node name="path_node10" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 1, 5)
-
-[node name="path_node11" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 1, 5)
-
-[node name="path_node12" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 1, 5)
-
-[node name="path_node13" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7, 1, 5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, 4)
 
 [node name="path_node14" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8, 1, 5)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 1, 5)
 
 [node name="path_node15" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -9, 1, 5)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 1, 5)
 
-[node name="path_node16" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -9, 1, 4)
+[node name="path_node3" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 1, 5)
 
-[node name="path_node17" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -9, 1, 3)
+[node name="path_node4" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 1, 5)
 
-[node name="path_node18" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -8, 1, 3)
+[node name="path_node5" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 1, 5)
 
-[node name="path_node19" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -7, 1, 3)
+[node name="path_node6" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 1, 5)
 
-[node name="path_node20" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -6, 1, 3)
+[node name="path_node7" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7, 1, 5)
+
+[node name="path_node8" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8, 1, 5)
+
+[node name="path_node9" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 1, 5)
+
+[node name="path_node10" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 1, 6)
+
+[node name="path_node11" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 7)
+
+[node name="path_node12" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 7)
+
+[node name="path_node13" parent="Specific_stage_scrp/paths/path_two" instance=ExtResource("8_6mbfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 7)
 end = true
 
 [node name="Unit_controller" type="Node3D" parent="."]

@@ -42,12 +42,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "System Overview/Broken State.md",
+                "file": "Other Game Notes/Nordhold.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Broken State"
+              "title": "Nordhold"
             }
           }
         ],
@@ -202,6 +202,8 @@
   },
   "active": "fb259374908e8d71",
   "lastOpenFiles": [
+    "System Overview/Broken State.md",
+    "Other Game Notes/Nordhold.md",
     "Pasted image 20250326180705.png.import",
     "Pasted image 20250326180705.png",
     "Pasted image 20250326172158.png.import",
@@ -223,9 +225,7 @@
     "Pasted image 20250325214632.png",
     "Pasted image 20250325214608.png",
     "System Overview/Creating the Map/Creating the Map.canvas",
-    "System Overview/Broken State.md",
     "System Overview/Pathfinding.md",
-    "Pasted image 20250310140200.png.import",
     "Game Systems.md",
     "Other Game Notes/Emberward.md",
     "Welcome.md",
