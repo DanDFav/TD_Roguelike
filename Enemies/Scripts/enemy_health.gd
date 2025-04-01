@@ -4,6 +4,7 @@ class_name Enemy_health
 @onready var mesh = $"../MeshInstance3D"
 @onready var hurt_timer = $Timer
 @onready var stats = $"../stats"
+@onready var block_node = $"../blocking"
 
 @onready var health_bar_node = $Progress_bar/SubViewport/ProgressBar
 
@@ -47,8 +48,12 @@ func on_hit(damage: int, unit: Unit):
 	hurt_timer.start(timer_wait_time)
 	
 
-func on_death(unit: Unit): 
-	get_parent().on_death(unit)
+func on_death(killed_by: Unit): 
+	killed_by.killed_enemy()
+	#unsubscribe_game_speed()
+	if block_node.blocked_by: 
+		block_node.blocked_by.notify_death(self.get_parent()) 
+	self.get_parent().queue_free()
 
 func damage_mitigation(damage: int) -> float: 
 	return (float(damage) / (1.0 + (armour / 100.0)))

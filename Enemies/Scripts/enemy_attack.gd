@@ -5,12 +5,11 @@ class_name Enemy_attack
 @onready var stats = $"../stats"
 @onready var controller = $".."
 @onready var hit_timer = $Timer
-
+@onready var block_node = $"../blocking"
 
 var damage 
 var attack_speed
 
-var blocked_by 
 var can_attack = false
 
 
@@ -19,10 +18,11 @@ func _ready() -> void:
 	attack_speed = stats.attack_speed
 	hit_timer.wait_time = attack_speed / GameSpeed.game_speed
 
-
+func _process(delta: float) -> void:
+	if block_node.blocked: 
+		attack(block_node.blocked_by)
 
 func attack(blocker: Unit): 
-	blocked_by = blocker
 	if can_attack: 
 		can_attack = false
 		blocker.on_hit(damage)

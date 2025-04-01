@@ -1,11 +1,11 @@
 extends Node3D
 
-var block_required = 1
-const SPEED = 0.7
-var colour = Color("f65a00")
+@export var block_required = 1
+@export var SPEED = 0.7
+@export var colour = Color("f65a00")
 
-var damage = 110 
-var attack_speed = 0.8 
+@export var damage = 110 
+@export var attack_speed = 0.8 
 
-var armour = 25
-var max_health = 500
+@export var armour = 25
+@export var max_health = 500

@@ -47,8 +47,9 @@ func auto_attack():
 	print(hit_timer.wait_time)
 	if len(get_parent().blocked_enemies) != 0:
 		var enemy = get_parent().blocked_enemies[0]
+		var enemy_health = enemy.get_node("health")
 		if is_instance_valid(enemy): 
-			enemy.hit(damage, unit)
+			enemy_health.on_hit(damage, unit)
 			for skill in on_hit_skills: 
 				skill.call(enemy)
 	elif len(enemies_in_range) != 0: 

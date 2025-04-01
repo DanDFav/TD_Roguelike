@@ -8,21 +8,20 @@
 layout_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.00185
-offset_top = 1040.0
+offset_top = -42.0
 offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_u160j")
-metadata/_edit_use_anchors_ = true
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 4.0
-offset_top = 51.0
-offset_right = -1876.0
-offset_bottom = 91.0
+offset_left = 15.0
+offset_top = 1122.0
+offset_right = -1865.0
+offset_bottom = 1162.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Container"]

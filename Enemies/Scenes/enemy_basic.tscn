@@ -1,17 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxlv811s6q5fp"]
+[gd_scene load_steps=11 format=3 uid="uid://xyefmahmq7g"]
 
-[ext_resource type="Script" uid="uid://cgnod45dnvrvm" path="res://Enemies/Scripts/enemy_movement.gd" id="1_7po6l"]
-[ext_resource type="Script" uid="uid://vruva7hxxei" path="res://Enemies/Scripts/blocking.gd" id="2_7q5kh"]
-[ext_resource type="Script" uid="uid://dwll4ufnavo6s" path="res://Enemies/Scripts/enemy_health.gd" id="2_v3tsa"]
-[ext_resource type="Script" uid="uid://n2hm2g2ual6n" path="res://Enemies/Scripts/enemy_attack.gd" id="4_7o1dy"]
-[ext_resource type="Script" uid="uid://bislnypnkknvb" path="res://Enemies/Scripts/enemy_stats.gd" id="4_gx1ey"]
+[ext_resource type="Script" uid="uid://cgnod45dnvrvm" path="res://Enemies/Scripts/enemy_movement.gd" id="1_abbun"]
+[ext_resource type="Script" uid="uid://bislnypnkknvb" path="res://Enemies/Scripts/enemy_stats.gd" id="2_27y81"]
+[ext_resource type="Script" uid="uid://vruva7hxxei" path="res://Enemies/Scripts/blocking.gd" id="2_avfj7"]
+[ext_resource type="Script" uid="uid://dwll4ufnavo6s" path="res://Enemies/Scripts/enemy_health.gd" id="3_yl3wb"]
+[ext_resource type="Script" uid="uid://n2hm2g2ual6n" path="res://Enemies/Scripts/enemy_attack.gd" id="5_yrd6a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7po6l"]
-albedo_color = Color(0.688253, 0.664276, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53d7t"]
+albedo_color = Color(0.964706, 0.352941, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7q5kh"]
-material = SubResource("StandardMaterial3D_7po6l")
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_abbun"]
+material = SubResource("StandardMaterial3D_53d7t")
+size = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_27y81"]
 size = Vector3(0.4, 0.2, 0.2)
@@ -22,27 +22,27 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_sjydd"]
 viewport_path = NodePath("health/Progress_bar/SubViewport")
 
-[node name="enemy_hulk" type="CharacterBody3D" groups=["enemy"]]
+[node name="enemy_basic" type="CharacterBody3D" groups=["enemy"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("BoxMesh_7q5kh")
+mesh = SubResource("BoxMesh_abbun")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_27y81")
 
 [node name="movement" type="Node3D" parent="."]
-script = ExtResource("1_7po6l")
+script = ExtResource("1_abbun")
 
 [node name="blocking" type="Node3D" parent="."]
-script = ExtResource("2_7q5kh")
+script = ExtResource("2_avfj7")
 
 [node name="roadblock" type="Node3D" parent="."]
 
 [node name="health" type="Node3D" parent="."]
-script = ExtResource("2_v3tsa")
+script = ExtResource("3_yl3wb")
 
 [node name="Timer" type="Timer" parent="health"]
 wait_time = 0.15
@@ -76,17 +76,10 @@ billboard = 1
 texture = SubResource("ViewportTexture_sjydd")
 
 [node name="stats" type="Node3D" parent="."]
-script = ExtResource("4_gx1ey")
-block_required = 2
-SPEED = 0.5
-colour = Color(0.690196, 0.662745, 1, 1)
-damage = 315
-attack_speed = 1.2
-armour = 50
-max_health = 1350
+script = ExtResource("2_27y81")
 
 [node name="attack" type="Node3D" parent="."]
-script = ExtResource("4_7o1dy")
+script = ExtResource("5_yrd6a")
 
 [node name="Timer" type="Timer" parent="attack"]
 one_shot = true

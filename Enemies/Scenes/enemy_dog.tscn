@@ -1,35 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://kwsr1uvcsesk"]
+[gd_scene load_steps=11 format=3 uid="uid://kwsr1uvcsesk"]
 
+[ext_resource type="Script" uid="uid://cgnod45dnvrvm" path="res://Enemies/Scripts/enemy_movement.gd" id="1_6231f"]
 [ext_resource type="Script" uid="uid://dwll4ufnavo6s" path="res://Enemies/Scripts/enemy_health.gd" id="1_knim8"]
-[ext_resource type="Script" uid="uid://ooxbd223d0ar" path="res://Enemies/Scripts/enemy_test.gd" id="1_phbsr"]
+[ext_resource type="Script" uid="uid://vruva7hxxei" path="res://Enemies/Scripts/blocking.gd" id="2_mrmyx"]
 [ext_resource type="Script" uid="uid://n2hm2g2ual6n" path="res://Enemies/Scripts/enemy_attack.gd" id="3_1fqjl"]
-[ext_resource type="Script" uid="uid://bvjacohebk3oi" path="res://Enemies/Scripts/dog_stats.gd" id="3_wyle2"]
+[ext_resource type="Script" uid="uid://bislnypnkknvb" path="res://Enemies/Scripts/enemy_stats.gd" id="4_65hwg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nddch"]
-albedo_color = Color(0.959161, 0, 0.449863, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6231f"]
+albedo_color = Color(0.964706, 0.352941, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_lk2qo"]
-material = SubResource("StandardMaterial3D_nddch")
-size = Vector3(0.4, 0.25, 0.25)
+[sub_resource type="BoxMesh" id="BoxMesh_mrmyx"]
+material = SubResource("StandardMaterial3D_6231f")
+size = Vector3(0.4, 0.2, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6x6q"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_27y81"]
+size = Vector3(0.4, 0.2, 0.2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xb45"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrd6a"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6231f"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_sjydd"]
 viewport_path = NodePath("health/Progress_bar/SubViewport")
 
-[node name="Enemy_dog" type="CharacterBody3D" groups=["enemy"]]
-script = ExtResource("1_phbsr")
+[node name="enemy_dog" type="CharacterBody3D" groups=["enemy"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("BoxMesh_lk2qo")
+mesh = SubResource("BoxMesh_mrmyx")
+skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, -1.74846e-08, -0.25, 0, 0.4, -1.09278e-08, 0, 0, 0)
-shape = SubResource("BoxShape3D_o6x6q")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_27y81")
+
+[node name="movement" type="Node3D" parent="."]
+script = ExtResource("1_6231f")
+
+[node name="blocking" type="Node3D" parent="."]
+script = ExtResource("2_mrmyx")
+
+[node name="roadblock" type="Node3D" parent="."]
 
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("1_knim8")
@@ -57,16 +67,19 @@ offset_right = 25.0
 offset_bottom = -3.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_1xb45")
+theme_override_styles/background = SubResource("StyleBoxFlat_yrd6a")
 show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="health/Progress_bar"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 billboard = 1
-texture = SubResource("ViewportTexture_6231f")
+texture = SubResource("ViewportTexture_sjydd")
 
 [node name="stats" type="Node3D" parent="."]
-script = ExtResource("3_wyle2")
+script = ExtResource("4_65hwg")
+SPEED = 1.15
+attack_speed = 0.9
+max_health = 300
 
 [node name="attack" type="Node3D" parent="."]
 script = ExtResource("3_1fqjl")

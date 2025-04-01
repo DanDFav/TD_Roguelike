@@ -68,13 +68,15 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 ## If those conditions are met, we let the enemy know it has been blocked, we add it to the
 ## [member blocked_enemies] array. Finally we increment our block count [br][br]
 ## [b] Calls: [method enemy_test.get_blocked], [method can_block_more_enemies]
-func block_enemy(enemy : Node3D): 
+func block_enemy(enemy): 
 	if enemy == null: return
 	
-	if enemy.blocked == false and placement_comp.placed and can_block_more_enemies() == true: 
-		enemy.get_blocked(self)
+	var enemy_block_node = enemy.get_node("blocking")
+	
+	if enemy_block_node.blocked == false and placement_comp.placed and can_block_more_enemies() == true: 
+		enemy_block_node.get_blocked(self)
 		blocked_enemies.append(enemy)
-		currently_blocking += enemy.block_required
+		currently_blocking += enemy_block_node.block_required
 	else: 
 		blocked_queue.append(enemy)
 
@@ -102,9 +104,11 @@ func killed_enemy():
 ## [b] Called When: [b] An enemy this unit is blocking dies [br] [br]
 ## [b] Use: [b] lets a blocker know to remove that enemy from blocked Queue / current block [br] [br]
 func notify_death(enemy):
+	var enemy_block_node = enemy.get_node("blocking")
+	
 	if enemy in blocked_enemies:
 		blocked_enemies.erase(enemy)
-		currently_blocking -= enemy.block_required
+		currently_blocking -= enemy_block_node.block_required
 		block_enemy(blocked_queue.pop_front())
 	if enemy in blocked_queue: 
 		blocked_queue.erase(enemy)
@@ -122,7 +126,8 @@ func on_death():
 	placed_on.unit_dead(self)
 	attack_node.unsubscribe_game_speed()
 	for enemy in blocked_enemies: 
-		enemy.unblock()
+		var enemy_block_node = enemy.get_node("blocking")
+		enemy_block_node.unblock()
 	get_parent().queue_free()
 
 

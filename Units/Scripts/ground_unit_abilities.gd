@@ -8,7 +8,8 @@ extends Node3D
 @onready var p1_heal_val = 120
 
 
-var applied_to: Array[Enemy] = []
+#var applied_to: Array[Enemy] = []
+var applied_to = []
 
 var unit_controller
 @onready var root = get_tree().root.get_node("Stage")
@@ -19,7 +20,7 @@ func _ready() -> void:
 	attack_node.add_on_hit_skill(passive_one)
 
 
-func passive_one(enemy: Enemy):
+func passive_one(enemy):
 	if enemy not in applied_to: 
 		applied_to.append(enemy)
 		var new_rend_inst = rend.instantiate()

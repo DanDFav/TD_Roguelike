@@ -336,6 +336,15 @@ end = true
 script = ExtResource("3_q473s")
 
 [node name="unit_display" parent="Unit_controller" instance=ExtResource("4_kgt03")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -994.0
+offset_top = -1120.0
+offset_right = -994.0
+offset_bottom = -1120.0
+grow_horizontal = 0
 
 [node name="morale_controller_n3D" type="Node3D" parent="."]
 script = ExtResource("5_xvbw7")

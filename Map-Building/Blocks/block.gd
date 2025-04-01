@@ -52,10 +52,10 @@ func _process(delta: float) -> void:
 			else: 
 				on_hover_mat.albedo_color = Color("58e894")
 
-func add_enemy_on_tile(enemy : Enemy):
+func add_enemy_on_tile(enemy : enemy_movement):
 	enemies_on_tile.append(enemy)
 
-func remove_enemy_on_tile(enemy : Enemy):
+func remove_enemy_on_tile(enemy : enemy_movement):
 	enemies_on_tile.erase(enemy)
 
 func place_unit(unit): 

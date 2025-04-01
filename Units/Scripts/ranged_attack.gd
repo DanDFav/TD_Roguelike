@@ -40,7 +40,9 @@ func _on_timer_timeout() -> void:
 
 func auto_attack(): 
 	if len(enemies_in_range) != 0: 
-		enemies_in_range[0].hit(damage, unit)
+		var enemy = enemies_in_range[0]
+		var enemy_health = enemy.get_node("health")
+		enemy_health.on_hit(damage, unit)
 		total_damage_dealt += damage 
 
 func game_speed_subscribe(): 

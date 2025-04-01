@@ -30,7 +30,7 @@ var enemies_on_tile = []
 
 @onready var ray_casts := $ray_casts
 
-var enemy_resource = preload("res://Enemies/Scenes/enemy.tscn")
+var enemy_resource = preload("res://Enemies/Scenes/enemy_basic.tscn")
 var enemy_hulk_resource = preload("res://Enemies/Scenes/enemy_hulk.tscn")
 var enemy_dog_resource = preload("res://Enemies/Scenes/enemy_dog.tscn")
 
@@ -70,7 +70,8 @@ func recieve_spawn_info(grid_data, spawns, path):
 func spawn_enemy(enemy_type, path): 
 	#if path_number == 0: 
 		#print("ERROR: PATH NUMBER EXPORT NOT SET")
-	var enemy : Enemy
+	#var enemy : Enemy
+	var enemy
 	if enemy_type == 0: 
 		enemy = enemy_resource.instantiate()
 	elif enemy_type == 1: 
@@ -78,20 +79,22 @@ func spawn_enemy(enemy_type, path):
 	elif enemy_type == 2: 
 		enemy = enemy_dog_resource.instantiate()
 	
-	enemy.current_tile = self
+	var enemy_movement = enemy.get_node("movement")
+	
+	enemy_movement.current_tile = self
 	enemy.position.y = 0.5
 	if path == 1: 
-		enemy.path = "path_one"
-		enemy.next_block = next_block[enemy.path]
+		enemy_movement.path = "path_one"
+		enemy_movement.next_block = next_block[enemy_movement.path]
 
 	elif path == 2: 
-		enemy.path = "path_two"
-		enemy.next_block = next_block[enemy.path]
+		enemy_movement.path = "path_two"
+		enemy_movement.next_block = next_block[enemy_movement.path]
 	add_child(enemy)
 
 
-func add_enemy_on_tile(enemy : Enemy):
+func add_enemy_on_tile(enemy):
 	enemies_on_tile.append(enemy)
 
-func remove_enemy_on_tile(enemy : Enemy):
+func remove_enemy_on_tile(enemy):
 	enemies_on_tile.erase(enemy)

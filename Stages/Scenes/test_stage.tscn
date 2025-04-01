@@ -335,6 +335,7 @@ end = true
 script = ExtResource("3_2d355")
 
 [node name="unit_display" parent="Unit_controller" instance=ExtResource("5_d54r5")]
+anchors_preset = 3
 
 [node name="morale_controller_n3D" type="Node3D" parent="."]
 script = ExtResource("4_dwnba")
