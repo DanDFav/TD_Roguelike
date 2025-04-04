@@ -2,7 +2,7 @@ extends Node3D
 class_name Skill
 
 @onready var timer = $Timer
-@onready var timer_wait_time = 2.0 / GameSpeed.game_speed
+@onready var timer_wait_time = 2.0 
 
 @onready var progress_bar
 

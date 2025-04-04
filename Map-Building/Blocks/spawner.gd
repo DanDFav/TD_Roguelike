@@ -33,12 +33,12 @@ var enemies_on_tile = []
 var enemy_resource = preload("res://Enemies/Scenes/enemy_basic.tscn")
 var enemy_hulk_resource = preload("res://Enemies/Scenes/enemy_hulk.tscn")
 var enemy_dog_resource = preload("res://Enemies/Scenes/enemy_dog.tscn")
-
+var enemy_range_resource = preload("res://Enemies/Scenes/enemy_ranged.tscn")
 
 # If we have recieved the spawning data, we can start spawning enemies at their correct interval 
 func _process(delta: float) -> void:
 	if spawn_ready == true and GameStart.enemy_start: 
-		time += delta * GameSpeed.game_speed
+		time += delta
 		time = snapped(time, 0.01) 
 		if spawn_info:
 			for i in spawn_info: 
@@ -78,6 +78,8 @@ func spawn_enemy(enemy_type, path):
 		enemy = enemy_hulk_resource.instantiate()
 	elif enemy_type == 2: 
 		enemy = enemy_dog_resource.instantiate()
+	elif enemy_type == 3: 
+		enemy = enemy_range_resource.instantiate()
 	
 	var enemy_movement = enemy.get_node("movement")
 	

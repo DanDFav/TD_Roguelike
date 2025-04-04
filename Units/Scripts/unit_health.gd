@@ -6,7 +6,7 @@ var health
 var armour 
 @onready var health_bar_node = $SubViewport/health_bar
 @onready var timer = $heal_colour
-@onready var timer_wait_time = 0.35 / GameSpeed.game_speed
+@onready var timer_wait_time = 0.35 
 
 @onready var stats = $"../stats_n3D"
 
@@ -55,7 +55,6 @@ func take_damage(damage):
 	var post_mitigation_damage = damage_mitigation(damage)
 	health -= post_mitigation_damage
 	hitcount += 1
-	print("HitCount: ", hitcount)
 	if health <= 0: 
 		get_parent().on_death()
 	health_bar_node.value = health

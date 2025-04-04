@@ -11,8 +11,7 @@ class_name Enemy_health
 @onready var normal_style_box 
 @onready var heal_style_box 
 
-
-var timer_wait_time = 0.15 / GameSpeed.game_speed
+var timer_wait_time = 0.15 
 
 var health
 var max_health
@@ -50,10 +49,10 @@ func on_hit(damage: int, unit: Unit):
 
 func on_death(killed_by: Unit): 
 	killed_by.killed_enemy()
-	#unsubscribe_game_speed()
 	if block_node.blocked_by: 
 		block_node.blocked_by.notify_death(self.get_parent()) 
-	self.get_parent().queue_free()
+	var parent = self.get_parent()
+	parent.queue_free()
 
 func damage_mitigation(damage: int) -> float: 
 	return (float(damage) / (1.0 + (armour / 100.0)))

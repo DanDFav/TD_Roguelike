@@ -4,8 +4,7 @@ var morale : int
 @onready var spec_stage_script = $"../Specific_stage_scrp"
 @onready var label = $display_morale_l
 @onready var morale_timer = $morale_timer
-@onready var timer_wait_time = 1.0 * GameSpeed.game_speed
-
+@onready var timer_wait_time = 1.0 
 
 var start = false
 

@@ -9,3 +9,5 @@ extends Node3D
 
 @export var armour = 25
 @export var max_health = 500
+
+var game_speed_sub = false

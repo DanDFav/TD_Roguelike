@@ -36,7 +36,8 @@ func _ready() -> void:
 	game_speed_subscribe()
 	timer.autostart = false
 	timer.one_shot = true
-	timer.wait_time = 1.0 / GameSpeed.game_speed
+	timer.wait_time = 1.0 
+	
 	timer.timeout.connect(on_road_timeout)
 	add_child(timer)
 	if stats:

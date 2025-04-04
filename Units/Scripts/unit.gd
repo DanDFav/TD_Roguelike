@@ -30,6 +30,8 @@ var unit_cost : int
 # For Summoned units only
 var parent_summon 
 
+var placed_order : int 
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -124,7 +126,6 @@ func on_hit(damage):
 
 func on_death():
 	placed_on.unit_dead(self)
-	attack_node.unsubscribe_game_speed()
 	for enemy in blocked_enemies: 
 		var enemy_block_node = enemy.get_node("blocking")
 		enemy_block_node.unblock()

@@ -12,8 +12,8 @@ var attack_speed
 
 func _ready() -> void:
 	await get_tree().process_frame
-	attack_speed = stats.attack_speed / GameSpeed.game_speed
-	game_speed_subscribe()
+	attack_speed = stats.attack_speed 
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,18 +62,3 @@ func update_friendlies_in_range(friends):
 
 func _on_timer_timeout() -> void:
 	can_heal = true
-
-
-func game_speed_subscribe(): 
-	GameSpeed.subscribe(self)
-
-func unsubscribe_game_speed():
-	GameSpeed.unsubscribe(self)
-
-func update_game_speed(val): 
-	if not timer.is_stopped():
-		var progress_ratio = timer.time_left / timer.wait_time  
-		timer.wait_time = attack_speed / val  
-		timer.start(timer.wait_time * progress_ratio)  
-	else:
-		timer.wait_time = attack_speed / val  

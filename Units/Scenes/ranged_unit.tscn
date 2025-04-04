@@ -63,7 +63,6 @@ input_ray_pickable = false
 [node name="enemy_collision_cb" type="CollisionShape3D" parent="unit_sb/enemy_collision_a3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_sqb5u")
-disabled = true
 
 [node name="direct_indicator_m" type="MeshInstance3D" parent="unit_sb"]
 transform = Transform3D(-0.00215161, 0.400374, -3.8444e-10, 0.00892082, 7.65061e-06, -1.66335, -1.00218, -0.000859507, -0.0148061, 0.5187, 0, -2.26731e-08)

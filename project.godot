@@ -26,6 +26,16 @@ GameStart="*res://game_start.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[file_customization]
+
+folder_colors={
+"res://Enemies/": "red",
+"res://Map-Building/": "orange",
+"res://Menus/": "yellow",
+"res://Stages/": "green",
+"res://Units/": "purple"
+}
+
 [global_group]
 
 Block=""

@@ -3,12 +3,11 @@ extends Node3D
 #var party = Party.party
 
 var selected_unit 
-
-var summon_units = []
-
 var placeable_units = Party.party
+var unit_order = 0
 
 var summon_placing = false
+var summon_units = []
 
 @onready var unit_display = $unit_display
 
@@ -38,6 +37,9 @@ func unit_selected(unit):
 	if selected_unit != null: 
 		get_tree().root.add_child(selected_unit)
 		selected_unit = selected_unit.get_child(0)
+		if selected_unit is Unit: 
+			selected_unit.placed_order = unit_order
+			unit_order += 1
 
 
 func placed(unit):

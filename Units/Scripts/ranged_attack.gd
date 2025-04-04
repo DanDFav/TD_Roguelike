@@ -19,8 +19,8 @@ func _ready() -> void:
 	if hit_timer:
 		rate_of_fire = stats.rate_of_fire 
 		damage = stats.damage
-		hit_timer.wait_time = rate_of_fire / GameSpeed.game_speed
-	game_speed_subscribe()
+		hit_timer.wait_time = rate_of_fire
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,18 +44,3 @@ func auto_attack():
 		var enemy_health = enemy.get_node("health")
 		enemy_health.on_hit(damage, unit)
 		total_damage_dealt += damage 
-
-func game_speed_subscribe(): 
-	GameSpeed.subscribe(self)
-
-func unsubscribe_game_speed():
-	GameSpeed.unsubscribe(self)
-
-func update_game_speed(val): 
-	if not hit_timer.is_stopped():
-		var progress_ratio = hit_timer.time_left / hit_timer.wait_time  
-		var new_wait_time = rate_of_fire / val  
-		var interupt_val = new_wait_time * progress_ratio
-		hit_timer.start(interupt_val)  
-		
-	hit_timer.wait_time = rate_of_fire / val  

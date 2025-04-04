@@ -8,6 +8,8 @@ var SPEED
 var random_offset 
 var offset = 0.1
 
+var attack_pause
+
 var next_block 
 var next_block_entry
 var next_block_edge_dict
@@ -15,26 +17,33 @@ var to_edge = true
 var roadblocked = false
 var roadblock_instance
 
-var timer = Timer.new()
+var timer_roadblock = Timer.new()
+var timer_attack_pause = Timer.new() 
+
+var timers = []
 
 var path 
 var current_tile
 
 @onready var parent = get_parent()
 
-
 func _ready() -> void:
 	if stats:
 		SPEED = stats.SPEED
 	
-	timer.autostart = false
-	timer.one_shot = true
-	timer.wait_time = 1.0 / GameSpeed.game_speed
-	timer.timeout.connect(on_road_timeout)
-	add_child(timer)
+	setup_timer(timer_roadblock, on_road_timeout)
+	setup_timer(timer_attack_pause, attack_pause_end)
 	
 	random_offset = Vector3(randf_range(-1 * offset, offset), 0, randf_range(-1 * offset, offset))
 	parent.position = parent.position + random_offset
+
+func setup_timer(timer, connection): 
+	timer.autostart = false
+	timer.one_shot = true
+	timer.wait_time = 1.0
+	timer.timeout.connect(connection)
+	add_child(timer)
+	timers.append(timer)
 
 
 func _process(delta: float) -> void:
@@ -50,7 +59,10 @@ func movement(delta: float):
 	get_self_pos_relative_to_block()
 	var target_pos
 	var test = parent.global_position
-
+	
+	if attack_pause == true:
+		return 
+	
 	if to_edge: 
 		if next_block_entry == "south": target_pos = next_block_edge_dict["south"]
 		elif next_block_entry == "north": target_pos = next_block_edge_dict["north"]
@@ -62,7 +74,7 @@ func movement(delta: float):
 	target_pos = target_pos + random_offset
 	
 	if not block_node.blocked:
-		parent.global_position = parent.global_position.move_toward(target_pos, delta * SPEED * GameSpeed.game_speed)
+		parent.global_position = parent.global_position.move_toward(target_pos, delta * SPEED)
 		if not parent.global_position.is_equal_approx(target_pos):
 			parent.look_at(target_pos)
 	
@@ -99,11 +111,11 @@ func get_self_pos_relative_to_block():
 	next_block_entry = selected
 
 func destroy_roadblock(): 
-	if timer.is_stopped(): 
-		create_timer()
+	if timer_roadblock.is_stopped(): 
+		create_timer_roadblock()
 
-func create_timer(): 
-	timer.start()
+func create_timer_roadblock(): 
+	timer_roadblock.start()
 
 func on_road_timeout(): 
 	print("called")
@@ -118,5 +130,14 @@ func unroadblock():
 
 func at_exit(): 
 	print("enemy exited")
-	GameSpeed.unsubscribe(self)
 	get_parent().queue_free()
+
+func attack_pause_start():
+	attack_pause = true
+	if timer_attack_pause.is_stopped(): 
+		timer_attack_pause.start()
+	
+
+func attack_pause_end():
+	attack_pause = false
+	pass
